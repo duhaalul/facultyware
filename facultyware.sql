@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 10, 2026 at 10:18 AM
+-- Generation Time: Jun 16, 2026 at 03:40 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `assets` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('equipment','room') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `acquisition_type` enum('procurement','grant') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('equipment','room') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `acquisition_type` enum('procurement','grant') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `acquisition_date` date NOT NULL,
   `acquisition_cost` decimal(14,2) DEFAULT NULL,
   `asset_grant_id` bigint UNSIGNED DEFAULT NULL,
-  `condition` enum('good','minor_damage','major_damage') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('available','in_use','maintenance','retired') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `condition` enum('good','minor_damage','major_damage') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('available','in_use','maintenance','retired') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -50,10 +50,10 @@ CREATE TABLE `assets` (
 
 CREATE TABLE `asset_audits` (
   `id` bigint UNSIGNED NOT NULL,
-  `audit_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audit_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `audit_date` date NOT NULL,
   `conducted_by` bigint UNSIGNED NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -69,8 +69,8 @@ CREATE TABLE `asset_audit_details` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_audit_id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
-  `condition` enum('good','minor_damage','major_damage','missing') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `condition` enum('good','minor_damage','major_damage','missing') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,10 +83,10 @@ CREATE TABLE `asset_audit_details` (
 
 CREATE TABLE `asset_grants` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `source` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `grant_date` date NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -100,13 +100,13 @@ CREATE TABLE `asset_grants` (
 CREATE TABLE `asset_insurances` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
-  `policy_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `policy_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provider` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `coverage_amount` decimal(14,2) NOT NULL,
   `premium` decimal(14,2) DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `status` enum('active','expired','claimed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('active','expired','claimed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -122,8 +122,8 @@ CREATE TABLE `asset_insurance_claims` (
   `asset_insurance_id` bigint UNSIGNED NOT NULL,
   `claim_date` date NOT NULL,
   `claim_amount` decimal(14,2) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('submitted','approved','rejected','paid') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` enum('submitted','approved','rejected','paid') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -137,11 +137,11 @@ CREATE TABLE `asset_insurance_claims` (
 CREATE TABLE `asset_trackings` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `latitude` decimal(10,6) DEFAULT NULL,
   `longitude` decimal(10,6) DEFAULT NULL,
   `tracked_at` timestamp NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -155,8 +155,8 @@ CREATE TABLE `asset_trackings` (
 CREATE TABLE `asset_tracking_logs` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
-  `from_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `to_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `moved_at` timestamp NOT NULL,
   `moved_by` bigint UNSIGNED DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -172,15 +172,15 @@ CREATE TABLE `asset_tracking_logs` (
 
 CREATE TABLE `assignments` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `assigned_by` bigint UNSIGNED NOT NULL,
   `assigned_to` bigint UNSIGNED NOT NULL,
   `parent_id` bigint UNSIGNED DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `status` enum('assigned','in_progress','completed','delegated','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `priority` enum('low','medium','high') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('assigned','in_progress','completed','delegated','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `priority` enum('low','medium','high') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `assigned_by_id` bigint UNSIGNED NOT NULL,
   `assigned_to_id` bigint UNSIGNED NOT NULL,
   `parent_id_id` bigint UNSIGNED NOT NULL,
@@ -194,8 +194,9 @@ CREATE TABLE `assignments` (
 
 INSERT INTO `assignments` (`id`, `title`, `description`, `assigned_by`, `assigned_to`, `parent_id`, `start_date`, `due_date`, `status`, `priority`, `assigned_by_id`, `assigned_to_id`, `parent_id_id`, `created_at`, `updated_at`) VALUES
 (1, 'penugasan 1', 'buat tugas', 1, 2, NULL, '2222-02-11', '2222-02-12', 'completed', 'low', 1, 2, 0, '2026-06-04 00:06:58', '2026-06-04 00:18:14'),
-(2, 'tugas 2', 'fff', 1, 2, NULL, NULL, NULL, 'assigned', 'low', 1, 2, 0, '2026-06-10 09:02:54', '2026-06-10 09:02:54'),
-(3, 'tugas 3', 'ggg', 1, 2, NULL, NULL, NULL, 'assigned', 'high', 1, 2, 0, '2026-06-10 09:03:16', '2026-06-10 09:03:16');
+(2, 'tugas 2', 'fff', 1, 2, NULL, NULL, NULL, 'in_progress', 'low', 1, 2, 0, '2026-06-10 09:02:54', '2026-06-16 15:21:54'),
+(3, 'tugas 3', 'ggg', 1, 2, NULL, NULL, NULL, 'completed', 'high', 1, 2, 0, '2026-06-10 09:03:16', '2026-06-16 15:10:45'),
+(4, 'tugas 4', 'vvddgdgdsfw', 1, 2, NULL, NULL, NULL, 'in_progress', 'medium', 1, 2, 0, '2026-06-16 15:28:23', '2026-06-16 15:33:20');
 
 -- --------------------------------------------------------
 
@@ -205,11 +206,11 @@ INSERT INTO `assignments` (`id`, `title`, `description`, `assigned_by`, `assigne
 
 CREATE TABLE `assignment_progress` (
   `id` bigint UNSIGNED NOT NULL,
-  `assignment_id` bigint UNSIGNED NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `assignment_id` bigint UNSIGNED DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `progress_date` date NOT NULL,
-  `status` enum('in_progress','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('in_progress','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -221,7 +222,13 @@ CREATE TABLE `assignment_progress` (
 --
 
 INSERT INTO `assignment_progress` (`id`, `assignment_id`, `description`, `progress_date`, `status`, `attachment`, `created_by`, `employee_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'nfjfjfj', '2026-06-04', 'completed', NULL, 2, 2, '2026-06-04 00:08:02', '2026-06-04 00:18:14');
+(1, 1, 'nfjfjfj', '2026-06-04', 'completed', NULL, 2, 2, '2026-06-04 00:08:02', '2026-06-04 00:18:14'),
+(5, NULL, 'egerge', '2026-06-16', 'completed', NULL, 2, 2, '2026-06-16 10:59:40', '2026-06-16 15:22:21'),
+(6, 3, 'bdzb', '2026-06-16', 'completed', '1781607758257.jpg', 2, 2, '2026-06-16 11:02:38', '2026-06-16 15:10:45'),
+(7, 2, 'gege', '2026-06-16', 'in_progress', NULL, 2, 2, '2026-06-16 11:02:49', '2026-06-16 11:02:49'),
+(8, NULL, 'kjawakjdja', '2026-06-16', 'completed', '1781623531209.jpg', 2, 2, '2026-06-16 15:25:31', '2026-06-16 15:34:05'),
+(9, 4, 'kjsnfjhjf', '2026-06-16', 'in_progress', '1781624000353.jpg', 2, 2, '2026-06-16 15:33:20', '2026-06-16 15:33:20'),
+(10, NULL, 'bermain main\n[Ditolak: mau dipecat?]', '2026-06-16', 'in_progress', NULL, 2, 2, '2026-06-16 15:34:41', '2026-06-16 15:35:01');
 
 -- --------------------------------------------------------
 
@@ -235,8 +242,8 @@ CREATE TABLE `attendances` (
   `date` date NOT NULL,
   `check_in` datetime DEFAULT NULL,
   `check_out` datetime DEFAULT NULL,
-  `status` enum('present','absent','leave','overtime','holiday') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('present','absent','leave','overtime','holiday') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -249,9 +256,9 @@ CREATE TABLE `attendances` (
 
 CREATE TABLE `buildings` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -263,8 +270,8 @@ CREATE TABLE `buildings` (
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -275,8 +282,8 @@ CREATE TABLE `cache` (
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -288,14 +295,14 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `committees` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `objective` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expected_outcome` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `objective` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expected_outcome` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
-  `status` enum('draft','active','completed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('draft','active','completed','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -310,8 +317,8 @@ CREATE TABLE `committees` (
 CREATE TABLE `committee_budgets` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `total_amount` decimal(14,2) NOT NULL,
   `used_amount` decimal(14,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -327,7 +334,7 @@ CREATE TABLE `committee_budgets` (
 CREATE TABLE `committee_budget_items` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_budget_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `quantity` int NOT NULL,
   `unit_price` decimal(14,2) NOT NULL,
   `total_price` decimal(14,2) NOT NULL,
@@ -345,10 +352,10 @@ CREATE TABLE `committee_expenses` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_budget_item_id` bigint UNSIGNED NOT NULL,
   `amount` decimal(14,2) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `receipt_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `receipt_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `expense_date` date NOT NULL,
-  `status` enum('submitted','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('submitted','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -364,9 +371,9 @@ CREATE TABLE `committee_expenses` (
 CREATE TABLE `committee_external_members` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -381,7 +388,7 @@ CREATE TABLE `committee_members` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_leader` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -397,12 +404,12 @@ CREATE TABLE `committee_tasks` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_id` bigint UNSIGNED NOT NULL,
   `assigned_to` bigint UNSIGNED DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `start_date` date DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `priority` enum('low','medium','high') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('todo','in_progress','done','blocked') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `priority` enum('low','medium','high') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('todo','in_progress','done','blocked') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `committee_member_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -417,10 +424,10 @@ CREATE TABLE `committee_tasks` (
 CREATE TABLE `committee_task_progress` (
   `id` bigint UNSIGNED NOT NULL,
   `committee_task_id` bigint UNSIGNED NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `progress_date` date NOT NULL,
-  `status` enum('in_progress','done') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('in_progress','done') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -433,13 +440,13 @@ CREATE TABLE `committee_task_progress` (
 
 CREATE TABLE `community_services` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `funding_source` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('proposed','ongoing','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `funding_source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('proposed','ongoing','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -454,7 +461,7 @@ CREATE TABLE `community_service_members` (
   `id` bigint UNSIGNED NOT NULL,
   `community_service_id` bigint UNSIGNED NOT NULL,
   `lecturer_id` bigint UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -468,13 +475,13 @@ CREATE TABLE `community_service_members` (
 CREATE TABLE `conference_proceedings` (
   `id` bigint UNSIGNED NOT NULL,
   `publication_id` bigint UNSIGNED NOT NULL,
-  `conference_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `conference_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `conference_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conference_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `conference_date` date DEFAULT NULL,
-  `publisher` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isbn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pages` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `indexing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `publisher` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isbn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pages` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `indexing` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -539,9 +546,9 @@ CREATE TABLE `document_types` (
 CREATE TABLE `education_histories` (
   `id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `degree` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institution` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `major` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `degree` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `major` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_year` year NOT NULL,
   `end_year` year DEFAULT NULL,
   `gpa` decimal(3,2) DEFAULT NULL,
@@ -557,21 +564,21 @@ CREATE TABLE `education_histories` (
 
 CREATE TABLE `employees` (
   `id` bigint UNSIGNED NOT NULL,
-  `employee_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `national_id_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tax_id_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `birth_place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `employee_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `national_id_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_id_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth_place` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `birth_date` date NOT NULL,
-  `gender` enum('male','female') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `religion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `marital_status` enum('single','married','divorced') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` enum('male','female') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `religion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marital_status` enum('single','married','divorced') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `organization_unit_id` bigint UNSIGNED NOT NULL,
   `hire_date` date NOT NULL,
   `employment_status_id` bigint UNSIGNED NOT NULL,
-  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('active','inactive') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -594,7 +601,7 @@ INSERT INTO `employees` (`id`, `employee_number`, `national_id_number`, `tax_id_
 
 CREATE TABLE `employee_grades` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -607,8 +614,8 @@ CREATE TABLE `employee_grades` (
 
 CREATE TABLE `employment_statuses` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -629,12 +636,12 @@ INSERT INTO `employment_statuses` (`id`, `name`, `description`, `created_at`, `u
 CREATE TABLE `equipments` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
-  `brand` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `serial_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `specification` text COLLATE utf8mb4_unicode_ci,
-  `purchase_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brand` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `serial_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `specification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `purchase_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `depreciation_value` decimal(14,2) DEFAULT NULL,
   `useful_life` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -653,7 +660,7 @@ CREATE TABLE `equipment_loans` (
   `employee_id` bigint UNSIGNED NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `status` enum('requested','approved','rejected','returned') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('requested','approved','rejected','returned') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `approved_by_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -670,8 +677,8 @@ CREATE TABLE `equipment_maintenance_requests` (
   `id` bigint UNSIGNED NOT NULL,
   `equipment_id` bigint UNSIGNED NOT NULL,
   `reported_by` bigint UNSIGNED NOT NULL,
-  `issue_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('reported','in_progress','resolved') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issue_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('reported','in_progress','resolved') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reported_at` timestamp NOT NULL,
   `resolved_at` timestamp NULL DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -709,9 +716,9 @@ CREATE TABLE `equipment_maintenance_request_log` (
 
 CREATE TABLE `equipment_procurements` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('draft','submitted','approved','rejected','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('draft','submitted','approved','rejected','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -727,8 +734,8 @@ CREATE TABLE `equipment_procurements` (
 CREATE TABLE `equipment_proc_items` (
   `id` bigint UNSIGNED NOT NULL,
   `equipment_proc_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `specification` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `specification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `quantity` int NOT NULL,
   `estimated_price` decimal(14,2) DEFAULT NULL,
   `asset_equipment_procurement_id` bigint UNSIGNED NOT NULL,
@@ -744,14 +751,14 @@ CREATE TABLE `equipment_proc_items` (
 
 CREATE TABLE `equipment_requests` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `specification` text COLLATE utf8mb4_unicode_ci,
-  `purchase_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `specification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `purchase_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` int NOT NULL,
-  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pending','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `submitted_at` timestamp NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
@@ -767,24 +774,24 @@ CREATE TABLE `equipment_requests` (
 
 CREATE TABLE `events` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `objectives` text COLLATE utf8mb4_unicode_ci,
-  `event_type` enum('seminar','workshop','training','conference','webinar','other') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `delivery_mode` enum('offline','online','hybrid') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `objectives` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `event_type` enum('seminar','workshop','training','conference','webinar','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `delivery_mode` enum('offline','online','hybrid') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
-  `venue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `online_platform` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `online_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `online_platform` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `online_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quota` int DEFAULT NULL,
   `registration_deadline` datetime DEFAULT NULL,
-  `cover_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banner_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('draft','published','closed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('draft','published','closed','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
   `published_by` bigint UNSIGNED DEFAULT NULL,
   `published_at` timestamp NULL DEFAULT NULL,
@@ -806,8 +813,8 @@ CREATE TABLE `event_attendances` (
   `checked_in_at` timestamp NULL DEFAULT NULL,
   `checked_out_at` timestamp NULL DEFAULT NULL,
   `checked_by` bigint UNSIGNED DEFAULT NULL,
-  `attendance_method` enum('manual','qr_scan','system') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('present','absent','partial') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attendance_method` enum('manual','qr_scan','system') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('present','absent','partial') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `checked_by_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -823,7 +830,7 @@ CREATE TABLE `event_committee_members` (
   `id` bigint UNSIGNED NOT NULL,
   `event_id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_leader` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -838,10 +845,10 @@ CREATE TABLE `event_committee_members` (
 CREATE TABLE `event_documents` (
   `id` bigint UNSIGNED NOT NULL,
   `event_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `document_type` enum('report','photo','proposal','minutes','attendance','other') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `document_type` enum('report','photo','proposal','minutes','attendance','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `uploaded_by` bigint UNSIGNED NOT NULL,
   `uploaded_at` timestamp NOT NULL,
   `uploaded_by_id` bigint UNSIGNED NOT NULL,
@@ -859,15 +866,15 @@ CREATE TABLE `event_registrations` (
   `id` bigint UNSIGNED NOT NULL,
   `event_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `registration_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `registration_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `registered_at` timestamp NOT NULL,
-  `attendance_status` enum('registered','attended','no_show','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
-  `ticket_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qr_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attendance_status` enum('registered','attended','no_show','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ticket_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qr_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `issued_at` timestamp NOT NULL,
-  `certificate_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificate_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `generated_by` bigint UNSIGNED DEFAULT NULL,
   `generated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -884,8 +891,8 @@ CREATE TABLE `event_reminders` (
   `id` bigint UNSIGNED NOT NULL,
   `event_id` bigint UNSIGNED NOT NULL,
   `sent_by` bigint UNSIGNED NOT NULL,
-  `channel` enum('email','whatsapp','sms','system') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `channel` enum('email','whatsapp','sms','system') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sent_at` timestamp NOT NULL,
   `sent_by_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -900,11 +907,11 @@ CREATE TABLE `event_reminders` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -916,8 +923,8 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `functional_positions` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `level` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -932,7 +939,7 @@ CREATE TABLE `functional_positions` (
 CREATE TABLE `holidays` (
   `id` bigint UNSIGNED NOT NULL,
   `date` date NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -947,10 +954,10 @@ CREATE TABLE `implementation_arrangements` (
   `id` bigint UNSIGNED NOT NULL,
   `partnership_id` bigint UNSIGNED NOT NULL,
   `partnership_impl_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `document_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `document_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `document_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `partnership_implementation_id` bigint UNSIGNED NOT NULL,
@@ -980,9 +987,9 @@ CREATE TABLE `inventories` (
 
 CREATE TABLE `inventory_procurements` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('draft','submitted','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('draft','submitted','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -1000,7 +1007,7 @@ CREATE TABLE `inventory_procurement_items` (
   `id` bigint UNSIGNED NOT NULL,
   `inventory_procurement_id` bigint UNSIGNED NOT NULL,
   `item_id` bigint UNSIGNED DEFAULT NULL,
-  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1014,11 +1021,11 @@ CREATE TABLE `inventory_procurement_items` (
 
 CREATE TABLE `inventory_purchases` (
   `id` bigint UNSIGNED NOT NULL,
-  `purchase_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `purchase_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `inventory_procurement_id` bigint UNSIGNED DEFAULT NULL,
   `purchase_date` date NOT NULL,
-  `supplier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('draft','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supplier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('draft','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1047,10 +1054,10 @@ CREATE TABLE `inventory_purchase_items` (
 
 CREATE TABLE `inventory_requests` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `request_date` date NOT NULL,
-  `status` enum('pending','approved','rejected','fulfilled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pending','approved','rejected','fulfilled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
   `approved_by_id` bigint UNSIGNED NOT NULL,
@@ -1068,8 +1075,8 @@ CREATE TABLE `inventory_request_approvals` (
   `id` bigint UNSIGNED NOT NULL,
   `inventory_request_id` bigint UNSIGNED NOT NULL,
   `approver_id` bigint UNSIGNED NOT NULL,
-  `status` enum('approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `action_date` timestamp NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1086,8 +1093,8 @@ CREATE TABLE `inventory_request_details` (
   `id` bigint UNSIGNED NOT NULL,
   `inventory_request_id` bigint UNSIGNED NOT NULL,
   `item_id` bigint UNSIGNED DEFAULT NULL,
-  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `specification` text COLLATE utf8mb4_unicode_ci,
+  `item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `specification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `quantity` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1102,11 +1109,11 @@ CREATE TABLE `inventory_request_details` (
 CREATE TABLE `inventory_transactions` (
   `id` bigint UNSIGNED NOT NULL,
   `item_id` bigint UNSIGNED NOT NULL,
-  `type` enum('in','out','adjustment') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('in','out','adjustment') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `quantity` int NOT NULL,
   `transaction_date` date NOT NULL,
-  `reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1119,11 +1126,11 @@ CREATE TABLE `inventory_transactions` (
 
 CREATE TABLE `items` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `minimal_quantity` int NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1136,8 +1143,8 @@ CREATE TABLE `items` (
 
 CREATE TABLE `jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint UNSIGNED NOT NULL,
   `reserved_at` int UNSIGNED DEFAULT NULL,
   `available_at` int UNSIGNED NOT NULL,
@@ -1151,13 +1158,13 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL
@@ -1172,9 +1179,9 @@ CREATE TABLE `job_batches` (
 CREATE TABLE `job_responsibilities` (
   `id` bigint UNSIGNED NOT NULL,
   `structural_position_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('main','function') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('main','function') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1189,14 +1196,14 @@ CREATE TABLE `job_responsibilities` (
 CREATE TABLE `journal_publications` (
   `id` bigint UNSIGNED NOT NULL,
   `publication_id` bigint UNSIGNED NOT NULL,
-  `journal_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `issn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `publisher` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `volume` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `issue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pages` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `indexing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `quartile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `journal_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `publisher` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `volume` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `issue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pages` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `indexing` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quartile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1212,8 +1219,8 @@ CREATE TABLE `leave_approvals` (
   `leave_request_id` bigint UNSIGNED NOT NULL,
   `approver_id` bigint UNSIGNED NOT NULL,
   `level` int NOT NULL,
-  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('pending','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `action_date` timestamp NULL DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1252,11 +1259,11 @@ CREATE TABLE `leave_requests` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `total_days` int NOT NULL,
-  `reason` text COLLATE utf8mb4_unicode_ci,
-  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_leave` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_leave` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('pending','approved','rejected','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_leave` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_leave` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('pending','approved','rejected','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `submitted_at` timestamp NOT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
   `approver_id_id` bigint UNSIGNED NOT NULL,
@@ -1272,8 +1279,8 @@ CREATE TABLE `leave_requests` (
 
 CREATE TABLE `leave_types` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `default_quota` int NOT NULL,
   `requires_attachment` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1288,9 +1295,9 @@ CREATE TABLE `leave_types` (
 
 CREATE TABLE `lecturers` (
   `id` bigint UNSIGNED NOT NULL,
-  `academic_rank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `functional_position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expertise` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `academic_rank` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `functional_position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expertise` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1307,9 +1314,9 @@ CREATE TABLE `lecturer_functional_positions` (
   `functional_position_id` bigint UNSIGNED NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `decree_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `decree_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `decree_date` date DEFAULT NULL,
-  `sk_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sk_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1322,20 +1329,20 @@ CREATE TABLE `lecturer_functional_positions` (
 
 CREATE TABLE `meetings` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `organizer_id` bigint UNSIGNED NOT NULL,
   `leader_id` bigint UNSIGNED NOT NULL,
-  `meeting_type` enum('offline','online','hybrid') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meeting_type` enum('offline','online','hybrid') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `meeting_date` date NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `asset_room_id` bigint UNSIGNED DEFAULT NULL,
-  `online_platform` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `online_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `online_platform` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `online_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `committee_id` bigint UNSIGNED DEFAULT NULL,
   `is_confidential` tinyint(1) NOT NULL DEFAULT '0',
-  `status` enum('draft','scheduled','completed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('draft','scheduled','completed','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `organizer_id_id` bigint UNSIGNED NOT NULL,
   `leader_id_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1351,9 +1358,9 @@ CREATE TABLE `meetings` (
 CREATE TABLE `meeting_consumption_requests` (
   `id` bigint UNSIGNED NOT NULL,
   `meeting_id` bigint UNSIGNED NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `estimated_participants` int NOT NULL,
-  `status` enum('requested','approved','rejected','fulfilled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('requested','approved','rejected','fulfilled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `requested_at` timestamp NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -1370,9 +1377,9 @@ CREATE TABLE `meeting_consumption_requests` (
 CREATE TABLE `meeting_documents` (
   `id` bigint UNSIGNED NOT NULL,
   `meeting_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `uploaded_by` bigint UNSIGNED NOT NULL,
   `uploaded_at` timestamp NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -1389,9 +1396,9 @@ CREATE TABLE `meeting_documents` (
 CREATE TABLE `meeting_external_participants` (
   `id` bigint UNSIGNED NOT NULL,
   `meeting_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1405,8 +1412,8 @@ CREATE TABLE `meeting_external_participants` (
 CREATE TABLE `meeting_minutes` (
   `id` bigint UNSIGNED NOT NULL,
   `meeting_id` bigint UNSIGNED NOT NULL,
-  `summary` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_confidential` tinyint(1) NOT NULL DEFAULT '0',
   `created_by` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -1424,7 +1431,7 @@ CREATE TABLE `meeting_participants` (
   `id` bigint UNSIGNED NOT NULL,
   `meeting_id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `status` enum('invited','confirmed','attended') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('invited','confirmed','attended') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1437,7 +1444,7 @@ CREATE TABLE `meeting_participants` (
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1449,7 +1456,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1471,10 +1478,10 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 
 CREATE TABLE `nomenclatures` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qualification` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `duties` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `grade` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qualification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duties` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grade` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1488,8 +1495,8 @@ CREATE TABLE `nomenclatures` (
 CREATE TABLE `nomenclature_classifications` (
   `id` bigint UNSIGNED NOT NULL,
   `nomenclature_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1502,19 +1509,19 @@ CREATE TABLE `nomenclature_classifications` (
 
 CREATE TABLE `official_travel` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `destination` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `purpose` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `destination` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `invitation_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('draft','pending','approved','rejected','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `invitation_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('draft','pending','approved','rejected','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `submitted_by` bigint UNSIGNED NOT NULL,
   `submitted_at` timestamp NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
-  `travel_outcome` text COLLATE utf8mb4_unicode_ci,
-  `outcome_followup` text COLLATE utf8mb4_unicode_ci,
+  `travel_outcome` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `outcome_followup` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `submitted_by_id` bigint UNSIGNED NOT NULL,
   `approved_by_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1531,8 +1538,8 @@ CREATE TABLE `official_travel_approvals` (
   `id` bigint UNSIGNED NOT NULL,
   `official_travel_id` bigint UNSIGNED NOT NULL,
   `approver_id` bigint UNSIGNED NOT NULL,
-  `status` enum('approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `action_date` timestamp NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1548,9 +1555,9 @@ CREATE TABLE `official_travel_approvals` (
 CREATE TABLE `official_travel_documents` (
   `id` bigint UNSIGNED NOT NULL,
   `official_travel_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `uploaded_at` timestamp NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1566,9 +1573,9 @@ CREATE TABLE `official_travel_itineraries` (
   `id` bigint UNSIGNED NOT NULL,
   `official_travel_id` bigint UNSIGNED NOT NULL,
   `date` date NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1584,9 +1591,9 @@ CREATE TABLE `official_travel_members` (
   `official_travel_id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `report_date` date NOT NULL,
-  `summary` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1599,11 +1606,11 @@ CREATE TABLE `official_travel_members` (
 
 CREATE TABLE `organization_units` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` bigint UNSIGNED DEFAULT NULL,
-  `type` enum('university','faculty','department','lab','unit') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `type` enum('university','faculty','department','lab','unit') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `organization_unit_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1626,8 +1633,8 @@ CREATE TABLE `overtime_approval_logs` (
   `id` bigint UNSIGNED NOT NULL,
   `overtime_request_id` bigint UNSIGNED NOT NULL,
   `approver_id` bigint UNSIGNED NOT NULL,
-  `status` enum('approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `action_date` timestamp NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1642,15 +1649,15 @@ CREATE TABLE `overtime_approval_logs` (
 
 CREATE TABLE `overtime_requests` (
   `id` bigint UNSIGNED NOT NULL,
-  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `request_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `request_date` date NOT NULL,
   `planned_start_time` datetime NOT NULL,
   `planned_end_time` datetime NOT NULL,
   `submitted_by` bigint UNSIGNED NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
-  `status` enum('draft','pending','approved','rejected','completed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('draft','pending','approved','rejected','completed','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `submitted_at` timestamp NULL DEFAULT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
   `submitted_by_id` bigint UNSIGNED NOT NULL,
@@ -1669,8 +1676,8 @@ CREATE TABLE `overtime_request_members` (
   `id` bigint UNSIGNED NOT NULL,
   `overtime_request_id` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_desc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `planned_hours` decimal(5,2) NOT NULL,
   `actual_start_time` datetime NOT NULL,
   `actual_end_time` datetime NOT NULL,
@@ -1687,12 +1694,12 @@ CREATE TABLE `overtime_request_members` (
 
 CREATE TABLE `partners` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('university','company','government','ngo','other') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('university','company','government','ngo','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1707,13 +1714,13 @@ CREATE TABLE `partnerships` (
   `id` bigint UNSIGNED NOT NULL,
   `partner_id` bigint UNSIGNED NOT NULL,
   `partner_potential_id` bigint UNSIGNED DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `document_type` enum('moa','pks') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `document_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `document_type` enum('moa','pks') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `document_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `status` enum('active','expired','terminated') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('active','expired','terminated') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1727,7 +1734,7 @@ CREATE TABLE `partnerships` (
 CREATE TABLE `partnership_documents` (
   `id` bigint UNSIGNED NOT NULL,
   `partnership_id` bigint UNSIGNED NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `signed_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1742,11 +1749,11 @@ CREATE TABLE `partnership_documents` (
 CREATE TABLE `partnership_implementations` (
   `id` bigint UNSIGNED NOT NULL,
   `partnership_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `status` enum('planned','ongoing','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('planned','ongoing','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1760,12 +1767,12 @@ CREATE TABLE `partnership_implementations` (
 CREATE TABLE `partner_contacts` (
   `id` bigint UNSIGNED NOT NULL,
   `partner_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_primary` tinyint(1) NOT NULL DEFAULT '0',
-  `notes` text COLLATE utf8mb4_unicode_ci,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1780,8 +1787,8 @@ CREATE TABLE `partner_follow_ups` (
   `id` bigint UNSIGNED NOT NULL,
   `partner_potential_id` bigint UNSIGNED NOT NULL,
   `activity_date` date NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('planned','ongoing','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` enum('planned','ongoing','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `conducted_by` bigint UNSIGNED NOT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1797,9 +1804,9 @@ CREATE TABLE `partner_follow_ups` (
 CREATE TABLE `partner_potentials` (
   `id` bigint UNSIGNED NOT NULL,
   `partner_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('identified','in_discussion','proposed','converted','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` enum('identified','in_discussion','proposed','converted','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1813,7 +1820,7 @@ CREATE TABLE `partner_potentials` (
 CREATE TABLE `partner_potential_fields` (
   `id` bigint UNSIGNED NOT NULL,
   `partner_potential_id` bigint UNSIGNED NOT NULL,
-  `field` enum('research','community_service','internship','training','other') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` enum('research','community_service','internship','training','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1825,8 +1832,8 @@ CREATE TABLE `partner_potential_fields` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1838,8 +1845,8 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `permissions` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1852,11 +1859,11 @@ CREATE TABLE `permissions` (
 
 CREATE TABLE `publications` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `publication_date` date NOT NULL,
-  `doi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `abstract` text COLLATE utf8mb4_unicode_ci,
+  `doi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abstract` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `research_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1886,13 +1893,13 @@ CREATE TABLE `publication_authors` (
 
 CREATE TABLE `research` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `funding_source` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `funding_source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `budget` decimal(12,2) DEFAULT NULL,
-  `status` enum('proposed','ongoing','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('proposed','ongoing','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1907,7 +1914,7 @@ CREATE TABLE `research_members` (
   `id` bigint UNSIGNED NOT NULL,
   `research_id` bigint UNSIGNED NOT NULL,
   `lecturer_id` bigint UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1920,8 +1927,8 @@ CREATE TABLE `research_members` (
 
 CREATE TABLE `roles` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1955,9 +1962,9 @@ CREATE TABLE `rooms` (
   `id` bigint UNSIGNED NOT NULL,
   `asset_id` bigint UNSIGNED NOT NULL,
   `building_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `floor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `floor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `capacity` int NOT NULL,
   `is_public` tinyint(1) NOT NULL DEFAULT '0',
   `responsible_employee_id` bigint UNSIGNED NOT NULL,
@@ -1978,8 +1985,8 @@ CREATE TABLE `room_loans` (
   `employee_id` bigint UNSIGNED NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('requested','approved','rejected','completed') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `purpose` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('requested','approved','rejected','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `approved_by` bigint UNSIGNED DEFAULT NULL,
   `approved_by_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1996,8 +2003,8 @@ CREATE TABLE `room_maintenance_requests` (
   `id` bigint UNSIGNED NOT NULL,
   `room_id` bigint UNSIGNED NOT NULL,
   `reported_by` bigint UNSIGNED NOT NULL,
-  `issue_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('reported','in_progress','resolved') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issue_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('reported','in_progress','resolved') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reported_at` timestamp NOT NULL,
   `resolved_at` timestamp NULL DEFAULT NULL,
   `employee_id` bigint UNSIGNED NOT NULL,
@@ -2034,11 +2041,11 @@ CREATE TABLE `room_maintenance_request_log` (
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -2047,7 +2054,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('DvH2f0OzrlFm6CnWEhA2BCbcdhxlvjWv', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-11T09:46:57.951Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1781171218);
+('VBHotELsmIZ9URaAiRGjlGl7GIYpOyh2', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-17T15:35:01.521Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1781710517);
 
 -- --------------------------------------------------------
 
@@ -2057,8 +2064,8 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 
 CREATE TABLE `staff` (
   `id` bigint UNSIGNED NOT NULL,
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2088,11 +2095,11 @@ CREATE TABLE `staff_nomenclature_histories` (
 
 CREATE TABLE `structural_positions` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent_id` bigint UNSIGNED DEFAULT NULL,
-  `grade` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qualification` text COLLATE utf8mb4_unicode_ci,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `grade` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qualification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `structural_position_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -2110,9 +2117,9 @@ CREATE TABLE `structural_position_histories` (
   `structural_position_id` bigint UNSIGNED NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `decree_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `decree_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `decree_date` date DEFAULT NULL,
-  `document` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2298,8 +2305,8 @@ CREATE TABLE `student_request_resignation_approvals` (
 
 CREATE TABLE `surveys` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '0',
@@ -2319,7 +2326,7 @@ CREATE TABLE `survey_answers` (
   `id` bigint UNSIGNED NOT NULL,
   `survey_response_id` bigint UNSIGNED NOT NULL,
   `survey_question_id` bigint UNSIGNED NOT NULL,
-  `answer_text` text COLLATE utf8mb4_unicode_ci,
+  `answer_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2347,10 +2354,10 @@ CREATE TABLE `survey_answer_options` (
 CREATE TABLE `survey_invitations` (
   `id` bigint UNSIGNED NOT NULL,
   `survey_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_used` tinyint(1) NOT NULL DEFAULT '0',
   `used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2365,8 +2372,8 @@ CREATE TABLE `survey_invitations` (
 
 CREATE TABLE `survey_questions` (
   `id` bigint UNSIGNED NOT NULL,
-  `question_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('single_choice','multiple_choice','short_answer') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('single_choice','multiple_choice','short_answer') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -2396,7 +2403,7 @@ CREATE TABLE `survey_question_assignments` (
 CREATE TABLE `survey_question_options` (
   `id` bigint UNSIGNED NOT NULL,
   `survey_question_id` bigint UNSIGNED NOT NULL,
-  `option_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `option_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `weight` decimal(5,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -2425,9 +2432,9 @@ CREATE TABLE `survey_responses` (
 
 CREATE TABLE `travel_cost_components` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2461,11 +2468,11 @@ CREATE TABLE `travel_expenses` (
   `employee_id` bigint UNSIGNED NOT NULL,
   `travel_cost_component_id` bigint UNSIGNED NOT NULL,
   `amount` decimal(12,2) NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `receipt_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `receipt_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `submitted_at` timestamp NOT NULL,
   `verified_at` timestamp NULL DEFAULT NULL,
-  `status` enum('submitted','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('submitted','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2478,14 +2485,14 @@ CREATE TABLE `travel_expenses` (
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -3569,13 +3576,13 @@ ALTER TABLE `asset_tracking_logs`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `assignment_progress`
 --
 ALTER TABLE `assignment_progress`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `attendances`
@@ -4619,306 +4626,6 @@ ALTER TABLE `nomenclature_classifications`
 ALTER TABLE `official_travel`
   ADD CONSTRAINT `official_travel_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `official_travel_submitted_by_foreign` FOREIGN KEY (`submitted_by`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `official_travel_approvals`
---
-ALTER TABLE `official_travel_approvals`
-  ADD CONSTRAINT `official_travel_approvals_approver_id_foreign` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `official_travel_approvals_official_travel_id_foreign` FOREIGN KEY (`official_travel_id`) REFERENCES `official_travels` (`id`);
-
---
--- Constraints for table `official_travel_documents`
---
-ALTER TABLE `official_travel_documents`
-  ADD CONSTRAINT `official_travel_documents_official_travel_id_foreign` FOREIGN KEY (`official_travel_id`) REFERENCES `official_travels` (`id`);
-
---
--- Constraints for table `official_travel_itineraries`
---
-ALTER TABLE `official_travel_itineraries`
-  ADD CONSTRAINT `official_travel_itineraries_official_travel_id_foreign` FOREIGN KEY (`official_travel_id`) REFERENCES `official_travels` (`id`);
-
---
--- Constraints for table `official_travel_members`
---
-ALTER TABLE `official_travel_members`
-  ADD CONSTRAINT `official_travel_members_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `official_travel_members_official_travel_id_foreign` FOREIGN KEY (`official_travel_id`) REFERENCES `official_travels` (`id`);
-
---
--- Constraints for table `organization_units`
---
-ALTER TABLE `organization_units`
-  ADD CONSTRAINT `organization_units_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `organization_units` (`id`);
-
---
--- Constraints for table `overtime_approval_logs`
---
-ALTER TABLE `overtime_approval_logs`
-  ADD CONSTRAINT `overtime_approval_logs_approver_id_foreign` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `overtime_approval_logs_overtime_request_id_foreign` FOREIGN KEY (`overtime_request_id`) REFERENCES `overtime_requests` (`id`);
-
---
--- Constraints for table `overtime_requests`
---
-ALTER TABLE `overtime_requests`
-  ADD CONSTRAINT `overtime_requests_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `overtime_requests_submitted_by_foreign` FOREIGN KEY (`submitted_by`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `overtime_request_members`
---
-ALTER TABLE `overtime_request_members`
-  ADD CONSTRAINT `overtime_request_members_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `overtime_request_members_overtime_request_id_foreign` FOREIGN KEY (`overtime_request_id`) REFERENCES `overtime_requests` (`id`);
-
---
--- Constraints for table `partnerships`
---
-ALTER TABLE `partnerships`
-  ADD CONSTRAINT `partnerships_partner_id_foreign` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`),
-  ADD CONSTRAINT `partnerships_partner_potential_id_foreign` FOREIGN KEY (`partner_potential_id`) REFERENCES `partner_potentials` (`id`);
-
---
--- Constraints for table `partnership_documents`
---
-ALTER TABLE `partnership_documents`
-  ADD CONSTRAINT `partnership_documents_partnership_id_foreign` FOREIGN KEY (`partnership_id`) REFERENCES `partnerships` (`id`);
-
---
--- Constraints for table `partnership_implementations`
---
-ALTER TABLE `partnership_implementations`
-  ADD CONSTRAINT `partnership_implementations_partnership_id_foreign` FOREIGN KEY (`partnership_id`) REFERENCES `partnerships` (`id`);
-
---
--- Constraints for table `partner_contacts`
---
-ALTER TABLE `partner_contacts`
-  ADD CONSTRAINT `partner_contacts_partner_id_foreign` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`);
-
---
--- Constraints for table `partner_follow_ups`
---
-ALTER TABLE `partner_follow_ups`
-  ADD CONSTRAINT `partner_follow_ups_conducted_by_foreign` FOREIGN KEY (`conducted_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `partner_follow_ups_partner_potential_id_foreign` FOREIGN KEY (`partner_potential_id`) REFERENCES `partner_potentials` (`id`);
-
---
--- Constraints for table `partner_potentials`
---
-ALTER TABLE `partner_potentials`
-  ADD CONSTRAINT `partner_potentials_partner_id_foreign` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`);
-
---
--- Constraints for table `partner_potential_fields`
---
-ALTER TABLE `partner_potential_fields`
-  ADD CONSTRAINT `partner_potential_fields_partner_potential_id_foreign` FOREIGN KEY (`partner_potential_id`) REFERENCES `partner_potentials` (`id`);
-
---
--- Constraints for table `publications`
---
-ALTER TABLE `publications`
-  ADD CONSTRAINT `publications_research_id_foreign` FOREIGN KEY (`research_id`) REFERENCES `research` (`id`);
-
---
--- Constraints for table `publication_authors`
---
-ALTER TABLE `publication_authors`
-  ADD CONSTRAINT `publication_authors_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturers` (`id`),
-  ADD CONSTRAINT `publication_authors_publication_id_foreign` FOREIGN KEY (`publication_id`) REFERENCES `publications` (`id`);
-
---
--- Constraints for table `research_members`
---
-ALTER TABLE `research_members`
-  ADD CONSTRAINT `research_members_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturers` (`id`),
-  ADD CONSTRAINT `research_members_research_id_foreign` FOREIGN KEY (`research_id`) REFERENCES `research` (`id`);
-
---
--- Constraints for table `role_has_permissions`
---
-ALTER TABLE `role_has_permissions`
-  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `rooms`
---
-ALTER TABLE `rooms`
-  ADD CONSTRAINT `asset_rooms_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`),
-  ADD CONSTRAINT `asset_rooms_building_id_foreign` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`),
-  ADD CONSTRAINT `asset_rooms_responsible_employee_id_foreign` FOREIGN KEY (`responsible_employee_id`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `room_loans`
---
-ALTER TABLE `room_loans`
-  ADD CONSTRAINT `room_loans_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `room_loans_asset_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
-  ADD CONSTRAINT `room_loans_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `room_maintenance_requests`
---
-ALTER TABLE `room_maintenance_requests`
-  ADD CONSTRAINT `room_maintenance_requests_asset_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
-  ADD CONSTRAINT `room_maintenance_requests_reported_by_foreign` FOREIGN KEY (`reported_by`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `room_maintenance_request_log`
---
-ALTER TABLE `room_maintenance_request_log`
-  ADD CONSTRAINT `fk_room_maintenance_request_log_employees1` FOREIGN KEY (`logged_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_room_maintenance_request_log_employees2` FOREIGN KEY (`verified_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_room_maintenance_request_log_room_maintenance_requests1` FOREIGN KEY (`room_maintenance_request_id`) REFERENCES `room_maintenance_requests` (`id`);
-
---
--- Constraints for table `staff`
---
-ALTER TABLE `staff`
-  ADD CONSTRAINT `staff_employee_id_foreign` FOREIGN KEY (`id`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `staff_nomenclature_histories`
---
-ALTER TABLE `staff_nomenclature_histories`
-  ADD CONSTRAINT `staff_nomenclature_histories_nomenclature_class_id_foreign` FOREIGN KEY (`nomenclature_class_id`) REFERENCES `nomenclature_classifications` (`id`),
-  ADD CONSTRAINT `staff_nomenclature_histories_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`);
-
---
--- Constraints for table `structural_positions`
---
-ALTER TABLE `structural_positions`
-  ADD CONSTRAINT `structural_positions_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `structural_positions` (`id`);
-
---
--- Constraints for table `structural_position_histories`
---
-ALTER TABLE `structural_position_histories`
-  ADD CONSTRAINT `structural_position_histories_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `structural_position_histories_structural_position_id_foreign` FOREIGN KEY (`structural_position_id`) REFERENCES `structural_positions` (`id`);
-
---
--- Constraints for table `students`
---
-ALTER TABLE `students`
-  ADD CONSTRAINT `fk_students_lecturers1` FOREIGN KEY (`advisor_id`) REFERENCES `lecturers` (`id`),
-  ADD CONSTRAINT `fk_students_organization_units1` FOREIGN KEY (`department_id`) REFERENCES `organization_units` (`id`),
-  ADD CONSTRAINT `fk_students_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `student_requests`
---
-ALTER TABLE `student_requests`
-  ADD CONSTRAINT `fk_student_requests_students1` FOREIGN KEY (`requested_by`) REFERENCES `students` (`id`);
-
---
--- Constraints for table `student_request_active_references`
---
-ALTER TABLE `student_request_active_references`
-  ADD CONSTRAINT `fk_student_request_recomendations_employees1` FOREIGN KEY (`signed_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_recomendations_employees2` FOREIGN KEY (`checked_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_recomendations_student_requests1` FOREIGN KEY (`student_requests_id`) REFERENCES `student_requests` (`id`);
-
---
--- Constraints for table `student_request_grad_references`
---
-ALTER TABLE `student_request_grad_references`
-  ADD CONSTRAINT `fk_student_request_recomendations_employees10` FOREIGN KEY (`signed_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_recomendations_employees20` FOREIGN KEY (`checked_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_recomendations_student_requests10` FOREIGN KEY (`student_requests_id`) REFERENCES `student_requests` (`id`);
-
---
--- Constraints for table `student_request_refund`
---
-ALTER TABLE `student_request_refund`
-  ADD CONSTRAINT `fk_student_request_refund_student_requests1` FOREIGN KEY (`student_request_id`) REFERENCES `student_requests` (`id`);
-
---
--- Constraints for table `student_request_refund_approvals`
---
-ALTER TABLE `student_request_refund_approvals`
-  ADD CONSTRAINT `fk_student_request_refund_approvals_employees1` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_refund_approvals_student_request_refund1` FOREIGN KEY (`student_request_refund_id`) REFERENCES `student_request_refund` (`id`);
-
---
--- Constraints for table `student_request_resignation`
---
-ALTER TABLE `student_request_resignation`
-  ADD CONSTRAINT `fk_student_request_resignation_student_requests1` FOREIGN KEY (`student_requests_id`) REFERENCES `student_requests` (`id`);
-
---
--- Constraints for table `student_request_resignation_approvals`
---
-ALTER TABLE `student_request_resignation_approvals`
-  ADD CONSTRAINT `fk_student_request_refund_approvals_employees10` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `fk_student_request_refund_approvals_student_request_refund10` FOREIGN KEY (`student_request_resignation_id`) REFERENCES `student_request_resignation` (`id`);
-
---
--- Constraints for table `surveys`
---
-ALTER TABLE `surveys`
-  ADD CONSTRAINT `surveys_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
-
---
--- Constraints for table `survey_answers`
---
-ALTER TABLE `survey_answers`
-  ADD CONSTRAINT `survey_answers_survey_question_id_foreign` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_questions` (`id`),
-  ADD CONSTRAINT `survey_answers_survey_response_id_foreign` FOREIGN KEY (`survey_response_id`) REFERENCES `survey_responses` (`id`);
-
---
--- Constraints for table `survey_answer_options`
---
-ALTER TABLE `survey_answer_options`
-  ADD CONSTRAINT `survey_answer_options_survey_answer_id_foreign` FOREIGN KEY (`survey_answer_id`) REFERENCES `survey_answers` (`id`),
-  ADD CONSTRAINT `survey_answer_options_survey_question_option_id_foreign` FOREIGN KEY (`survey_question_option_id`) REFERENCES `survey_question_options` (`id`);
-
---
--- Constraints for table `survey_invitations`
---
-ALTER TABLE `survey_invitations`
-  ADD CONSTRAINT `survey_invitations_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`);
-
---
--- Constraints for table `survey_question_assignments`
---
-ALTER TABLE `survey_question_assignments`
-  ADD CONSTRAINT `survey_question_assignments_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`),
-  ADD CONSTRAINT `survey_question_assignments_survey_question_id_foreign` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_questions` (`id`);
-
---
--- Constraints for table `survey_question_options`
---
-ALTER TABLE `survey_question_options`
-  ADD CONSTRAINT `survey_question_options_survey_question_id_foreign` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_questions` (`id`);
-
---
--- Constraints for table `survey_responses`
---
-ALTER TABLE `survey_responses`
-  ADD CONSTRAINT `survey_responses_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`),
-  ADD CONSTRAINT `survey_responses_survey_invitation_id_foreign` FOREIGN KEY (`survey_invitation_id`) REFERENCES `survey_invitations` (`id`);
-
---
--- Constraints for table `travel_cost_standards`
---
-ALTER TABLE `travel_cost_standards`
-  ADD CONSTRAINT `travel_cost_standards_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
-  ADD CONSTRAINT `travel_cost_standards_employee_grade_id_foreign` FOREIGN KEY (`employee_grade_id`) REFERENCES `employee_grades` (`id`),
-  ADD CONSTRAINT `travel_cost_standards_structural_position_id_foreign` FOREIGN KEY (`structural_position_id`) REFERENCES `structural_positions` (`id`),
-  ADD CONSTRAINT `travel_cost_standards_travel_cost_component_id_foreign` FOREIGN KEY (`travel_cost_component_id`) REFERENCES `travel_cost_components` (`id`);
-
---
--- Constraints for table `travel_expenses`
---
-ALTER TABLE `travel_expenses`
-  ADD CONSTRAINT `travel_expenses_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `travel_expenses_official_travel_id_foreign` FOREIGN KEY (`official_travel_id`) REFERENCES `official_travels` (`id`),
-  ADD CONSTRAINT `travel_expenses_travel_cost_component_id_foreign` FOREIGN KEY (`travel_cost_component_id`) REFERENCES `travel_cost_components` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
