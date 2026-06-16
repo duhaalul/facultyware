@@ -28,12 +28,11 @@
           <th>Prioritas</th>
           <th>Tenggat</th>
           <th>Status</th>
-          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <% tugas.forEach(t => { %>
-        <tr>
+        <tr style="cursor:pointer" onclick="window.location='/tugas/<%= t.id %>/detail'">
           <td class="td-bold"><%= t.title %></td>
           <td class="td-muted"><%= t.assigned_to_name || '—' %></td>
           <td>
@@ -47,20 +46,11 @@
               <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':'Assigned' %>
             </span>
           </td>
-          <td>
-            <div class="btn-group">
-              <a href="/tugas/<%= t.id %>/detail" class="btn btn-outline btn-xs">Detail</a>
-              <a href="/tugas/<%= t.id %>/edit" class="btn btn-outline btn-xs">Edit</a>
-              <form action="/tugas/<%= t.id %>/delete" method="POST" onsubmit="return confirm('Hapus penugasan ini?')">
-                <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
-              </form>
-            </div>
-          </td>
         </tr>
         <% }) %>
         <% if (tugas.length === 0) { %>
         <tr>
-          <td colspan="6">
+          <td colspan="5">
             <div class="empty-state"><p>Belum ada penugasan. <a href="/tugas/create">Tambah sekarang</a></p></div>
           </td>
         </tr>

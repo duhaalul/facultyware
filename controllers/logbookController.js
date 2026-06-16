@@ -3,7 +3,6 @@ const PDFDocument = require('pdfkit');
 
 // ===================== PEGAWAI =====================
 
-// GET /logbook - list logbook milik pegawai
 const index = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -13,12 +12,13 @@ const index = async (req, res, next) => {
 
     const [rows] = await db.query(
       `SELECT * FROM assignment_progress
-       WHERE employee_id = ? AND description LIKE ?
+       WHERE employee_id = ? AND assignment_id IS NULL AND description LIKE ?
        ORDER BY progress_date DESC LIMIT ? OFFSET ?`,
       [req.session.userId, `%${search}%`, limit, offset]
     );
     const [[{ total }]] = await db.query(
-      `SELECT COUNT(*) as total FROM assignment_progress WHERE employee_id = ? AND description LIKE ?`,
+      `SELECT COUNT(*) as total FROM assignment_progress
+       WHERE employee_id = ? AND assignment_id IS NULL AND description LIKE ?`,
       [req.session.userId, `%${search}%`]
     );
 
@@ -31,7 +31,6 @@ const index = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /logbook/create
 const createForm = (req, res) => {
   res.render('logbook/create', {
     title: 'Tambah Logbook', errors: [],
@@ -39,7 +38,6 @@ const createForm = (req, res) => {
   });
 };
 
-// POST /logbook/create
 const store = async (req, res, next) => {
   const { description, progress_date } = req.body;
   const errors = [];
@@ -54,11 +52,9 @@ const store = async (req, res, next) => {
   }
   try {
     const attachment = req.file ? req.file.filename : null;
-    // Simpan logbook sebagai assignment_progress tanpa assignment_id
-    // Kita gunakan assignment_id = 0 sebagai logbook bebas
     await db.query(
       `INSERT INTO assignment_progress (assignment_id, description, progress_date, status, attachment, created_by, employee_id, created_at, updated_at)
-       VALUES (0, ?, ?, 'in_progress', ?, ?, ?, NOW(), NOW())`,
+       VALUES (NULL, ?, ?, 'in_progress', ?, ?, ?, NOW(), NOW())`,
       [description, progress_date, attachment, req.session.userId, req.session.userId]
     );
     req.session.flashSuccess = 'Logbook berhasil ditambahkan.';
@@ -66,7 +62,6 @@ const store = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /logbook/:id/edit
 const editForm = async (req, res, next) => {
   try {
     const [[logbook]] = await db.query(
@@ -81,7 +76,6 @@ const editForm = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /logbook/:id/edit
 const update = async (req, res, next) => {
   const { description, progress_date } = req.body;
   const errors = [];
@@ -112,10 +106,12 @@ const update = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /logbook/:id/delete
 const destroy = async (req, res, next) => {
   try {
-    await db.query('DELETE FROM assignment_progress WHERE id=? AND employee_id=?', [req.params.id, req.session.userId]);
+    await db.query(
+      'DELETE FROM assignment_progress WHERE id=? AND employee_id=?',
+      [req.params.id, req.session.userId]
+    );
     req.session.flashSuccess = 'Logbook berhasil dihapus.';
     res.redirect('/logbook');
   } catch (err) { next(err); }
@@ -123,7 +119,6 @@ const destroy = async (req, res, next) => {
 
 // ===================== PIMPINAN =====================
 
-// GET /logbook/pimpinan - semua logbook pegawai
 const pimpinanIndex = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -134,7 +129,7 @@ const pimpinanIndex = async (req, res, next) => {
     const filterDateEnd = req.query.date_end || '';
     const filterEmployee = req.query.employee_id || '';
 
-    let where = 'WHERE ap.assignment_id = 0';
+    let where = 'WHERE ap.assignment_id IS NULL';
     const params = [];
 
     if (search) { where += ' AND (ap.description LIKE ? OR e.name LIKE ?)'; params.push(`%${search}%`, `%${search}%`); }
@@ -150,7 +145,8 @@ const pimpinanIndex = async (req, res, next) => {
       [...params, limit, offset]
     );
     const [[{ total }]] = await db.query(
-      `SELECT COUNT(*) as total FROM assignment_progress ap LEFT JOIN employees e ON ap.employee_id = e.id ${where}`,
+      `SELECT COUNT(*) as total FROM assignment_progress ap
+       LEFT JOIN employees e ON ap.employee_id = e.id ${where}`,
       params
     );
     const [employees] = await db.query(`SELECT id, name FROM employees WHERE status='active'`);
@@ -164,7 +160,6 @@ const pimpinanIndex = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /logbook/:id/approve
 const approve = async (req, res, next) => {
   try {
     await db.query(
@@ -176,7 +171,6 @@ const approve = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /logbook/:id/reject
 const reject = async (req, res, next) => {
   const { catatan } = req.body;
   try {
@@ -189,14 +183,13 @@ const reject = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /logbook/export/pdf
 const exportPdf = async (req, res, next) => {
   try {
     const filterEmployee = req.query.employee_id || '';
     const filterDate = req.query.date || '';
     const filterDateEnd = req.query.date_end || '';
 
-    let where = 'WHERE ap.assignment_id = 0';
+    let where = 'WHERE ap.assignment_id IS NULL';
     const params = [];
     if (filterEmployee) { where += ' AND ap.employee_id = ?'; params.push(filterEmployee); }
     if (filterDate) { where += ' AND ap.progress_date >= ?'; params.push(filterDate); }

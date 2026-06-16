@@ -13,7 +13,7 @@ const index = async (req, res, next) => {
       const [[{ logbookPending }]] = await db.query("SELECT COUNT(*) as logbookPending FROM assignment_progress WHERE assignment_id=0 AND status='in_progress'");
 
       const [recentTugas] = await db.query(
-        `SELECT a.title, a.status, a.priority, e.name AS assigned_to_name
+        `SELECT a.id, a.title, a.status, a.priority, e.name AS assigned_to_name
          FROM assignments a LEFT JOIN employees e ON a.assigned_to = e.id
          ORDER BY a.created_at DESC LIMIT 5`
       );
@@ -44,7 +44,7 @@ const index = async (req, res, next) => {
       [req.session.userId]
     );
     const [recentTugas] = await db.query(
-      `SELECT a.title, a.status, a.priority, e.name AS assigned_by_name
+      `SELECT a.id, a.title, a.status, a.priority, e.name AS assigned_by_name
        FROM assignments a LEFT JOIN employees e ON a.assigned_by = e.id
        WHERE a.assigned_to=? ORDER BY a.created_at DESC LIMIT 5`,
       [req.session.userId]
@@ -59,7 +59,6 @@ const index = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /dashboard/monitoring - pimpinan monitor semua penugasan
 const monitoring = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;

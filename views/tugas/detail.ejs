@@ -1,82 +1,135 @@
 <%- include('../partials/head') %>
 <%- include('../partials/navbar') %>
-<div class="mb-6 flex items-center justify-between flex-wrap gap-3">
-  <div>
-    <h2 class="text-2xl font-bold"><%= tugas.title %></h2>
-    <p class="text-muted-foreground text-sm">Detail Penugasan</p>
+
+<div class="page-header">
+  <div class="page-header-text">
+    <h2><%= tugas.title %></h2>
+    <p>Detail Penugasan</p>
   </div>
-  <% if (user.role === 'pimpinan') { %>
-  <div class="flex gap-2">
-    <a href="/tugas/<%= tugas.id %>/edit" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-9 px-4 transition-all">Edit</a>
-    <% if (tugas.status === 'in_progress') { %>
-    <form action="/tugas/<%= tugas.id %>/selesai" method="POST">
-      <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700 h-9 px-4 transition-all">✅ Tandai Selesai</button>
-    </form>
+  <div class="btn-group">
+    <% if (user.role === 'pimpinan') { %>
+      <a href="/tugas/<%= tugas.id %>/edit" class="btn btn-outline">Edit</a>
+      <% if (tugas.status === 'in_progress') { %>
+      <button class="btn btn-orange" onclick="bukaRevisi()">Kirim Revisi</button>
+      <form action="/tugas/<%= tugas.id %>/selesai" method="POST">
+        <button type="submit" class="btn btn-success">Tandai Selesai</button>
+      </form>
+      <% } %>
+    <% } else { %>
+      <% if (tugas.status !== 'completed') { %>
+      <a href="/tugas/<%= tugas.id %>/submit" class="btn btn-primary">Kumpulkan Tugas</a>
+      <% } %>
     <% } %>
   </div>
-  <% } %>
 </div>
 
-<div class="grid md:grid-cols-3 gap-4 mb-6">
-  <div data-slot="card" class="rounded-xl border bg-card p-4 shadow-sm">
-    <p class="text-xs text-muted-foreground mb-1">Pegawai</p>
-    <p class="font-medium"><%= tugas.assigned_to_name || '-' %></p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px">
+  <div class="card" style="padding:20px 24px">
+    <div class="stat-label" style="margin-bottom:8px">Pegawai</div>
+    <div style="font-weight:600;font-size:15px"><%= tugas.assigned_to_name || '—' %></div>
   </div>
-  <div data-slot="card" class="rounded-xl border bg-card p-4 shadow-sm">
-    <p class="text-xs text-muted-foreground mb-1">Status</p>
-    <span class="text-sm px-2 py-0.5 rounded-full border <%= tugas.status==='completed' ? 'bg-green-500/10 text-green-700 border-green-500/30' : tugas.status==='in_progress' ? 'bg-blue-500/10 text-blue-700 border-blue-500/30' : 'bg-yellow-500/10 text-yellow-700 border-yellow-500/30' %>">
-      <%= tugas.status %>
+  <div class="card" style="padding:20px 24px">
+    <div class="stat-label" style="margin-bottom:8px">Status</div>
+    <span class="badge <%= tugas.status==='completed' ? 'badge-success' : tugas.status==='in_progress' ? 'badge-accent' : 'badge-gray' %>">
+      <%= tugas.status==='completed' ? 'Selesai' : tugas.status==='in_progress' ? 'Berjalan' : 'Assigned' %>
     </span>
   </div>
-  <div data-slot="card" class="rounded-xl border bg-card p-4 shadow-sm">
-    <p class="text-xs text-muted-foreground mb-1">Tenggat</p>
-    <p class="font-medium"><%= tugas.due_date ? new Date(tugas.due_date).toLocaleDateString('id-ID') : '-' %></p>
+  <div class="card" style="padding:20px 24px">
+    <div class="stat-label" style="margin-bottom:8px">Prioritas</div>
+    <span class="badge <%= tugas.priority==='high' ? 'badge-danger' : tugas.priority==='medium' ? 'badge-warning' : 'badge-success' %>">
+      <%= tugas.priority==='high' ? 'Tinggi' : tugas.priority==='medium' ? 'Sedang' : 'Rendah' %>
+    </span>
+  </div>
+  <div class="card" style="padding:20px 24px">
+    <div class="stat-label" style="margin-bottom:8px">Tenggat</div>
+    <div style="font-weight:600;font-size:15px">
+      <%= tugas.due_date ? new Date(tugas.due_date).toLocaleDateString('id-ID') : '—' %>
+    </div>
   </div>
 </div>
 
 <% if (tugas.description) { %>
-<div data-slot="card" class="rounded-xl border bg-card p-4 shadow-sm mb-6">
-  <p class="text-xs text-muted-foreground mb-2">Deskripsi</p>
-  <p class="text-sm"><%= tugas.description %></p>
+<div class="card" style="margin-bottom:20px">
+  <div class="card-header"><h3>Deskripsi Tugas</h3></div>
+  <div class="card-body" style="color:var(--text-2);font-size:13.5px;line-height:1.8">
+    <%= tugas.description %>
+  </div>
 </div>
 <% } %>
 
-<!-- Progress / Kiriman Pegawai -->
-<div data-slot="card" class="rounded-xl border bg-card shadow-sm mb-6">
-  <div class="p-4 border-b"><h3 class="font-semibold">Kiriman Tugas Pegawai</h3></div>
+<div class="card" style="margin-bottom:20px">
+  <div class="card-header"><h3>Kiriman Pegawai</h3></div>
   <% if (progress.length > 0) { %>
-    <% progress.forEach(p => { %>
-    <div class="p-4 border-b last:border-0">
-      <div class="flex items-start justify-between gap-2">
-        <div class="flex-1">
-          <p class="text-sm font-medium"><%= p.created_by_name || '-' %> — <%= new Date(p.progress_date).toLocaleDateString('id-ID') %></p>
-          <p class="text-sm text-muted-foreground mt-1 whitespace-pre-line"><%= p.description %></p>
+    <% progress.forEach(function(p) { %>
+    <div style="padding:20px 24px;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+        <div style="flex:1">
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:8px">
+            <strong style="color:var(--text-2);font-size:13px"><%= p.created_by_name || '—' %></strong>
+            &nbsp;·&nbsp;
+            <%= new Date(p.progress_date).toLocaleDateString('id-ID') %>
+          </div>
+          <p style="font-size:13.5px;white-space:pre-line;color:var(--text-2);line-height:1.7;margin-bottom:12px">
+            <%= p.description %>
+          </p>
           <% if (p.attachment) { %>
-          <a href="/uploads/<%= p.attachment %>" target="_blank" class="text-xs text-primary underline mt-1 inline-block">📎 Lihat Lampiran</a>
+          <a href="/uploads/<%= p.attachment %>" target="_blank"
+            style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--accent);text-decoration:none;padding:5px 10px;border:1px solid var(--accent);border-radius:6px">
+            Lihat Lampiran
+          </a>
           <% } %>
         </div>
-        <span class="text-xs px-2 py-0.5 rounded-full border <%= p.status==='completed' ? 'bg-green-500/10 text-green-700 border-green-500/30' : 'bg-yellow-500/10 text-yellow-700 border-yellow-500/30' %>">
-          <%= p.status %>
+        <span class="badge <%= p.status==='completed' ? 'badge-success' : 'badge-warning' %>">
+          <%= p.status==='completed' ? 'Selesai' : 'Dikerjakan' %>
         </span>
       </div>
-      <% if (user.role === 'pimpinan' && p.status !== 'completed') { %>
-      <form action="/tugas/<%= tugas.id %>/revisi" method="POST" class="mt-3 flex gap-2">
-        <input type="hidden" name="progress_id" value="<%= p.id %>"/>
-        <input type="text" name="catatan" placeholder="Catatan revisi..." required
-          class="h-8 flex-1 rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring"/>
-        <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-orange-500 text-white hover:bg-orange-600 h-8 px-3 transition-all">
-          Kirim Revisi
-        </button>
-      </form>
+      <% if (user.role==='pimpinan' && p.status!=='completed') { %>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+        <form action="/tugas/<%= tugas.id %>/revisi" method="POST" style="display:flex;gap:8px">
+          <input type="hidden" name="progress_id" value="<%= p.id %>"/>
+          <input type="text" name="catatan" placeholder="Tulis catatan revisi..." required
+            class="form-input" style="height:38px;flex:1"/>
+          <button type="submit" class="btn btn-orange">Kirim Revisi</button>
+        </form>
+      </div>
       <% } %>
     </div>
     <% }) %>
   <% } else { %>
-  <div class="p-6 text-center text-sm text-muted-foreground">Belum ada kiriman tugas dari pegawai.</div>
+  <div class="empty-state"><p>Belum ada kiriman dari pegawai.</p></div>
   <% } %>
 </div>
 
-<a href="<%= user.role==='pimpinan' ? '/tugas' : '/tugas/pegawai' %>" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-9 px-4 transition-all">
-  ← Kembali
-</a>
+<div style="margin-top:8px">
+  <a href="<%= user.role==='pimpinan' ? '/tugas' : '/tugas/pegawai' %>" class="btn btn-outline">Kembali</a>
+</div>
+
+<div class="modal-overlay" id="modalRevisi">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Kirim Catatan Revisi</h3>
+      <button class="modal-close" onclick="tutupRevisi()">x</button>
+    </div>
+    <form action="/tugas/<%= tugas.id %>/revisi" method="POST">
+      <input type="hidden" name="progress_id" value="0"/>
+      <div class="form-group">
+        <label class="form-label">Catatan <span class="req">*</span></label>
+        <textarea name="catatan" class="form-textarea" required placeholder="Tuliskan catatan revisi..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-orange">Kirim</button>
+        <button type="button" class="btn btn-outline" onclick="tutupRevisi()">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function bukaRevisi() { document.getElementById('modalRevisi').classList.add('open'); }
+function tutupRevisi() { document.getElementById('modalRevisi').classList.remove('open'); }
+document.getElementById('modalRevisi').addEventListener('click', function(e) {
+  if (e.target === this) tutupRevisi();
+});
+</script>
+
 <%- include('../partials/footer') %>

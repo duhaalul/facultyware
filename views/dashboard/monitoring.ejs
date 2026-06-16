@@ -4,7 +4,7 @@
 <div class="page-header">
   <div class="page-header-text">
     <h2>Monitoring Penugasan</h2>
-    <p>Pantau dan kelola status semua tugas pegawai</p>
+    <p>Pantau status semua tugas pegawai</p>
   </div>
 </div>
 
@@ -31,15 +31,12 @@
           <th>Prioritas</th>
           <th>Tenggat</th>
           <th>Status</th>
-          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
         <% tugas.forEach(t => { %>
-        <tr>
-          <td class="td-bold">
-            <a href="/tugas/<%= t.id %>/detail" style="color:var(--text);text-decoration:none"><%= t.title %></a>
-          </td>
+        <tr style="cursor:pointer" onclick="window.location='/tugas/<%= t.id %>/detail'">
+          <td class="td-bold"><%= t.title %></td>
           <td class="td-muted"><%= t.assigned_to_name || '—' %></td>
           <td>
             <span class="badge <%= t.priority==='high'?'badge-danger':t.priority==='medium'?'badge-warning':'badge-success' %>">
@@ -52,22 +49,11 @@
               <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':t.status==='cancelled'?'Dibatalkan':'Assigned' %>
             </span>
           </td>
-          <td>
-            <div class="btn-group">
-              <a href="/tugas/<%= t.id %>/detail" class="btn btn-outline btn-xs">Detail</a>
-              <% if (t.status === 'in_progress') { %>
-              <form action="/tugas/<%= t.id %>/selesai" method="POST">
-                <button type="submit" class="btn btn-success btn-xs">✓ Selesai</button>
-              </form>
-              <button class="btn btn-orange btn-xs" onclick="bukaRevisi('<%= t.id %>')">Revisi</button>
-              <% } %>
-            </div>
-          </td>
         </tr>
         <% }) %>
         <% if (tugas.length === 0) { %>
         <tr>
-          <td colspan="6">
+          <td colspan="5">
             <div class="empty-state"><p>Tidak ada data penugasan.</p></div>
           </td>
         </tr>
@@ -84,30 +70,5 @@
   <% } %>
 </div>
 <% } %>
-
-<div class="modal-overlay" id="modalRevisi">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Kirim Catatan Revisi</h3>
-      <button class="modal-close" onclick="tutupRevisi()">×</button>
-    </div>
-    <form id="formRevisi" method="POST">
-      <input type="hidden" name="progress_id" value="0"/>
-      <div class="form-group">
-        <label class="form-label">Catatan Revisi <span class="req">*</span></label>
-        <textarea name="catatan" class="form-textarea" required placeholder="Tuliskan catatan revisi untuk pegawai..."></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-orange">Kirim</button>
-        <button type="button" class="btn btn-outline" onclick="tutupRevisi()">Batal</button>
-      </div>
-    </form>
-  </div>
-</div>
-<script>
-function bukaRevisi(id) { document.getElementById('formRevisi').action='/tugas/'+id+'/revisi'; document.getElementById('modalRevisi').classList.add('open'); }
-function tutupRevisi() { document.getElementById('modalRevisi').classList.remove('open'); }
-document.getElementById('modalRevisi').addEventListener('click',function(e){if(e.target===this)tutupRevisi();});
-</script>
 
 <%- include('../partials/footer') %>

@@ -9,33 +9,33 @@
       </div>
     </div>
     <nav class="sidebar-nav">
-      <a href="/dashboard" class="nav-link">
+      <a href="/dashboard" class="nav-link <%= locals.title && title.includes('Dashboard') ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor"/><rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor"/><rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/></svg>
         Dashboard
       </a>
       <% if (user.role === 'pimpinan') { %>
       <div class="nav-section">Penugasan</div>
-      <a href="/tugas" class="nav-link">
+      <a href="/tugas" class="nav-link <%= locals.title && title.includes('Kelola Penugasan') ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Kelola Penugasan
       </a>
-      <a href="/dashboard/monitoring" class="nav-link">
+      <a href="/dashboard/monitoring" class="nav-link <%= locals.title && title.includes('Monitoring') ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Monitoring
       </a>
       <div class="nav-section">Logbook</div>
-      <a href="/logbook/pimpinan" class="nav-link">
+      <a href="/logbook/pimpinan" class="nav-link <%= locals.title && title.includes('Logbook Pegawai') ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 5h6M5 8h6M5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Logbook Pegawai
       </a>
       <% } else { %>
       <div class="nav-section">Tugas Saya</div>
-      <a href="/tugas/pegawai" class="nav-link">
+      <a href="/tugas/pegawai" class="nav-link <%= locals.title && (title.includes('Tugas Saya') || title.includes('Kumpulkan') || title.includes('Detail')) ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Daftar Tugas
       </a>
       <div class="nav-section">Logbook</div>
-      <a href="/logbook" class="nav-link">
+      <a href="/logbook" class="nav-link <%= locals.title && title.includes('Logbook Saya') ? 'active' : '' %>">
         <svg class="nav-icon" fill="none" viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 5h6M5 8h6M5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Logbook Saya
       </a>
@@ -69,12 +69,9 @@
           <svg width="12" height="12" fill="currentColor" viewBox="0 0 12 12"><circle cx="6" cy="4" r="2.5"/><path d="M1 10.5c0-2.5 2.2-4 5-4s5 1.5 5 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
           <%= user.name %>
         </div>
-        <a href="/logout" class="topbar-logout">
-          <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Keluar
-        </a>
       </div>
     </header>
+
     <div class="page-content">
       <% if (locals.flashSuccess) { %>
       <div class="alert alert-success" style="margin-bottom:18px">✓ &nbsp;<%= flashSuccess %></div>

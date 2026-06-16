@@ -37,7 +37,7 @@ const index = async (req, res, next) => {
     );
 
     res.render('tugas/index', {
-      title: 'Manajemen Penugasan',
+      title: 'Kelola Penugasan',
       tugas: rows,
       employees,
       search,
