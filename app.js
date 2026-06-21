@@ -49,8 +49,8 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-// Flash message middleware
 app.use((req, res, next) => {
+  if (req.path === '/login') return next();
   res.locals.flashError = req.session.flashError || null;
   res.locals.flashSuccess = req.session.flashSuccess || null;
   delete req.session.flashError;

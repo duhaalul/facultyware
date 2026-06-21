@@ -58,7 +58,7 @@ const store = async (req, res, next) => {
       [description, progress_date, attachment, req.session.userId, req.session.userId]
     );
     req.session.flashSuccess = 'Logbook berhasil ditambahkan.';
-    res.redirect('/logbook');
+    req.session.save(() => res.redirect('/logbook'));
   } catch (err) { next(err); }
 };
 
@@ -102,7 +102,7 @@ const update = async (req, res, next) => {
       );
     }
     req.session.flashSuccess = 'Logbook berhasil diperbarui.';
-    res.redirect('/logbook');
+    req.session.save(() => res.redirect('/logbook'));
   } catch (err) { next(err); }
 };
 
@@ -113,7 +113,7 @@ const destroy = async (req, res, next) => {
       [req.params.id, req.session.userId]
     );
     req.session.flashSuccess = 'Logbook berhasil dihapus.';
-    res.redirect('/logbook');
+    req.session.save(() => res.redirect('/logbook'));
   } catch (err) { next(err); }
 };
 
@@ -167,7 +167,7 @@ const approve = async (req, res, next) => {
       [req.params.id]
     );
     req.session.flashSuccess = 'Logbook disetujui.';
-    res.redirect('/logbook/pimpinan');
+    req.session.save(() => res.redirect('/logbook/pimpinan'));
   } catch (err) { next(err); }
 };
 
@@ -179,7 +179,7 @@ const reject = async (req, res, next) => {
       [catatan || 'Mohon diperbaiki.', req.params.id]
     );
     req.session.flashSuccess = 'Logbook ditolak dengan catatan.';
-    res.redirect('/logbook/pimpinan');
+    req.session.save(() => res.redirect('/logbook/pimpinan'));
   } catch (err) { next(err); }
 };
 

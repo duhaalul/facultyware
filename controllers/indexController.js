@@ -8,27 +8,28 @@ const index = (req, res) => {
 
 const loginPage = (req, res) => {
   if (req.session.userId) return res.redirect('/dashboard');
-  res.render('login', { title: 'Login', error: req.session.flashError || null });
+  const errorMsg = req.session.flashError || null;
   delete req.session.flashError;
+  res.render('login', { title: 'Login', error: errorMsg });
 };
 
 const login = async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     req.session.flashError = 'Username dan password wajib diisi.';
-    return res.redirect('/login');
+    return req.session.save(() => res.redirect('/login'));
   }
   try {
     const [rows] = await db.query('SELECT * FROM users WHERE name = ?', [username]);
     if (rows.length === 0) {
       req.session.flashError = 'Username atau password salah.';
-      return res.redirect('/login');
+      return req.session.save(() => res.redirect('/login'));
     }
     const user = rows[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       req.session.flashError = 'Username atau password salah.';
-      return res.redirect('/login');
+      return req.session.save(() => res.redirect('/login'));
     }
 
     const [roleRows] = await db.query(
@@ -44,7 +45,7 @@ const login = async (req, res, next) => {
     req.session.userEmail = user.email;
     req.session.userRole = role;
 
-    res.redirect('/dashboard');
+    req.session.save(() => res.redirect('/dashboard'));
   } catch (err) {
     next(err);
   }
