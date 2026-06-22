@@ -1,0 +1,72 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-header">
+  <div class="page-header-text">
+    <h2>Edit Penugasan</h2>
+  </div>
+</div>
+
+<% if (errors.length > 0) { %>
+<div class="alert alert-danger">
+  <% errors.forEach(e => { %><div>✕ <%= e %></div><% }) %>
+</div>
+<% } %>
+
+<div class="form-card">
+  <form action="/tugas/<%= tugas.id %>/edit" method="POST">
+    <div class="form-group">
+      <label class="form-label">Judul Tugas <span class="req">*</span></label>
+      <input type="text" name="title" value="<%= tugas.title %>" class="form-input" required/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Deskripsi</label>
+      <textarea name="description" class="form-textarea"><%= tugas.description || '' %></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Pegawai</label>
+      <select name="assigned_to" class="form-select">
+        <% employees.forEach(e => { %>
+        <option value="<%= e.id %>" <%= e.id==tugas.assigned_to?'selected':'' %>><%= e.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Tanggal Mulai</label>
+        <input type="date" name="start_date" class="form-input"
+          value="<%= tugas.start_date ? new Date(tugas.start_date).toISOString().split('T')[0] : '' %>"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tenggat</label>
+        <input type="date" name="due_date" class="form-input"
+          value="<%= tugas.due_date ? new Date(tugas.due_date).toISOString().split('T')[0] : '' %>"/>
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Prioritas</label>
+        <select name="priority" class="form-select">
+          <option value="low" <%= tugas.priority==='low'?'selected':'' %>>Rendah</option>
+          <option value="medium" <%= tugas.priority==='medium'?'selected':'' %>>Sedang</option>
+          <option value="high" <%= tugas.priority==='high'?'selected':'' %>>Tinggi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select name="status" class="form-select">
+          <option value="assigned" <%= tugas.status==='assigned'?'selected':'' %>>Assigned</option>
+          <option value="in_progress" <%= tugas.status==='in_progress'?'selected':'' %>>In Progress</option>
+          <option value="completed" <%= tugas.status==='completed'?'selected':'' %>>Selesai</option>
+          <option value="cancelled" <%= tugas.status==='cancelled'?'selected':'' %>>Dibatalkan</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Simpan</button>
+      <a href="/tugas" class="btn btn-outline">Batal</a>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

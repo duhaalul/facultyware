@@ -1,0 +1,53 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-header">
+  <div class="page-header-text">
+    <h2>Kumpulkan Tugas</h2>
+    <p><%= tugas.title %></p>
+  </div>
+</div>
+
+<% if (errors.length > 0) { %>
+<div class="alert alert-danger">
+  <% errors.forEach(e => { %><div>✕ <%= e %></div><% }) %>
+</div>
+<% } %>
+
+<% if (existing && existing.description && existing.description.includes('[REVISI')) { %>
+<div class="alert alert-warning">
+  ⚠ Tugasmu mendapat catatan revisi dari pimpinan. Silakan perbaiki dan kirim ulang.
+</div>
+<% } %>
+
+<div class="form-card">
+  <form action="/tugas/<%= tugas.id %>/submit" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="form-label">Deskripsi Hasil Kerja <span class="req">*</span></label>
+      <textarea name="description" class="form-textarea" rows="6" required
+        placeholder="Jelaskan hasil kerja kamu secara detail..."><%= existing ? existing.description : '' %></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Link Tautan (opsional)</label>
+      <input type="url" name="link" class="form-input" placeholder="https://..."/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">File Lampiran <span class="req">*</span></label>
+      <input type="file" name="attachment" class="form-input"
+        accept=".pdf,.doc,.docx,.png,.jpg,.zip"
+        <%= existing && existing.attachment ? '' : 'required' %>/>
+      <span class="form-hint">
+        Format: PDF, DOC, DOCX, PNG, JPG, ZIP. Maks. 5MB.
+        <% if (existing && existing.attachment) { %>
+        · File saat ini: <a href="/uploads/<%= existing.attachment %>" target="_blank" style="color:var(--accent)">lihat file</a>
+        <% } %>
+      </span>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Kirim Tugas</button>
+      <a href="/tugas/pegawai" class="btn btn-outline">Batal</a>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
