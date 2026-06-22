@@ -1,0 +1,72 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="hero-banner">
+  <div class="hero-eyebrow">Sistem Informasi</div>
+  <h2>Dashboard Pimpinan</h2>
+  <p>Pusat kendali dan monitoring kinerja pegawai. Kelola penugasan, pantau progres, dan tinjau logbook aktivitas harian.</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon blue">📋</div>
+    <div class="stat-data"><div class="stat-label">Total Penugasan</div><div class="stat-value"><%= stats.totalTugas %></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">✓</div>
+    <div class="stat-data"><div class="stat-label">Selesai</div><div class="stat-value" style="color:var(--success)"><%= stats.tugasSelesai %></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon blue">◎</div>
+    <div class="stat-data"><div class="stat-label">Sedang Berjalan</div><div class="stat-value" style="color:var(--accent)"><%= stats.tugasProses %></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon yellow">○</div>
+    <div class="stat-data"><div class="stat-label">Belum Dimulai</div><div class="stat-value" style="color:var(--warning)"><%= stats.tugasBelum %></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon purple">▤</div>
+    <div class="stat-data"><div class="stat-label">Total Logbook</div><div class="stat-value"><%= stats.totalLogbook %></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon orange">!</div>
+    <div class="stat-data"><div class="stat-label">Logbook Pending</div><div class="stat-value" style="color:var(--orange)"><%= stats.logbookPending %></div></div>
+  </div>
+</div>
+
+<div class="btn-group" style="margin-bottom:24px">
+  <a href="/tugas/create" class="btn btn-primary">+ Tambah Penugasan</a>
+  <a href="/tugas/export/excel" class="btn btn-outline">↓ Export Excel</a>
+  <a href="/logbook/pimpinan" class="btn btn-outline">Logbook Pegawai</a>
+  <a href="/dashboard/monitoring" class="btn btn-outline">Monitoring</a>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Penugasan Terbaru</h3>
+    <a href="/tugas">Lihat semua →</a>
+  </div>
+  <div class="item-list">
+    <% recentTugas.forEach(t => { %>
+    <a href="/tugas/<%= t.id %>/detail" style="text-decoration:none;color:inherit;display:block">
+      <div class="item-row" style="cursor:pointer">
+        <div class="item-info">
+          <div class="item-title"><%= t.title %></div>
+          <div class="item-meta"><%= t.assigned_to_name || '—' %></div>
+        </div>
+        <div class="item-actions">
+          <span class="badge <%= t.status==='completed'?'badge-success':t.status==='in_progress'?'badge-accent':'badge-gray' %>">
+            <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':'Assigned' %>
+          </span>
+          <span style="font-size:12px;color:var(--text-3)">Klik untuk detail →</span>
+        </div>
+      </div>
+    </a>
+    <% }) %>
+    <% if (recentTugas.length === 0) { %>
+    <div class="empty-state"><p>Belum ada penugasan. <a href="/tugas/create">Tambah sekarang</a></p></div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
