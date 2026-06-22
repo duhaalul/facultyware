@@ -15,7 +15,6 @@
     <option value="assigned" <%= statusFilter==='assigned'?'selected':'' %>>Assigned</option>
     <option value="in_progress" <%= statusFilter==='in_progress'?'selected':'' %>>In Progress</option>
     <option value="completed" <%= statusFilter==='completed'?'selected':'' %>>Selesai</option>
-    <option value="cancelled" <%= statusFilter==='cancelled'?'selected':'' %>>Dibatalkan</option>
   </select>
   <button type="submit" class="btn btn-primary">Filter</button>
   <a href="/dashboard/monitoring" class="btn btn-outline">Reset</a>
@@ -45,8 +44,8 @@
           </td>
           <td class="td-muted"><%= t.due_date ? new Date(t.due_date).toLocaleDateString('id-ID') : '—' %></td>
           <td>
-            <span class="badge <%= t.status==='completed'?'badge-success':t.status==='in_progress'?'badge-accent':t.status==='cancelled'?'badge-danger':'badge-gray' %>">
-              <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':t.status==='cancelled'?'Dibatalkan':'Assigned' %>
+            <span class="badge <%= t.status==='completed'?'badge-success':t.status==='in_progress'?'badge-accent':'badge-gray' %>">
+              <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':'Assigned' %>
             </span>
           </td>
         </tr>

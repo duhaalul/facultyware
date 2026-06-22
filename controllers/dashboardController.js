@@ -9,8 +9,8 @@ const index = async (req, res, next) => {
       const [[{ tugasSelesai }]] = await db.query("SELECT COUNT(*) as tugasSelesai FROM assignments WHERE status='completed'");
       const [[{ tugasProses }]] = await db.query("SELECT COUNT(*) as tugasProses FROM assignments WHERE status='in_progress'");
       const [[{ tugasBelum }]] = await db.query("SELECT COUNT(*) as tugasBelum FROM assignments WHERE status='assigned'");
-      const [[{ totalLogbook }]] = await db.query("SELECT COUNT(*) as totalLogbook FROM assignment_progress WHERE assignment_id=0");
-      const [[{ logbookPending }]] = await db.query("SELECT COUNT(*) as logbookPending FROM assignment_progress WHERE assignment_id=0 AND status='in_progress'");
+      const [[{ totalLogbook }]] = await db.query("SELECT COUNT(*) as totalLogbook FROM assignment_progress WHERE assignment_id IS NULL");
+      const [[{ logbookPending }]] = await db.query("SELECT COUNT(*) as logbookPending FROM assignment_progress WHERE assignment_id IS NULL AND status='in_progress'");
 
       const [recentTugas] = await db.query(
         `SELECT a.id, a.title, a.status, a.priority, e.name AS assigned_to_name
@@ -40,7 +40,7 @@ const index = async (req, res, next) => {
       [req.session.userId]
     );
     const [[{ myLogbook }]] = await db.query(
-      "SELECT COUNT(*) as myLogbook FROM assignment_progress WHERE employee_id=? AND assignment_id=0",
+      "SELECT COUNT(*) as myLogbook FROM assignment_progress WHERE employee_id=? AND assignment_id IS NULL",
       [req.session.userId]
     );
     const [recentTugas] = await db.query(

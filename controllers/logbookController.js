@@ -149,7 +149,14 @@ const pimpinanIndex = async (req, res, next) => {
        LEFT JOIN employees e ON ap.employee_id = e.id ${where}`,
       params
     );
-    const [employees] = await db.query(`SELECT id, name FROM employees WHERE status='active'`);
+    const [employees] = await db.query(
+      `SELECT e.id, e.name FROM employees e
+       JOIN users u ON e.id = u.id
+       JOIN model_has_roles mhr ON u.id = mhr.model_id
+       JOIN roles r ON mhr.role_id = r.id
+       WHERE e.status='active' AND r.name != 'pimpinan'
+       AND mhr.model_type = 'App\\\\Models\\\\User'`
+    );
 
     res.render('logbook/pimpinan-index', {
       title: 'Logbook Pegawai',

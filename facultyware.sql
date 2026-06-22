@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2026 at 03:40 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Waktu pembuatan: 22 Jun 2026 pada 12.17
+-- Versi server: 8.0.30
+-- Versi PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assets`
+-- Struktur dari tabel `assets`
 --
 
 CREATE TABLE `assets` (
@@ -45,7 +45,7 @@ CREATE TABLE `assets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_audits`
+-- Struktur dari tabel `asset_audits`
 --
 
 CREATE TABLE `asset_audits` (
@@ -62,7 +62,7 @@ CREATE TABLE `asset_audits` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_audit_details`
+-- Struktur dari tabel `asset_audit_details`
 --
 
 CREATE TABLE `asset_audit_details` (
@@ -78,7 +78,7 @@ CREATE TABLE `asset_audit_details` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_grants`
+-- Struktur dari tabel `asset_grants`
 --
 
 CREATE TABLE `asset_grants` (
@@ -94,7 +94,7 @@ CREATE TABLE `asset_grants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_insurances`
+-- Struktur dari tabel `asset_insurances`
 --
 
 CREATE TABLE `asset_insurances` (
@@ -114,7 +114,7 @@ CREATE TABLE `asset_insurances` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_insurance_claims`
+-- Struktur dari tabel `asset_insurance_claims`
 --
 
 CREATE TABLE `asset_insurance_claims` (
@@ -131,7 +131,7 @@ CREATE TABLE `asset_insurance_claims` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_trackings`
+-- Struktur dari tabel `asset_trackings`
 --
 
 CREATE TABLE `asset_trackings` (
@@ -149,7 +149,7 @@ CREATE TABLE `asset_trackings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asset_tracking_logs`
+-- Struktur dari tabel `asset_tracking_logs`
 --
 
 CREATE TABLE `asset_tracking_logs` (
@@ -167,7 +167,7 @@ CREATE TABLE `asset_tracking_logs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assignments`
+-- Struktur dari tabel `assignments`
 --
 
 CREATE TABLE `assignments` (
@@ -188,20 +188,10 @@ CREATE TABLE `assignments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `assignments`
---
-
-INSERT INTO `assignments` (`id`, `title`, `description`, `assigned_by`, `assigned_to`, `parent_id`, `start_date`, `due_date`, `status`, `priority`, `assigned_by_id`, `assigned_to_id`, `parent_id_id`, `created_at`, `updated_at`) VALUES
-(1, 'penugasan 1', 'buat tugas', 1, 2, NULL, '2222-02-11', '2222-02-12', 'completed', 'low', 1, 2, 0, '2026-06-04 00:06:58', '2026-06-04 00:18:14'),
-(2, 'tugas 2', 'fff', 1, 2, NULL, NULL, NULL, 'in_progress', 'low', 1, 2, 0, '2026-06-10 09:02:54', '2026-06-16 15:21:54'),
-(3, 'tugas 3', 'ggg', 1, 2, NULL, NULL, NULL, 'completed', 'high', 1, 2, 0, '2026-06-10 09:03:16', '2026-06-16 15:10:45'),
-(4, 'tugas 4', 'vvddgdgdsfw', 1, 2, NULL, NULL, NULL, 'in_progress', 'medium', 1, 2, 0, '2026-06-16 15:28:23', '2026-06-16 15:33:20');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assignment_progress`
+-- Struktur dari tabel `assignment_progress`
 --
 
 CREATE TABLE `assignment_progress` (
@@ -218,22 +208,34 @@ CREATE TABLE `assignment_progress` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `assignment_progress`
+-- Dumping data untuk tabel `assignment_progress`
 --
 
 INSERT INTO `assignment_progress` (`id`, `assignment_id`, `description`, `progress_date`, `status`, `attachment`, `created_by`, `employee_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'nfjfjfj', '2026-06-04', 'completed', NULL, 2, 2, '2026-06-04 00:08:02', '2026-06-04 00:18:14'),
 (5, NULL, 'egerge', '2026-06-16', 'completed', NULL, 2, 2, '2026-06-16 10:59:40', '2026-06-16 15:22:21'),
-(6, 3, 'bdzb', '2026-06-16', 'completed', '1781607758257.jpg', 2, 2, '2026-06-16 11:02:38', '2026-06-16 15:10:45'),
-(7, 2, 'gege', '2026-06-16', 'in_progress', NULL, 2, 2, '2026-06-16 11:02:49', '2026-06-16 11:02:49'),
 (8, NULL, 'kjawakjdja', '2026-06-16', 'completed', '1781623531209.jpg', 2, 2, '2026-06-16 15:25:31', '2026-06-16 15:34:05'),
-(9, 4, 'kjsnfjhjf', '2026-06-16', 'in_progress', '1781624000353.jpg', 2, 2, '2026-06-16 15:33:20', '2026-06-16 15:33:20'),
-(10, NULL, 'bermain main\n[Ditolak: mau dipecat?]', '2026-06-16', 'in_progress', NULL, 2, 2, '2026-06-16 15:34:41', '2026-06-16 15:35:01');
+(10, NULL, 'bermain main\n[Ditolak: mau dipecat?]', '2026-06-16', 'in_progress', NULL, 2, 2, '2026-06-16 15:34:41', '2026-06-16 15:35:01'),
+(11, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 10:36:35', '2026-06-21 10:36:35'),
+(12, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:42:23', '2026-06-21 11:42:23'),
+(13, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:42:30', '2026-06-21 11:42:30'),
+(14, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:42:37', '2026-06-21 11:42:37'),
+(15, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:44:28', '2026-06-21 11:44:28'),
+(16, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:44:54', '2026-06-21 11:44:54'),
+(17, NULL, 'Logbook otomatis dari Playwright test', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-21 11:46:32', '2026-06-21 11:46:32'),
+(18, NULL, 'Logbook otomatis dari Playwright test', '2026-06-22', 'in_progress', NULL, 2, 2, '2026-06-22 08:38:33', '2026-06-22 08:38:33'),
+(19, NULL, 'Logbook setelah diedit 1782129468898', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-22 08:40:54', '2026-06-22 11:57:48'),
+(20, NULL, 'Logbook setelah diedit 1782129412905', '2026-06-21', 'in_progress', NULL, 2, 2, '2026-06-22 08:56:55', '2026-06-22 11:56:52'),
+(26, NULL, 'Logbook dengan lampiran 1782129411931', '2026-06-22', 'completed', '1782129412025.txt', 2, 2, '2026-06-22 11:56:52', '2026-06-22 11:56:57'),
+(28, NULL, 'Logbook yang akan dihapus 1782129413776', '2026-06-22', 'completed', NULL, 2, 2, '2026-06-22 11:56:53', '2026-06-22 11:57:53'),
+(29, NULL, 'Logbook otomatis dari Playwright 1782129466779', '2026-06-22', 'in_progress', NULL, 2, 2, '2026-06-22 11:57:46', '2026-06-22 11:57:46'),
+(30, NULL, 'Logbook dengan lampiran 1782129467709\n[Ditolak: Mohon diperbaiki deskripsinya]', '2026-06-22', 'in_progress', '1782129467762.txt', 2, 2, '2026-06-22 11:57:47', '2026-06-22 11:57:54'),
+(31, NULL, 'Logbook sebelum diedit 1782129468760', '2026-06-22', 'in_progress', NULL, 2, 2, '2026-06-22 11:57:48', '2026-06-22 11:57:48'),
+(32, NULL, 'Logbook yang akan dihapus 1782129470023', '2026-06-22', 'in_progress', NULL, 2, 2, '2026-06-22 11:57:50', '2026-06-22 11:57:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attendances`
+-- Struktur dari tabel `attendances`
 --
 
 CREATE TABLE `attendances` (
@@ -251,7 +253,7 @@ CREATE TABLE `attendances` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buildings`
+-- Struktur dari tabel `buildings`
 --
 
 CREATE TABLE `buildings` (
@@ -266,7 +268,7 @@ CREATE TABLE `buildings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cache`
+-- Struktur dari tabel `cache`
 --
 
 CREATE TABLE `cache` (
@@ -278,7 +280,7 @@ CREATE TABLE `cache` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cache_locks`
+-- Struktur dari tabel `cache_locks`
 --
 
 CREATE TABLE `cache_locks` (
@@ -290,7 +292,7 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committees`
+-- Struktur dari tabel `committees`
 --
 
 CREATE TABLE `committees` (
@@ -311,7 +313,7 @@ CREATE TABLE `committees` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_budgets`
+-- Struktur dari tabel `committee_budgets`
 --
 
 CREATE TABLE `committee_budgets` (
@@ -328,7 +330,7 @@ CREATE TABLE `committee_budgets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_budget_items`
+-- Struktur dari tabel `committee_budget_items`
 --
 
 CREATE TABLE `committee_budget_items` (
@@ -345,7 +347,7 @@ CREATE TABLE `committee_budget_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_expenses`
+-- Struktur dari tabel `committee_expenses`
 --
 
 CREATE TABLE `committee_expenses` (
@@ -365,7 +367,7 @@ CREATE TABLE `committee_expenses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_external_members`
+-- Struktur dari tabel `committee_external_members`
 --
 
 CREATE TABLE `committee_external_members` (
@@ -381,7 +383,7 @@ CREATE TABLE `committee_external_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_members`
+-- Struktur dari tabel `committee_members`
 --
 
 CREATE TABLE `committee_members` (
@@ -397,7 +399,7 @@ CREATE TABLE `committee_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_tasks`
+-- Struktur dari tabel `committee_tasks`
 --
 
 CREATE TABLE `committee_tasks` (
@@ -418,7 +420,7 @@ CREATE TABLE `committee_tasks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `committee_task_progress`
+-- Struktur dari tabel `committee_task_progress`
 --
 
 CREATE TABLE `committee_task_progress` (
@@ -435,7 +437,7 @@ CREATE TABLE `committee_task_progress` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `community_services`
+-- Struktur dari tabel `community_services`
 --
 
 CREATE TABLE `community_services` (
@@ -454,7 +456,7 @@ CREATE TABLE `community_services` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `community_service_members`
+-- Struktur dari tabel `community_service_members`
 --
 
 CREATE TABLE `community_service_members` (
@@ -469,7 +471,7 @@ CREATE TABLE `community_service_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conference_proceedings`
+-- Struktur dari tabel `conference_proceedings`
 --
 
 CREATE TABLE `conference_proceedings` (
@@ -489,7 +491,7 @@ CREATE TABLE `conference_proceedings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documents`
+-- Struktur dari tabel `documents`
 --
 
 CREATE TABLE `documents` (
@@ -508,7 +510,7 @@ CREATE TABLE `documents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `document_revisions`
+-- Struktur dari tabel `document_revisions`
 --
 
 CREATE TABLE `document_revisions` (
@@ -527,7 +529,7 @@ CREATE TABLE `document_revisions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `document_types`
+-- Struktur dari tabel `document_types`
 --
 
 CREATE TABLE `document_types` (
@@ -540,7 +542,7 @@ CREATE TABLE `document_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `education_histories`
+-- Struktur dari tabel `education_histories`
 --
 
 CREATE TABLE `education_histories` (
@@ -559,7 +561,7 @@ CREATE TABLE `education_histories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employees`
+-- Struktur dari tabel `employees`
 --
 
 CREATE TABLE `employees` (
@@ -584,7 +586,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `employees`
+-- Dumping data untuk tabel `employees`
 --
 
 INSERT INTO `employees` (`id`, `employee_number`, `national_id_number`, `tax_id_number`, `name`, `birth_place`, `birth_date`, `gender`, `religion`, `marital_status`, `address`, `phone_number`, `organization_unit_id`, `hire_date`, `employment_status_id`, `status`, `created_at`, `updated_at`) VALUES
@@ -596,7 +598,7 @@ INSERT INTO `employees` (`id`, `employee_number`, `national_id_number`, `tax_id_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee_grades`
+-- Struktur dari tabel `employee_grades`
 --
 
 CREATE TABLE `employee_grades` (
@@ -609,7 +611,7 @@ CREATE TABLE `employee_grades` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employment_statuses`
+-- Struktur dari tabel `employment_statuses`
 --
 
 CREATE TABLE `employment_statuses` (
@@ -621,7 +623,7 @@ CREATE TABLE `employment_statuses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `employment_statuses`
+-- Dumping data untuk tabel `employment_statuses`
 --
 
 INSERT INTO `employment_statuses` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
@@ -630,7 +632,7 @@ INSERT INTO `employment_statuses` (`id`, `name`, `description`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipments`
+-- Struktur dari tabel `equipments`
 --
 
 CREATE TABLE `equipments` (
@@ -651,7 +653,7 @@ CREATE TABLE `equipments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_loans`
+-- Struktur dari tabel `equipment_loans`
 --
 
 CREATE TABLE `equipment_loans` (
@@ -670,7 +672,7 @@ CREATE TABLE `equipment_loans` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_maintenance_requests`
+-- Struktur dari tabel `equipment_maintenance_requests`
 --
 
 CREATE TABLE `equipment_maintenance_requests` (
@@ -689,7 +691,7 @@ CREATE TABLE `equipment_maintenance_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_maintenance_request_log`
+-- Struktur dari tabel `equipment_maintenance_request_log`
 --
 
 CREATE TABLE `equipment_maintenance_request_log` (
@@ -711,7 +713,7 @@ CREATE TABLE `equipment_maintenance_request_log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_procurements`
+-- Struktur dari tabel `equipment_procurements`
 --
 
 CREATE TABLE `equipment_procurements` (
@@ -728,7 +730,7 @@ CREATE TABLE `equipment_procurements` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_proc_items`
+-- Struktur dari tabel `equipment_proc_items`
 --
 
 CREATE TABLE `equipment_proc_items` (
@@ -746,7 +748,7 @@ CREATE TABLE `equipment_proc_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment_requests`
+-- Struktur dari tabel `equipment_requests`
 --
 
 CREATE TABLE `equipment_requests` (
@@ -769,7 +771,7 @@ CREATE TABLE `equipment_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `events`
+-- Struktur dari tabel `events`
 --
 
 CREATE TABLE `events` (
@@ -804,7 +806,7 @@ CREATE TABLE `events` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_attendances`
+-- Struktur dari tabel `event_attendances`
 --
 
 CREATE TABLE `event_attendances` (
@@ -823,7 +825,7 @@ CREATE TABLE `event_attendances` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_committee_members`
+-- Struktur dari tabel `event_committee_members`
 --
 
 CREATE TABLE `event_committee_members` (
@@ -839,7 +841,7 @@ CREATE TABLE `event_committee_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_documents`
+-- Struktur dari tabel `event_documents`
 --
 
 CREATE TABLE `event_documents` (
@@ -859,7 +861,7 @@ CREATE TABLE `event_documents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_registrations`
+-- Struktur dari tabel `event_registrations`
 --
 
 CREATE TABLE `event_registrations` (
@@ -884,7 +886,7 @@ CREATE TABLE `event_registrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_reminders`
+-- Struktur dari tabel `event_reminders`
 --
 
 CREATE TABLE `event_reminders` (
@@ -902,7 +904,7 @@ CREATE TABLE `event_reminders` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -918,7 +920,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `functional_positions`
+-- Struktur dari tabel `functional_positions`
 --
 
 CREATE TABLE `functional_positions` (
@@ -933,7 +935,7 @@ CREATE TABLE `functional_positions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `holidays`
+-- Struktur dari tabel `holidays`
 --
 
 CREATE TABLE `holidays` (
@@ -947,7 +949,7 @@ CREATE TABLE `holidays` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `implementation_arrangements`
+-- Struktur dari tabel `implementation_arrangements`
 --
 
 CREATE TABLE `implementation_arrangements` (
@@ -968,7 +970,7 @@ CREATE TABLE `implementation_arrangements` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventories`
+-- Struktur dari tabel `inventories`
 --
 
 CREATE TABLE `inventories` (
@@ -982,7 +984,7 @@ CREATE TABLE `inventories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_procurements`
+-- Struktur dari tabel `inventory_procurements`
 --
 
 CREATE TABLE `inventory_procurements` (
@@ -1000,7 +1002,7 @@ CREATE TABLE `inventory_procurements` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_procurement_items`
+-- Struktur dari tabel `inventory_procurement_items`
 --
 
 CREATE TABLE `inventory_procurement_items` (
@@ -1016,7 +1018,7 @@ CREATE TABLE `inventory_procurement_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_purchases`
+-- Struktur dari tabel `inventory_purchases`
 --
 
 CREATE TABLE `inventory_purchases` (
@@ -1033,7 +1035,7 @@ CREATE TABLE `inventory_purchases` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_purchase_items`
+-- Struktur dari tabel `inventory_purchase_items`
 --
 
 CREATE TABLE `inventory_purchase_items` (
@@ -1049,7 +1051,7 @@ CREATE TABLE `inventory_purchase_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_requests`
+-- Struktur dari tabel `inventory_requests`
 --
 
 CREATE TABLE `inventory_requests` (
@@ -1068,7 +1070,7 @@ CREATE TABLE `inventory_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_request_approvals`
+-- Struktur dari tabel `inventory_request_approvals`
 --
 
 CREATE TABLE `inventory_request_approvals` (
@@ -1086,7 +1088,7 @@ CREATE TABLE `inventory_request_approvals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_request_details`
+-- Struktur dari tabel `inventory_request_details`
 --
 
 CREATE TABLE `inventory_request_details` (
@@ -1103,7 +1105,7 @@ CREATE TABLE `inventory_request_details` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory_transactions`
+-- Struktur dari tabel `inventory_transactions`
 --
 
 CREATE TABLE `inventory_transactions` (
@@ -1121,7 +1123,7 @@ CREATE TABLE `inventory_transactions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `items`
+-- Struktur dari tabel `items`
 --
 
 CREATE TABLE `items` (
@@ -1138,7 +1140,7 @@ CREATE TABLE `items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs`
+-- Struktur dari tabel `jobs`
 --
 
 CREATE TABLE `jobs` (
@@ -1154,7 +1156,7 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_batches`
+-- Struktur dari tabel `job_batches`
 --
 
 CREATE TABLE `job_batches` (
@@ -1173,7 +1175,7 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_responsibilities`
+-- Struktur dari tabel `job_responsibilities`
 --
 
 CREATE TABLE `job_responsibilities` (
@@ -1190,7 +1192,7 @@ CREATE TABLE `job_responsibilities` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `journal_publications`
+-- Struktur dari tabel `journal_publications`
 --
 
 CREATE TABLE `journal_publications` (
@@ -1211,7 +1213,7 @@ CREATE TABLE `journal_publications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leave_approvals`
+-- Struktur dari tabel `leave_approvals`
 --
 
 CREATE TABLE `leave_approvals` (
@@ -1230,7 +1232,7 @@ CREATE TABLE `leave_approvals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leave_balances`
+-- Struktur dari tabel `leave_balances`
 --
 
 CREATE TABLE `leave_balances` (
@@ -1248,7 +1250,7 @@ CREATE TABLE `leave_balances` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leave_requests`
+-- Struktur dari tabel `leave_requests`
 --
 
 CREATE TABLE `leave_requests` (
@@ -1274,7 +1276,7 @@ CREATE TABLE `leave_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leave_types`
+-- Struktur dari tabel `leave_types`
 --
 
 CREATE TABLE `leave_types` (
@@ -1290,7 +1292,7 @@ CREATE TABLE `leave_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lecturers`
+-- Struktur dari tabel `lecturers`
 --
 
 CREATE TABLE `lecturers` (
@@ -1305,7 +1307,7 @@ CREATE TABLE `lecturers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lecturer_functional_positions`
+-- Struktur dari tabel `lecturer_functional_positions`
 --
 
 CREATE TABLE `lecturer_functional_positions` (
@@ -1324,7 +1326,7 @@ CREATE TABLE `lecturer_functional_positions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meetings`
+-- Struktur dari tabel `meetings`
 --
 
 CREATE TABLE `meetings` (
@@ -1352,7 +1354,7 @@ CREATE TABLE `meetings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_consumption_requests`
+-- Struktur dari tabel `meeting_consumption_requests`
 --
 
 CREATE TABLE `meeting_consumption_requests` (
@@ -1371,7 +1373,7 @@ CREATE TABLE `meeting_consumption_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_documents`
+-- Struktur dari tabel `meeting_documents`
 --
 
 CREATE TABLE `meeting_documents` (
@@ -1390,7 +1392,7 @@ CREATE TABLE `meeting_documents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_external_participants`
+-- Struktur dari tabel `meeting_external_participants`
 --
 
 CREATE TABLE `meeting_external_participants` (
@@ -1406,7 +1408,7 @@ CREATE TABLE `meeting_external_participants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_minutes`
+-- Struktur dari tabel `meeting_minutes`
 --
 
 CREATE TABLE `meeting_minutes` (
@@ -1424,7 +1426,7 @@ CREATE TABLE `meeting_minutes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_participants`
+-- Struktur dari tabel `meeting_participants`
 --
 
 CREATE TABLE `meeting_participants` (
@@ -1439,7 +1441,7 @@ CREATE TABLE `meeting_participants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_permissions`
+-- Struktur dari tabel `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
@@ -1451,7 +1453,7 @@ CREATE TABLE `model_has_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_roles`
+-- Struktur dari tabel `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
@@ -1461,7 +1463,7 @@ CREATE TABLE `model_has_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `model_has_roles`
+-- Dumping data untuk tabel `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
@@ -1473,7 +1475,7 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nomenclatures`
+-- Struktur dari tabel `nomenclatures`
 --
 
 CREATE TABLE `nomenclatures` (
@@ -1489,7 +1491,7 @@ CREATE TABLE `nomenclatures` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nomenclature_classifications`
+-- Struktur dari tabel `nomenclature_classifications`
 --
 
 CREATE TABLE `nomenclature_classifications` (
@@ -1504,7 +1506,7 @@ CREATE TABLE `nomenclature_classifications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `official_travel`
+-- Struktur dari tabel `official_travel`
 --
 
 CREATE TABLE `official_travel` (
@@ -1531,7 +1533,7 @@ CREATE TABLE `official_travel` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `official_travel_approvals`
+-- Struktur dari tabel `official_travel_approvals`
 --
 
 CREATE TABLE `official_travel_approvals` (
@@ -1549,7 +1551,7 @@ CREATE TABLE `official_travel_approvals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `official_travel_documents`
+-- Struktur dari tabel `official_travel_documents`
 --
 
 CREATE TABLE `official_travel_documents` (
@@ -1566,7 +1568,7 @@ CREATE TABLE `official_travel_documents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `official_travel_itineraries`
+-- Struktur dari tabel `official_travel_itineraries`
 --
 
 CREATE TABLE `official_travel_itineraries` (
@@ -1583,7 +1585,7 @@ CREATE TABLE `official_travel_itineraries` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `official_travel_members`
+-- Struktur dari tabel `official_travel_members`
 --
 
 CREATE TABLE `official_travel_members` (
@@ -1601,7 +1603,7 @@ CREATE TABLE `official_travel_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `organization_units`
+-- Struktur dari tabel `organization_units`
 --
 
 CREATE TABLE `organization_units` (
@@ -1617,7 +1619,7 @@ CREATE TABLE `organization_units` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `organization_units`
+-- Dumping data untuk tabel `organization_units`
 --
 
 INSERT INTO `organization_units` (`id`, `name`, `code`, `parent_id`, `type`, `description`, `organization_unit_id`, `created_at`, `updated_at`) VALUES
@@ -1626,7 +1628,7 @@ INSERT INTO `organization_units` (`id`, `name`, `code`, `parent_id`, `type`, `de
 -- --------------------------------------------------------
 
 --
--- Table structure for table `overtime_approval_logs`
+-- Struktur dari tabel `overtime_approval_logs`
 --
 
 CREATE TABLE `overtime_approval_logs` (
@@ -1644,7 +1646,7 @@ CREATE TABLE `overtime_approval_logs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `overtime_requests`
+-- Struktur dari tabel `overtime_requests`
 --
 
 CREATE TABLE `overtime_requests` (
@@ -1669,7 +1671,7 @@ CREATE TABLE `overtime_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `overtime_request_members`
+-- Struktur dari tabel `overtime_request_members`
 --
 
 CREATE TABLE `overtime_request_members` (
@@ -1689,7 +1691,7 @@ CREATE TABLE `overtime_request_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partners`
+-- Struktur dari tabel `partners`
 --
 
 CREATE TABLE `partners` (
@@ -1707,7 +1709,7 @@ CREATE TABLE `partners` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partnerships`
+-- Struktur dari tabel `partnerships`
 --
 
 CREATE TABLE `partnerships` (
@@ -1728,7 +1730,7 @@ CREATE TABLE `partnerships` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partnership_documents`
+-- Struktur dari tabel `partnership_documents`
 --
 
 CREATE TABLE `partnership_documents` (
@@ -1743,7 +1745,7 @@ CREATE TABLE `partnership_documents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partnership_implementations`
+-- Struktur dari tabel `partnership_implementations`
 --
 
 CREATE TABLE `partnership_implementations` (
@@ -1761,7 +1763,7 @@ CREATE TABLE `partnership_implementations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partner_contacts`
+-- Struktur dari tabel `partner_contacts`
 --
 
 CREATE TABLE `partner_contacts` (
@@ -1780,7 +1782,7 @@ CREATE TABLE `partner_contacts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partner_follow_ups`
+-- Struktur dari tabel `partner_follow_ups`
 --
 
 CREATE TABLE `partner_follow_ups` (
@@ -1798,7 +1800,7 @@ CREATE TABLE `partner_follow_ups` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partner_potentials`
+-- Struktur dari tabel `partner_potentials`
 --
 
 CREATE TABLE `partner_potentials` (
@@ -1814,7 +1816,7 @@ CREATE TABLE `partner_potentials` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partner_potential_fields`
+-- Struktur dari tabel `partner_potential_fields`
 --
 
 CREATE TABLE `partner_potential_fields` (
@@ -1828,7 +1830,7 @@ CREATE TABLE `partner_potential_fields` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_reset_tokens`
+-- Struktur dari tabel `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
@@ -1840,7 +1842,7 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Struktur dari tabel `permissions`
 --
 
 CREATE TABLE `permissions` (
@@ -1854,7 +1856,7 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publications`
+-- Struktur dari tabel `publications`
 --
 
 CREATE TABLE `publications` (
@@ -1872,7 +1874,7 @@ CREATE TABLE `publications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publication_authors`
+-- Struktur dari tabel `publication_authors`
 --
 
 CREATE TABLE `publication_authors` (
@@ -1888,7 +1890,7 @@ CREATE TABLE `publication_authors` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `research`
+-- Struktur dari tabel `research`
 --
 
 CREATE TABLE `research` (
@@ -1907,7 +1909,7 @@ CREATE TABLE `research` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `research_members`
+-- Struktur dari tabel `research_members`
 --
 
 CREATE TABLE `research_members` (
@@ -1922,7 +1924,7 @@ CREATE TABLE `research_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
@@ -1934,7 +1936,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Dumping data untuk tabel `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -1944,7 +1946,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_has_permissions`
+-- Struktur dari tabel `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -1955,7 +1957,7 @@ CREATE TABLE `role_has_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rooms`
+-- Struktur dari tabel `rooms`
 --
 
 CREATE TABLE `rooms` (
@@ -1976,7 +1978,7 @@ CREATE TABLE `rooms` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `room_loans`
+-- Struktur dari tabel `room_loans`
 --
 
 CREATE TABLE `room_loans` (
@@ -1996,7 +1998,7 @@ CREATE TABLE `room_loans` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `room_maintenance_requests`
+-- Struktur dari tabel `room_maintenance_requests`
 --
 
 CREATE TABLE `room_maintenance_requests` (
@@ -2015,7 +2017,7 @@ CREATE TABLE `room_maintenance_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `room_maintenance_request_log`
+-- Struktur dari tabel `room_maintenance_request_log`
 --
 
 CREATE TABLE `room_maintenance_request_log` (
@@ -2037,7 +2039,7 @@ CREATE TABLE `room_maintenance_request_log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sessions`
+-- Struktur dari tabel `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -2050,16 +2052,121 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `sessions`
+-- Dumping data untuk tabel `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('VBHotELsmIZ9URaAiRGjlGl7GIYpOyh2', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-17T15:35:01.521Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1781710517);
+('_FSXa6THi6JiRp-hvQbIeziba4-RLNex', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:55.744Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205016),
+('_o4hyrnLjPE_Ctb12IoSOj5Gk4zerllP', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:59.456Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\",\"flashSuccess\":\"Penugasan berhasil ditambahkan.\"}', 1782205019),
+('_SLMPEGRdS7mg3NdDy5NCe27cMXeJc90', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:58.043Z\",\"httpOnly\":true,\"path\":\"/\"}}', 1782215878),
+('-n9a2dX7bf8oH6lq9_o4X9rPvY8aKy5x', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:12.603Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205573),
+('0ArPFHPeLTz_yu6NepukCAtCz0F70ZZP', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:54.846Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782204055),
+('1AClqdByQCrjV8NA2-BQDK5HMZofCRMd', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:54.562Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215815),
+('1gLuj9JdBvmj8uo9s458ZOtwyNj_ZBBJ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:59:01.960Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215942),
+('2CvPjjKwmidNJk7MgqlNYnkWBEM8L-m4', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:58.682Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206219),
+('2CY2S8LwcxHH9tyR1VpvU4sp-secKPEL', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:15:03.082Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782206103),
+('2uZo07JKMxkYcklWVu4laOxTCGuniuOe', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:11.185Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205691),
+('2XSqMUNmd-OEVIVNHGzEGRRq9q_bue5B', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:25.637Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215486),
+('3dpMhRet059lzBFOFfE5mD3EkOt7dyiS', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:50:47.009Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215447),
+('3jXahUyZWbrABAQ-y98RcLljE-rX2x16', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:46.878Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215867),
+('3UO7hnk1JdpJlUU-vXrw2qq5hR3NNSqu', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:13.343Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205574),
+('3vnHI8wixbCzE_m7051PB-9VJYXzQ6Iv', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:53.944Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215814),
+('6I7nb6NKhdMEmsTIRqmTA0WbO1oPGgbL', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:47.942Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\",\"flashSuccess\":\"Penugasan berhasil dihapus.\"}', 1782215508),
+('87k0DZJa1NjvBCN2YrQEy9TKj5jTzsfQ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:48.522Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215509),
+('9S136Ma0QLMFLWfJ6ykXYNWdCFUFNPfQ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:41:00.334Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782204061),
+('9UvA9yXXN__mDW_QbLJ_8nuR-aitNG3V', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:33.195Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782203913),
+('aOuHRmmvlhChaPyM2jWn0Ccn_kUdrQ2f', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:58:00.863Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215881),
+('aQGpkasRDdkkEGBJZ8IE0jnS_QGWA8x0', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:47.779Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215868),
+('BAJ5T9624V2TGEpF7LYBS2lYMOsp3mSj', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T12:14:18.742Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782216861),
+('bYscAcJvlAKPfAdnTuFdP1ak0mv3HLVa', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:46.926Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\",\"flashSuccess\":\"Penugasan berhasil diperbarui.\"}', 1782215507),
+('CeOC-z4jlhE6TMPBWHaRb0wqYYgEiE-y', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:50:46.145Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215446),
+('cHTay_jhdFgUAKdYXEsExfSf_6UOj6P5', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:44.992Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\",\"flashSuccess\":\"Penugasan berhasil ditambahkan.\"}', 1782215505),
+('cIztCpmmXMqb24LmZ5o7I9wiij4ML-46', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:59.905Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215880),
+('dbvK4Z1S8QuXdMbLS3Avee41BnX-xShp', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:54:59.509Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215700),
+('dBWzrEAMBZRWKDbdTZah0F49JW2A1jiD', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:00.703Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205681),
+('dp5me-7h93PW_mhAaNXbi2mxxHEiJrAg', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:51.261Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215811),
+('Dy1TQeYrY2L9PPkFAMneVJnzDjfsk7BM', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:50.287Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215810),
+('E1VsQhNpzWNQGnknICBE2Z6tf1K0_l8S', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:57.992Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215818),
+('eERrCgYI4O-RxpTV5aWWCzwN_WpzDpRJ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:36.397Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\",\"flashSuccess\":\"Penugasan berhasil ditambahkan.\"}', 1782203916),
+('eF2InGJ74S2vI9D_Mjo48S2wXBtb76KT', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:50:48.333Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215448),
+('eHYu5tOdn6PXY5u01zTusQy5MeS_HJBv', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:58.428Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215819),
+('EikCGXqc-iVTA_JMfJ0alMEk2XVgHnqJ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:09.012Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205689),
+('EMy-yEQaihfy8DvMxA2erwN1NUcZI9JK', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:07:59.376Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205680),
+('F8jlgeokLJvn_UYrq6I9eWk7CwzEfR_C', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:50.676Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215871),
+('ffrnYo89HWPhSzQBHUIjFnTCl0jGXBPg', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:52.979Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215813),
+('gMmkYhTYKkg-Gx_aLfbrTk9hS2eEqNm9', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:53.559Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205614),
+('GMZraiot__0YHpI8pZ-5fvWO2k1O2Qdf', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:54.347Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215874),
+('gPU5OuIUfMavgjMEJubrfQ_9Gk7MZgYV', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:57.010Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782204057),
+('GWrBr7ppvva7kUMGT1fhaRYKwlFA0TV2', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:38.625Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206199),
+('HGA52DIilctdAvJ59vCidKXYxrQ24Z3t', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:55:01.149Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215701),
+('HMwDJD70p-NGGsMtYo4MaSF2J9MDzzua', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:15:28.717Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782206129),
+('hOaV6-o0Dc_y8pmSOtV-rn74mGX3hkT7', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:17:38.017Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206258),
+('hREyIPpWvP489brfeUv1FPqQqmARU4UM', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:52.042Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215812),
+('IkCvkIWJA6KuKqmpD26QYficFN_g0huF', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:37.442Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206197),
+('iQYFxnnOK-nGqPb9SpBCwoLDGp0eGgL6', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:59.635Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782204060),
+('IuIEnlYtJwZWyFtS-5tSelAoLkz5-DZJ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:15:02.531Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782206103),
+('iVvp8wfjXa09Wv7QtcUcPX2TidyAvYvj', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:57.039Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205017),
+('jcQxQAXFmOkbME2mefF9ZM1_o1yWqBH1', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:58:48.125Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215935),
+('jGNpa7MFqoHi4QBQZVtUiLyx6A1weeaH', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:06.962Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205687),
+('jMYpKluJE1hbwOkyE1tlp2Ekfsbndm8B', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:55.786Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215876),
+('Jtc4SYxQKVSZVw5MZN9QWni5CfRVY-cZ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:43.971Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215504),
+('kC0if37lCGTQz27wo7VV-N1R_K-qvw-A', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:48.954Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215869),
+('KdenG3wehaaE9FeeasZyYQKWrXa1X6z_', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:32.483Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205712),
+('kdlvnRMcAhUnEhkvU6mmNvRKt8j1c7wu', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:45.571Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215866),
+('khzY7vXPkyeDG9KhxTVnLZmNeDVTAZ_x', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:35.264Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206196),
+('komsZ0t_sSSS7JWYBPo-JHcE-uCLKoke', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:51.437Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205732),
+('kQ0Zga1Roz9JgOMITozLDmVqg3ARl-0u', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:34.508Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206195),
+('LcUhgbsHSOs7eiiyfISe0cjLSjInt1cX', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:57.904Z\",\"httpOnly\":true,\"path\":\"/\"}}', 1782204058),
+('M4pbOu4nk-r1PA5yB4-wEGLOoTboCUqC', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:55.556Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782204056),
+('Mm0_6BNfPvHYmAMJPpZqKYK_8wZQ4HCF', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:58:14.404Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215894),
+('n6yLAb23nD7SEQs3uyE9GEJNT0H0TUbC', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:35.203Z\",\"httpOnly\":true,\"path\":\"/\"}}', 1782203915),
+('Npo-QI9Lvb7fyo6u4GC477dDStuAS7Ek', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:53:28.297Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215608),
+('NtalUFuhlZLoV1arxPptch4p5aQXom8v', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:15:04.058Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782206104),
+('o3V6_EA5jdQNF_vxNsb5XY_4nW-KogMT', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:33.690Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782203914),
+('OibdTZ56L_ZzuZ0uD4f3ObrW3AJvtd03', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:17.678Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205578),
+('PA4LQxkLggltmMrvq2s7YUSXpTQWgrt2', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:53:26.295Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215606),
+('PJvCM1AIsTsaB4JH_EzOFRuzMYdswA6l', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:51.655Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215872),
+('pSeBWsMTTqpKqSEOeRGNsb8ni1GKv3AK', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:50.978Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206246),
+('puueLXHzMX9hoFeivrf0YT6z8wfMPuxV', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:57.776Z\",\"httpOnly\":true,\"path\":\"/\"}}', 1782205018),
+('PZfaeKIQ_p5z3HpxT2mz8aGDvnsMyPP6', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:57.096Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215817),
+('Q_Lv3KsAu3LQGLqD46dt9byzbL1O1-M3', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:34.192Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782203914),
+('Ql3SYyParkgsLYvvLkwwHbNVvJQCCayT', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:16:29.407Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206190),
+('QPF232RYgHBW7J186vs98J0y0BSMGU-B', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:53:33.535Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215614),
+('QutYY4rbxw7D3Iwl45h68jU9CJ6eHArP', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:57:00.408Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205021),
+('RBS7qCUd_TQWs4XJ0-kPc4E1HW8eCaMW', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:02.654Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205683),
+('S_C06LfRBftmzbel_e_n0RJ1GP6ebKmg', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:56.835Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215877),
+('S2LV2NgPmGibeNwe-xrsFck7GkXiJ-cO', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:59:03.775Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215944),
+('sRUdGeNT5bdLBOR6FoPzHaY9SJrXRy8r', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:58:21.578Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215908),
+('Sv2HSMfsyX05eM75RHHd1XRfIhkiRFfg', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:15.661Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205576),
+('t9BysoC4j24rG35FY82gTCxKcbt7f6wg', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:06:20.201Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205580),
+('tKn7RIg_5vnfcPwjeLc_deIxRoGG59lU', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:56:55.395Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215816),
+('TnBHnq6FnhgBWhCSHzg4Zk4YaJIyOldT', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:07:26.651Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782205647),
+('ttxuooX0E11x3Ppz3TUm0vwd838OXDTP', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:15:50.574Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782206151),
+('UBRH6Cy35e1lE2S9qcSMUUfyJbbZzD1g', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:00.337Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205680),
+('UFNmOJdRo-LgLx4BzZYNpUUno11ZUu9X', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:53:27.004Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215607),
+('upqfGVBqJn5w7ZLoguuIZKYM5Q7PcLZj', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:13.463Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205693),
+('UpXzDQDn-6NUZe9Ozl9CY0kdJpR_gecK', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:34.664Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782203915),
+('vdKU3Y_GX35QMJeNzYWqkuHxEPeLYb-Z', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:54.863Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215875),
+('Vl-gadxWqxYkpfTkgmDViC9IZTCBKo9A', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:54:58.866Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215699),
+('vUGx_Shplos1wgeJnuGlT5bziP9GLdrB', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:38:36.776Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782203917),
+('vX5Y5TC1zY1rcT4eHMWcZnlKFECz_7Ck', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:40:56.315Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782204056),
+('WEJ2571MqmdIDFNEqpnCjKfuyezSaF7X', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:45.454Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215506),
+('WhVp5BVOpU9fvcPRhiGPMXF0QTZlEl3j', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:51:06.849Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215467),
+('wXlaTXsMLz65u3p6kNYNzLXmddpkRkHK', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:56.393Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205017),
+('Y2QdE7p1msjBYq3GQV4wffcvh5EqqivU', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T08:56:55.239Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782205015),
+('yeGyYKmEZj5fUylrZmtYoSOd4wqCjVq4', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:58:41.333Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215921),
+('yp0lt5LUUA38g7J06Pz2WYzzkMiOWdIe', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:17:19.020Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782206239),
+('YYzZ3wAxJfXEGv-DVaAShYiTflBVhbHq', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:09:10.201Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205750),
+('Z7qvTn9ypfSaTaCpl86A8ZfvZkIQRCf1', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:53:30.954Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\",\"flashSuccess\":\"Tugas berhasil dikumpulkan.\"}', 1782215611),
+('ZgMj9q6SmKqWA_NCYOHZ6MR2Evsrhc5W', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:53.405Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215873),
+('zlFsc5iALU_PdYNkEOJidEgnIh9AFHhZ', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T09:08:04.676Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782205685),
+('ztHs-97Ec1apBK4Gen6xNNnc7gWPCpDu', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:57:50.143Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":2,\"userName\":\"Duha Alul Bariq\",\"userEmail\":\"duha@example.com\",\"userRole\":\"pegawai\"}', 1782215870),
+('zyqMFVRpDjsoaN1eofOA0KnIpRqrPvr5', NULL, NULL, NULL, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-06-23T11:59:03.231Z\",\"httpOnly\":true,\"path\":\"/\"},\"userId\":1,\"userName\":\"Shidiq Maihendra\",\"userEmail\":\"shidiq@example.com\",\"userRole\":\"pimpinan\"}', 1782215943);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Struktur dari tabel `staff`
 --
 
 CREATE TABLE `staff` (
@@ -2073,7 +2180,7 @@ CREATE TABLE `staff` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff_nomenclature_histories`
+-- Struktur dari tabel `staff_nomenclature_histories`
 --
 
 CREATE TABLE `staff_nomenclature_histories` (
@@ -2090,7 +2197,7 @@ CREATE TABLE `staff_nomenclature_histories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `structural_positions`
+-- Struktur dari tabel `structural_positions`
 --
 
 CREATE TABLE `structural_positions` (
@@ -2108,7 +2215,7 @@ CREATE TABLE `structural_positions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `structural_position_histories`
+-- Struktur dari tabel `structural_position_histories`
 --
 
 CREATE TABLE `structural_position_histories` (
@@ -2127,7 +2234,7 @@ CREATE TABLE `structural_position_histories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `students`
+-- Struktur dari tabel `students`
 --
 
 CREATE TABLE `students` (
@@ -2162,7 +2269,7 @@ CREATE TABLE `students` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_requests`
+-- Struktur dari tabel `student_requests`
 --
 
 CREATE TABLE `student_requests` (
@@ -2181,7 +2288,7 @@ CREATE TABLE `student_requests` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_active_references`
+-- Struktur dari tabel `student_request_active_references`
 --
 
 CREATE TABLE `student_request_active_references` (
@@ -2203,7 +2310,7 @@ CREATE TABLE `student_request_active_references` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_grad_references`
+-- Struktur dari tabel `student_request_grad_references`
 --
 
 CREATE TABLE `student_request_grad_references` (
@@ -2225,7 +2332,7 @@ CREATE TABLE `student_request_grad_references` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_refund`
+-- Struktur dari tabel `student_request_refund`
 --
 
 CREATE TABLE `student_request_refund` (
@@ -2245,7 +2352,7 @@ CREATE TABLE `student_request_refund` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_refund_approvals`
+-- Struktur dari tabel `student_request_refund_approvals`
 --
 
 CREATE TABLE `student_request_refund_approvals` (
@@ -2263,7 +2370,7 @@ CREATE TABLE `student_request_refund_approvals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_resignation`
+-- Struktur dari tabel `student_request_resignation`
 --
 
 CREATE TABLE `student_request_resignation` (
@@ -2282,7 +2389,7 @@ CREATE TABLE `student_request_resignation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_request_resignation_approvals`
+-- Struktur dari tabel `student_request_resignation_approvals`
 --
 
 CREATE TABLE `student_request_resignation_approvals` (
@@ -2300,7 +2407,7 @@ CREATE TABLE `student_request_resignation_approvals` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `surveys`
+-- Struktur dari tabel `surveys`
 --
 
 CREATE TABLE `surveys` (
@@ -2319,7 +2426,7 @@ CREATE TABLE `surveys` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_answers`
+-- Struktur dari tabel `survey_answers`
 --
 
 CREATE TABLE `survey_answers` (
@@ -2334,7 +2441,7 @@ CREATE TABLE `survey_answers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_answer_options`
+-- Struktur dari tabel `survey_answer_options`
 --
 
 CREATE TABLE `survey_answer_options` (
@@ -2348,7 +2455,7 @@ CREATE TABLE `survey_answer_options` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_invitations`
+-- Struktur dari tabel `survey_invitations`
 --
 
 CREATE TABLE `survey_invitations` (
@@ -2367,7 +2474,7 @@ CREATE TABLE `survey_invitations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_questions`
+-- Struktur dari tabel `survey_questions`
 --
 
 CREATE TABLE `survey_questions` (
@@ -2382,7 +2489,7 @@ CREATE TABLE `survey_questions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_question_assignments`
+-- Struktur dari tabel `survey_question_assignments`
 --
 
 CREATE TABLE `survey_question_assignments` (
@@ -2397,7 +2504,7 @@ CREATE TABLE `survey_question_assignments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_question_options`
+-- Struktur dari tabel `survey_question_options`
 --
 
 CREATE TABLE `survey_question_options` (
@@ -2412,7 +2519,7 @@ CREATE TABLE `survey_question_options` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey_responses`
+-- Struktur dari tabel `survey_responses`
 --
 
 CREATE TABLE `survey_responses` (
@@ -2427,7 +2534,7 @@ CREATE TABLE `survey_responses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `travel_cost_components`
+-- Struktur dari tabel `travel_cost_components`
 --
 
 CREATE TABLE `travel_cost_components` (
@@ -2442,7 +2549,7 @@ CREATE TABLE `travel_cost_components` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `travel_cost_standards`
+-- Struktur dari tabel `travel_cost_standards`
 --
 
 CREATE TABLE `travel_cost_standards` (
@@ -2459,7 +2566,7 @@ CREATE TABLE `travel_cost_standards` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `travel_expenses`
+-- Struktur dari tabel `travel_expenses`
 --
 
 CREATE TABLE `travel_expenses` (
@@ -2480,7 +2587,7 @@ CREATE TABLE `travel_expenses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -2498,7 +2605,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -2512,7 +2619,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tw
 --
 
 --
--- Indexes for table `assets`
+-- Indeks untuk tabel `assets`
 --
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id`),
@@ -2520,7 +2627,7 @@ ALTER TABLE `assets`
   ADD KEY `assets_asset_grant_id_foreign` (`asset_grant_id`);
 
 --
--- Indexes for table `asset_audits`
+-- Indeks untuk tabel `asset_audits`
 --
 ALTER TABLE `asset_audits`
   ADD PRIMARY KEY (`id`),
@@ -2528,7 +2635,7 @@ ALTER TABLE `asset_audits`
   ADD KEY `asset_audits_conducted_by_foreign` (`conducted_by`);
 
 --
--- Indexes for table `asset_audit_details`
+-- Indeks untuk tabel `asset_audit_details`
 --
 ALTER TABLE `asset_audit_details`
   ADD PRIMARY KEY (`id`),
@@ -2536,34 +2643,34 @@ ALTER TABLE `asset_audit_details`
   ADD KEY `asset_audit_details_asset_id_foreign` (`asset_id`);
 
 --
--- Indexes for table `asset_grants`
+-- Indeks untuk tabel `asset_grants`
 --
 ALTER TABLE `asset_grants`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `asset_insurances`
+-- Indeks untuk tabel `asset_insurances`
 --
 ALTER TABLE `asset_insurances`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_insurances_asset_id_foreign` (`asset_id`);
 
 --
--- Indexes for table `asset_insurance_claims`
+-- Indeks untuk tabel `asset_insurance_claims`
 --
 ALTER TABLE `asset_insurance_claims`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_insurance_claims_asset_insurance_id_foreign` (`asset_insurance_id`);
 
 --
--- Indexes for table `asset_trackings`
+-- Indeks untuk tabel `asset_trackings`
 --
 ALTER TABLE `asset_trackings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_trackings_asset_id_foreign` (`asset_id`);
 
 --
--- Indexes for table `asset_tracking_logs`
+-- Indeks untuk tabel `asset_tracking_logs`
 --
 ALTER TABLE `asset_tracking_logs`
   ADD PRIMARY KEY (`id`),
@@ -2571,7 +2678,7 @@ ALTER TABLE `asset_tracking_logs`
   ADD KEY `asset_tracking_logs_moved_by_foreign` (`moved_by`);
 
 --
--- Indexes for table `assignments`
+-- Indeks untuk tabel `assignments`
 --
 ALTER TABLE `assignments`
   ADD PRIMARY KEY (`id`),
@@ -2580,7 +2687,7 @@ ALTER TABLE `assignments`
   ADD KEY `assignments_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `assignment_progress`
+-- Indeks untuk tabel `assignment_progress`
 --
 ALTER TABLE `assignment_progress`
   ADD PRIMARY KEY (`id`),
@@ -2588,56 +2695,56 @@ ALTER TABLE `assignment_progress`
   ADD KEY `assignment_progress_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `attendances`
+-- Indeks untuk tabel `attendances`
 --
 ALTER TABLE `attendances`
   ADD PRIMARY KEY (`id`),
   ADD KEY `attendances_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `buildings`
+-- Indeks untuk tabel `buildings`
 --
 ALTER TABLE `buildings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `buildings_code_unique` (`code`);
 
 --
--- Indexes for table `cache`
+-- Indeks untuk tabel `cache`
 --
 ALTER TABLE `cache`
   ADD PRIMARY KEY (`key`),
   ADD KEY `cache_expiration_index` (`expiration`);
 
 --
--- Indexes for table `cache_locks`
+-- Indeks untuk tabel `cache_locks`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`),
   ADD KEY `cache_locks_expiration_index` (`expiration`);
 
 --
--- Indexes for table `committees`
+-- Indeks untuk tabel `committees`
 --
 ALTER TABLE `committees`
   ADD PRIMARY KEY (`id`),
   ADD KEY `committees_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `committee_budgets`
+-- Indeks untuk tabel `committee_budgets`
 --
 ALTER TABLE `committee_budgets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `committee_budgets_committee_id_foreign` (`committee_id`);
 
 --
--- Indexes for table `committee_budget_items`
+-- Indeks untuk tabel `committee_budget_items`
 --
 ALTER TABLE `committee_budget_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `committee_budget_items_committee_budget_id_foreign` (`committee_budget_id`);
 
 --
--- Indexes for table `committee_expenses`
+-- Indeks untuk tabel `committee_expenses`
 --
 ALTER TABLE `committee_expenses`
   ADD PRIMARY KEY (`id`),
@@ -2645,14 +2752,14 @@ ALTER TABLE `committee_expenses`
   ADD KEY `committee_expenses_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `committee_external_members`
+-- Indeks untuk tabel `committee_external_members`
 --
 ALTER TABLE `committee_external_members`
   ADD PRIMARY KEY (`id`),
   ADD KEY `committee_external_members_committee_id_foreign` (`committee_id`);
 
 --
--- Indexes for table `committee_members`
+-- Indeks untuk tabel `committee_members`
 --
 ALTER TABLE `committee_members`
   ADD PRIMARY KEY (`id`),
@@ -2660,7 +2767,7 @@ ALTER TABLE `committee_members`
   ADD KEY `committee_members_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `committee_tasks`
+-- Indeks untuk tabel `committee_tasks`
 --
 ALTER TABLE `committee_tasks`
   ADD PRIMARY KEY (`id`),
@@ -2668,20 +2775,20 @@ ALTER TABLE `committee_tasks`
   ADD KEY `committee_tasks_assigned_to_foreign` (`assigned_to`);
 
 --
--- Indexes for table `committee_task_progress`
+-- Indeks untuk tabel `committee_task_progress`
 --
 ALTER TABLE `committee_task_progress`
   ADD PRIMARY KEY (`id`),
   ADD KEY `committee_task_progress_committee_task_id_foreign` (`committee_task_id`);
 
 --
--- Indexes for table `community_services`
+-- Indeks untuk tabel `community_services`
 --
 ALTER TABLE `community_services`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `community_service_members`
+-- Indeks untuk tabel `community_service_members`
 --
 ALTER TABLE `community_service_members`
   ADD PRIMARY KEY (`id`),
@@ -2689,14 +2796,14 @@ ALTER TABLE `community_service_members`
   ADD KEY `community_service_members_lecturer_id_foreign` (`lecturer_id`);
 
 --
--- Indexes for table `conference_proceedings`
+-- Indeks untuk tabel `conference_proceedings`
 --
 ALTER TABLE `conference_proceedings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `conference_proceedings_publication_id_foreign` (`publication_id`);
 
 --
--- Indexes for table `documents`
+-- Indeks untuk tabel `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
@@ -2704,27 +2811,27 @@ ALTER TABLE `documents`
   ADD KEY `fk_documents_document_types1_idx` (`document_type_id`);
 
 --
--- Indexes for table `document_revisions`
+-- Indeks untuk tabel `document_revisions`
 --
 ALTER TABLE `document_revisions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_document_revisions_documents1_idx` (`document_id`);
 
 --
--- Indexes for table `document_types`
+-- Indeks untuk tabel `document_types`
 --
 ALTER TABLE `document_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `education_histories`
+-- Indeks untuk tabel `education_histories`
 --
 ALTER TABLE `education_histories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `education_histories_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `employees`
+-- Indeks untuk tabel `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
@@ -2733,26 +2840,26 @@ ALTER TABLE `employees`
   ADD KEY `employees_employment_status_id_foreign` (`employment_status_id`);
 
 --
--- Indexes for table `employee_grades`
+-- Indeks untuk tabel `employee_grades`
 --
 ALTER TABLE `employee_grades`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `employment_statuses`
+-- Indeks untuk tabel `employment_statuses`
 --
 ALTER TABLE `employment_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `equipments`
+-- Indeks untuk tabel `equipments`
 --
 ALTER TABLE `equipments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_equipment_asset_id_foreign` (`asset_id`);
 
 --
--- Indexes for table `equipment_loans`
+-- Indeks untuk tabel `equipment_loans`
 --
 ALTER TABLE `equipment_loans`
   ADD PRIMARY KEY (`id`),
@@ -2761,7 +2868,7 @@ ALTER TABLE `equipment_loans`
   ADD KEY `asset_loans_asset_equipment_id_foreign_idx` (`equipment_id`);
 
 --
--- Indexes for table `equipment_maintenance_requests`
+-- Indeks untuk tabel `equipment_maintenance_requests`
 --
 ALTER TABLE `equipment_maintenance_requests`
   ADD PRIMARY KEY (`id`),
@@ -2769,7 +2876,7 @@ ALTER TABLE `equipment_maintenance_requests`
   ADD KEY `asset_maintenance_requests_asset_equipment_foreign_idx` (`equipment_id`);
 
 --
--- Indexes for table `equipment_maintenance_request_log`
+-- Indeks untuk tabel `equipment_maintenance_request_log`
 --
 ALTER TABLE `equipment_maintenance_request_log`
   ADD PRIMARY KEY (`id`),
@@ -2778,7 +2885,7 @@ ALTER TABLE `equipment_maintenance_request_log`
   ADD KEY `fk_equipment_maintenance_request_log_employees2_idx` (`verified_by`);
 
 --
--- Indexes for table `equipment_procurements`
+-- Indeks untuk tabel `equipment_procurements`
 --
 ALTER TABLE `equipment_procurements`
   ADD PRIMARY KEY (`id`),
@@ -2786,14 +2893,14 @@ ALTER TABLE `equipment_procurements`
   ADD KEY `asset_equipment_procurements_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `equipment_proc_items`
+-- Indeks untuk tabel `equipment_proc_items`
 --
 ALTER TABLE `equipment_proc_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_equipment_proc_items_asset_equipment_proc_id_foreign` (`equipment_proc_id`);
 
 --
--- Indexes for table `equipment_requests`
+-- Indeks untuk tabel `equipment_requests`
 --
 ALTER TABLE `equipment_requests`
   ADD PRIMARY KEY (`id`),
@@ -2802,7 +2909,7 @@ ALTER TABLE `equipment_requests`
   ADD KEY `asset_equipment_requests_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `events`
+-- Indeks untuk tabel `events`
 --
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`),
@@ -2810,7 +2917,7 @@ ALTER TABLE `events`
   ADD KEY `events_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `event_attendances`
+-- Indeks untuk tabel `event_attendances`
 --
 ALTER TABLE `event_attendances`
   ADD PRIMARY KEY (`id`),
@@ -2818,7 +2925,7 @@ ALTER TABLE `event_attendances`
   ADD KEY `event_attendances_checked_by_foreign` (`checked_by`);
 
 --
--- Indexes for table `event_committee_members`
+-- Indeks untuk tabel `event_committee_members`
 --
 ALTER TABLE `event_committee_members`
   ADD PRIMARY KEY (`id`),
@@ -2826,7 +2933,7 @@ ALTER TABLE `event_committee_members`
   ADD KEY `event_committee_members_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `event_documents`
+-- Indeks untuk tabel `event_documents`
 --
 ALTER TABLE `event_documents`
   ADD PRIMARY KEY (`id`),
@@ -2834,7 +2941,7 @@ ALTER TABLE `event_documents`
   ADD KEY `event_documents_uploaded_by_foreign` (`uploaded_by`);
 
 --
--- Indexes for table `event_registrations`
+-- Indeks untuk tabel `event_registrations`
 --
 ALTER TABLE `event_registrations`
   ADD PRIMARY KEY (`id`),
@@ -2846,7 +2953,7 @@ ALTER TABLE `event_registrations`
   ADD KEY `event_registrations_event_id_foreign_idx` (`event_id`);
 
 --
--- Indexes for table `event_reminders`
+-- Indeks untuk tabel `event_reminders`
 --
 ALTER TABLE `event_reminders`
   ADD PRIMARY KEY (`id`),
@@ -2854,26 +2961,26 @@ ALTER TABLE `event_reminders`
   ADD KEY `event_reminders_sent_by_foreign` (`sent_by`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `functional_positions`
+-- Indeks untuk tabel `functional_positions`
 --
 ALTER TABLE `functional_positions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `holidays`
+-- Indeks untuk tabel `holidays`
 --
 ALTER TABLE `holidays`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `implementation_arrangements`
+-- Indeks untuk tabel `implementation_arrangements`
 --
 ALTER TABLE `implementation_arrangements`
   ADD PRIMARY KEY (`id`),
@@ -2881,14 +2988,14 @@ ALTER TABLE `implementation_arrangements`
   ADD KEY `implementation_arrangements_partnership_impl_id_foreign` (`partnership_impl_id`);
 
 --
--- Indexes for table `inventories`
+-- Indeks untuk tabel `inventories`
 --
 ALTER TABLE `inventories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `inventories_item_id_foreign` (`item_id`);
 
 --
--- Indexes for table `inventory_procurements`
+-- Indeks untuk tabel `inventory_procurements`
 --
 ALTER TABLE `inventory_procurements`
   ADD PRIMARY KEY (`id`),
@@ -2896,7 +3003,7 @@ ALTER TABLE `inventory_procurements`
   ADD KEY `inventory_procurements_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `inventory_procurement_items`
+-- Indeks untuk tabel `inventory_procurement_items`
 --
 ALTER TABLE `inventory_procurement_items`
   ADD PRIMARY KEY (`id`),
@@ -2904,7 +3011,7 @@ ALTER TABLE `inventory_procurement_items`
   ADD KEY `inventory_procurement_items_item_id_foreign` (`item_id`);
 
 --
--- Indexes for table `inventory_purchases`
+-- Indeks untuk tabel `inventory_purchases`
 --
 ALTER TABLE `inventory_purchases`
   ADD PRIMARY KEY (`id`),
@@ -2912,7 +3019,7 @@ ALTER TABLE `inventory_purchases`
   ADD KEY `inventory_purchases_inventory_procurement_id_foreign` (`inventory_procurement_id`);
 
 --
--- Indexes for table `inventory_purchase_items`
+-- Indeks untuk tabel `inventory_purchase_items`
 --
 ALTER TABLE `inventory_purchase_items`
   ADD PRIMARY KEY (`id`),
@@ -2920,7 +3027,7 @@ ALTER TABLE `inventory_purchase_items`
   ADD KEY `inventory_purchase_items_item_id_foreign` (`item_id`);
 
 --
--- Indexes for table `inventory_requests`
+-- Indeks untuk tabel `inventory_requests`
 --
 ALTER TABLE `inventory_requests`
   ADD PRIMARY KEY (`id`),
@@ -2929,7 +3036,7 @@ ALTER TABLE `inventory_requests`
   ADD KEY `inventory_requests_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `inventory_request_approvals`
+-- Indeks untuk tabel `inventory_request_approvals`
 --
 ALTER TABLE `inventory_request_approvals`
   ADD PRIMARY KEY (`id`),
@@ -2937,7 +3044,7 @@ ALTER TABLE `inventory_request_approvals`
   ADD KEY `inventory_request_approvals_approver_id_foreign` (`approver_id`);
 
 --
--- Indexes for table `inventory_request_details`
+-- Indeks untuk tabel `inventory_request_details`
 --
 ALTER TABLE `inventory_request_details`
   ADD PRIMARY KEY (`id`),
@@ -2945,48 +3052,48 @@ ALTER TABLE `inventory_request_details`
   ADD KEY `inventory_request_details_item_id_foreign` (`item_id`);
 
 --
--- Indexes for table `inventory_transactions`
+-- Indeks untuk tabel `inventory_transactions`
 --
 ALTER TABLE `inventory_transactions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `inventory_transactions_item_id_foreign` (`item_id`);
 
 --
--- Indexes for table `items`
+-- Indeks untuk tabel `items`
 --
 ALTER TABLE `items`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `items_code_unique` (`code`);
 
 --
--- Indexes for table `jobs`
+-- Indeks untuk tabel `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indexes for table `job_batches`
+-- Indeks untuk tabel `job_batches`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `job_responsibilities`
+-- Indeks untuk tabel `job_responsibilities`
 --
 ALTER TABLE `job_responsibilities`
   ADD PRIMARY KEY (`id`),
   ADD KEY `job_responsibilities_structural_position_id_foreign` (`structural_position_id`);
 
 --
--- Indexes for table `journal_publications`
+-- Indeks untuk tabel `journal_publications`
 --
 ALTER TABLE `journal_publications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `journal_publications_publication_id_foreign` (`publication_id`);
 
 --
--- Indexes for table `leave_approvals`
+-- Indeks untuk tabel `leave_approvals`
 --
 ALTER TABLE `leave_approvals`
   ADD PRIMARY KEY (`id`),
@@ -2994,7 +3101,7 @@ ALTER TABLE `leave_approvals`
   ADD KEY `leave_approvals_approver_id_foreign` (`approver_id`);
 
 --
--- Indexes for table `leave_balances`
+-- Indeks untuk tabel `leave_balances`
 --
 ALTER TABLE `leave_balances`
   ADD PRIMARY KEY (`id`),
@@ -3002,7 +3109,7 @@ ALTER TABLE `leave_balances`
   ADD KEY `leave_balances_leave_type_id_foreign` (`leave_type_id`);
 
 --
--- Indexes for table `leave_requests`
+-- Indeks untuk tabel `leave_requests`
 --
 ALTER TABLE `leave_requests`
   ADD PRIMARY KEY (`id`),
@@ -3011,19 +3118,19 @@ ALTER TABLE `leave_requests`
   ADD KEY `leave_requests_approver_id_foreign` (`approver_id`);
 
 --
--- Indexes for table `leave_types`
+-- Indeks untuk tabel `leave_types`
 --
 ALTER TABLE `leave_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `lecturers`
+-- Indeks untuk tabel `lecturers`
 --
 ALTER TABLE `lecturers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `lecturer_functional_positions`
+-- Indeks untuk tabel `lecturer_functional_positions`
 --
 ALTER TABLE `lecturer_functional_positions`
   ADD PRIMARY KEY (`id`),
@@ -3031,7 +3138,7 @@ ALTER TABLE `lecturer_functional_positions`
   ADD KEY `lecturer_functional_positions_functional_position_id_foreign` (`functional_position_id`);
 
 --
--- Indexes for table `meetings`
+-- Indeks untuk tabel `meetings`
 --
 ALTER TABLE `meetings`
   ADD PRIMARY KEY (`id`),
@@ -3041,7 +3148,7 @@ ALTER TABLE `meetings`
   ADD KEY `meetings_committee_id_foreign` (`committee_id`);
 
 --
--- Indexes for table `meeting_consumption_requests`
+-- Indeks untuk tabel `meeting_consumption_requests`
 --
 ALTER TABLE `meeting_consumption_requests`
   ADD PRIMARY KEY (`id`),
@@ -3049,7 +3156,7 @@ ALTER TABLE `meeting_consumption_requests`
   ADD KEY `meeting_consumption_requests_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `meeting_documents`
+-- Indeks untuk tabel `meeting_documents`
 --
 ALTER TABLE `meeting_documents`
   ADD PRIMARY KEY (`id`),
@@ -3057,14 +3164,14 @@ ALTER TABLE `meeting_documents`
   ADD KEY `meeting_documents_uploaded_by_foreign` (`uploaded_by`);
 
 --
--- Indexes for table `meeting_external_participants`
+-- Indeks untuk tabel `meeting_external_participants`
 --
 ALTER TABLE `meeting_external_participants`
   ADD PRIMARY KEY (`id`),
   ADD KEY `meeting_external_participants_meeting_id_foreign` (`meeting_id`);
 
 --
--- Indexes for table `meeting_minutes`
+-- Indeks untuk tabel `meeting_minutes`
 --
 ALTER TABLE `meeting_minutes`
   ADD PRIMARY KEY (`id`),
@@ -3072,7 +3179,7 @@ ALTER TABLE `meeting_minutes`
   ADD KEY `meeting_minutes_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `meeting_participants`
+-- Indeks untuk tabel `meeting_participants`
 --
 ALTER TABLE `meeting_participants`
   ADD PRIMARY KEY (`id`),
@@ -3080,34 +3187,34 @@ ALTER TABLE `meeting_participants`
   ADD KEY `meeting_participants_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `model_has_permissions`
+-- Indeks untuk tabel `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indexes for table `model_has_roles`
+-- Indeks untuk tabel `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indexes for table `nomenclatures`
+-- Indeks untuk tabel `nomenclatures`
 --
 ALTER TABLE `nomenclatures`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nomenclature_classifications`
+-- Indeks untuk tabel `nomenclature_classifications`
 --
 ALTER TABLE `nomenclature_classifications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nomenclature_classifications_nomenclature_id_foreign` (`nomenclature_id`);
 
 --
--- Indexes for table `official_travel`
+-- Indeks untuk tabel `official_travel`
 --
 ALTER TABLE `official_travel`
   ADD PRIMARY KEY (`id`),
@@ -3116,7 +3223,7 @@ ALTER TABLE `official_travel`
   ADD KEY `official_travel_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `official_travel_approvals`
+-- Indeks untuk tabel `official_travel_approvals`
 --
 ALTER TABLE `official_travel_approvals`
   ADD PRIMARY KEY (`id`),
@@ -3124,21 +3231,21 @@ ALTER TABLE `official_travel_approvals`
   ADD KEY `official_travel_approvals_approver_id_foreign` (`approver_id`);
 
 --
--- Indexes for table `official_travel_documents`
+-- Indeks untuk tabel `official_travel_documents`
 --
 ALTER TABLE `official_travel_documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `official_travel_documents_official_travel_id_foreign` (`official_travel_id`);
 
 --
--- Indexes for table `official_travel_itineraries`
+-- Indeks untuk tabel `official_travel_itineraries`
 --
 ALTER TABLE `official_travel_itineraries`
   ADD PRIMARY KEY (`id`),
   ADD KEY `official_travel_itineraries_official_travel_id_foreign` (`official_travel_id`);
 
 --
--- Indexes for table `official_travel_members`
+-- Indeks untuk tabel `official_travel_members`
 --
 ALTER TABLE `official_travel_members`
   ADD PRIMARY KEY (`id`),
@@ -3146,7 +3253,7 @@ ALTER TABLE `official_travel_members`
   ADD KEY `official_travel_members_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `organization_units`
+-- Indeks untuk tabel `organization_units`
 --
 ALTER TABLE `organization_units`
   ADD PRIMARY KEY (`id`),
@@ -3154,7 +3261,7 @@ ALTER TABLE `organization_units`
   ADD KEY `organization_units_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `overtime_approval_logs`
+-- Indeks untuk tabel `overtime_approval_logs`
 --
 ALTER TABLE `overtime_approval_logs`
   ADD PRIMARY KEY (`id`),
@@ -3162,7 +3269,7 @@ ALTER TABLE `overtime_approval_logs`
   ADD KEY `overtime_approval_logs_approver_id_foreign` (`approver_id`);
 
 --
--- Indexes for table `overtime_requests`
+-- Indeks untuk tabel `overtime_requests`
 --
 ALTER TABLE `overtime_requests`
   ADD PRIMARY KEY (`id`),
@@ -3171,7 +3278,7 @@ ALTER TABLE `overtime_requests`
   ADD KEY `overtime_requests_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `overtime_request_members`
+-- Indeks untuk tabel `overtime_request_members`
 --
 ALTER TABLE `overtime_request_members`
   ADD PRIMARY KEY (`id`),
@@ -3179,13 +3286,13 @@ ALTER TABLE `overtime_request_members`
   ADD KEY `overtime_request_members_employee_id_foreign` (`employee_id`);
 
 --
--- Indexes for table `partners`
+-- Indeks untuk tabel `partners`
 --
 ALTER TABLE `partners`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `partnerships`
+-- Indeks untuk tabel `partnerships`
 --
 ALTER TABLE `partnerships`
   ADD PRIMARY KEY (`id`),
@@ -3193,28 +3300,28 @@ ALTER TABLE `partnerships`
   ADD KEY `partnerships_partner_potential_id_foreign` (`partner_potential_id`);
 
 --
--- Indexes for table `partnership_documents`
+-- Indeks untuk tabel `partnership_documents`
 --
 ALTER TABLE `partnership_documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `partnership_documents_partnership_id_foreign` (`partnership_id`);
 
 --
--- Indexes for table `partnership_implementations`
+-- Indeks untuk tabel `partnership_implementations`
 --
 ALTER TABLE `partnership_implementations`
   ADD PRIMARY KEY (`id`),
   ADD KEY `partnership_implementations_partnership_id_foreign` (`partnership_id`);
 
 --
--- Indexes for table `partner_contacts`
+-- Indeks untuk tabel `partner_contacts`
 --
 ALTER TABLE `partner_contacts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `partner_contacts_partner_id_foreign` (`partner_id`);
 
 --
--- Indexes for table `partner_follow_ups`
+-- Indeks untuk tabel `partner_follow_ups`
 --
 ALTER TABLE `partner_follow_ups`
   ADD PRIMARY KEY (`id`),
@@ -3222,41 +3329,41 @@ ALTER TABLE `partner_follow_ups`
   ADD KEY `partner_follow_ups_conducted_by_foreign` (`conducted_by`);
 
 --
--- Indexes for table `partner_potentials`
+-- Indeks untuk tabel `partner_potentials`
 --
 ALTER TABLE `partner_potentials`
   ADD PRIMARY KEY (`id`),
   ADD KEY `partner_potentials_partner_id_foreign` (`partner_id`);
 
 --
--- Indexes for table `partner_potential_fields`
+-- Indeks untuk tabel `partner_potential_fields`
 --
 ALTER TABLE `partner_potential_fields`
   ADD PRIMARY KEY (`id`),
   ADD KEY `partner_potential_fields_partner_potential_id_foreign` (`partner_potential_id`);
 
 --
--- Indexes for table `password_reset_tokens`
+-- Indeks untuk tabel `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `permissions`
+-- Indeks untuk tabel `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indexes for table `publications`
+-- Indeks untuk tabel `publications`
 --
 ALTER TABLE `publications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `publications_research_id_foreign` (`research_id`);
 
 --
--- Indexes for table `publication_authors`
+-- Indeks untuk tabel `publication_authors`
 --
 ALTER TABLE `publication_authors`
   ADD PRIMARY KEY (`id`),
@@ -3264,13 +3371,13 @@ ALTER TABLE `publication_authors`
   ADD KEY `publication_authors_lecturer_id_foreign` (`lecturer_id`);
 
 --
--- Indexes for table `research`
+-- Indeks untuk tabel `research`
 --
 ALTER TABLE `research`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `research_members`
+-- Indeks untuk tabel `research_members`
 --
 ALTER TABLE `research_members`
   ADD PRIMARY KEY (`id`),
@@ -3278,21 +3385,21 @@ ALTER TABLE `research_members`
   ADD KEY `research_members_lecturer_id_foreign` (`lecturer_id`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indexes for table `role_has_permissions`
+-- Indeks untuk tabel `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `rooms`
+-- Indeks untuk tabel `rooms`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`id`),
@@ -3302,7 +3409,7 @@ ALTER TABLE `rooms`
   ADD KEY `asset_rooms_responsible_employee_id_foreign` (`responsible_employee_id`);
 
 --
--- Indexes for table `room_loans`
+-- Indeks untuk tabel `room_loans`
 --
 ALTER TABLE `room_loans`
   ADD PRIMARY KEY (`id`),
@@ -3311,7 +3418,7 @@ ALTER TABLE `room_loans`
   ADD KEY `room_loans_approved_by_foreign` (`approved_by`);
 
 --
--- Indexes for table `room_maintenance_requests`
+-- Indeks untuk tabel `room_maintenance_requests`
 --
 ALTER TABLE `room_maintenance_requests`
   ADD PRIMARY KEY (`id`),
@@ -3319,7 +3426,7 @@ ALTER TABLE `room_maintenance_requests`
   ADD KEY `room_maintenance_requests_reported_by_foreign` (`reported_by`);
 
 --
--- Indexes for table `room_maintenance_request_log`
+-- Indeks untuk tabel `room_maintenance_request_log`
 --
 ALTER TABLE `room_maintenance_request_log`
   ADD PRIMARY KEY (`id`),
@@ -3328,7 +3435,7 @@ ALTER TABLE `room_maintenance_request_log`
   ADD KEY `fk_room_maintenance_request_log_employees2_idx` (`verified_by`);
 
 --
--- Indexes for table `sessions`
+-- Indeks untuk tabel `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -3336,13 +3443,13 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indexes for table `staff`
+-- Indeks untuk tabel `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `staff_nomenclature_histories`
+-- Indeks untuk tabel `staff_nomenclature_histories`
 --
 ALTER TABLE `staff_nomenclature_histories`
   ADD PRIMARY KEY (`id`),
@@ -3350,14 +3457,14 @@ ALTER TABLE `staff_nomenclature_histories`
   ADD KEY `staff_nomenclature_histories_nomenclature_class_id_foreign` (`nomenclature_class_id`);
 
 --
--- Indexes for table `structural_positions`
+-- Indeks untuk tabel `structural_positions`
 --
 ALTER TABLE `structural_positions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `structural_positions_parent_id_foreign` (`parent_id`);
 
 --
--- Indexes for table `structural_position_histories`
+-- Indeks untuk tabel `structural_position_histories`
 --
 ALTER TABLE `structural_position_histories`
   ADD PRIMARY KEY (`id`),
@@ -3365,7 +3472,7 @@ ALTER TABLE `structural_position_histories`
   ADD KEY `structural_position_histories_structural_position_id_foreign` (`structural_position_id`);
 
 --
--- Indexes for table `students`
+-- Indeks untuk tabel `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
@@ -3373,14 +3480,14 @@ ALTER TABLE `students`
   ADD KEY `fk_students_organization_units1_idx` (`department_id`);
 
 --
--- Indexes for table `student_requests`
+-- Indeks untuk tabel `student_requests`
 --
 ALTER TABLE `student_requests`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_student_requests_students1_idx` (`requested_by`);
 
 --
--- Indexes for table `student_request_active_references`
+-- Indeks untuk tabel `student_request_active_references`
 --
 ALTER TABLE `student_request_active_references`
   ADD PRIMARY KEY (`id`),
@@ -3389,7 +3496,7 @@ ALTER TABLE `student_request_active_references`
   ADD KEY `fk_student_request_recomendations_employees2_idx` (`checked_by`);
 
 --
--- Indexes for table `student_request_grad_references`
+-- Indeks untuk tabel `student_request_grad_references`
 --
 ALTER TABLE `student_request_grad_references`
   ADD PRIMARY KEY (`id`),
@@ -3398,14 +3505,14 @@ ALTER TABLE `student_request_grad_references`
   ADD KEY `fk_student_request_recomendations_employees2_idx` (`checked_by`);
 
 --
--- Indexes for table `student_request_refund`
+-- Indeks untuk tabel `student_request_refund`
 --
 ALTER TABLE `student_request_refund`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_student_request_refund_student_requests1_idx` (`student_request_id`);
 
 --
--- Indexes for table `student_request_refund_approvals`
+-- Indeks untuk tabel `student_request_refund_approvals`
 --
 ALTER TABLE `student_request_refund_approvals`
   ADD PRIMARY KEY (`id`),
@@ -3413,14 +3520,14 @@ ALTER TABLE `student_request_refund_approvals`
   ADD KEY `fk_student_request_refund_approvals_employees1_idx` (`approved_by`);
 
 --
--- Indexes for table `student_request_resignation`
+-- Indeks untuk tabel `student_request_resignation`
 --
 ALTER TABLE `student_request_resignation`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_student_request_resignation_student_requests1_idx` (`student_requests_id`);
 
 --
--- Indexes for table `student_request_resignation_approvals`
+-- Indeks untuk tabel `student_request_resignation_approvals`
 --
 ALTER TABLE `student_request_resignation_approvals`
   ADD PRIMARY KEY (`id`),
@@ -3428,14 +3535,14 @@ ALTER TABLE `student_request_resignation_approvals`
   ADD KEY `fk_student_request_refund_approvals_student_request_refund1_idx` (`student_request_resignation_id`);
 
 --
--- Indexes for table `surveys`
+-- Indeks untuk tabel `surveys`
 --
 ALTER TABLE `surveys`
   ADD PRIMARY KEY (`id`),
   ADD KEY `surveys_created_by_foreign` (`created_by`);
 
 --
--- Indexes for table `survey_answers`
+-- Indeks untuk tabel `survey_answers`
 --
 ALTER TABLE `survey_answers`
   ADD PRIMARY KEY (`id`),
@@ -3443,7 +3550,7 @@ ALTER TABLE `survey_answers`
   ADD KEY `survey_answers_survey_question_id_foreign` (`survey_question_id`);
 
 --
--- Indexes for table `survey_answer_options`
+-- Indeks untuk tabel `survey_answer_options`
 --
 ALTER TABLE `survey_answer_options`
   ADD PRIMARY KEY (`id`),
@@ -3451,7 +3558,7 @@ ALTER TABLE `survey_answer_options`
   ADD KEY `survey_answer_options_survey_question_option_id_foreign` (`survey_question_option_id`);
 
 --
--- Indexes for table `survey_invitations`
+-- Indeks untuk tabel `survey_invitations`
 --
 ALTER TABLE `survey_invitations`
   ADD PRIMARY KEY (`id`),
@@ -3459,13 +3566,13 @@ ALTER TABLE `survey_invitations`
   ADD KEY `survey_invitations_survey_id_foreign` (`survey_id`);
 
 --
--- Indexes for table `survey_questions`
+-- Indeks untuk tabel `survey_questions`
 --
 ALTER TABLE `survey_questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `survey_question_assignments`
+-- Indeks untuk tabel `survey_question_assignments`
 --
 ALTER TABLE `survey_question_assignments`
   ADD PRIMARY KEY (`id`),
@@ -3473,14 +3580,14 @@ ALTER TABLE `survey_question_assignments`
   ADD KEY `survey_question_assignments_survey_question_id_foreign` (`survey_question_id`);
 
 --
--- Indexes for table `survey_question_options`
+-- Indeks untuk tabel `survey_question_options`
 --
 ALTER TABLE `survey_question_options`
   ADD PRIMARY KEY (`id`),
   ADD KEY `survey_question_options_survey_question_id_foreign` (`survey_question_id`);
 
 --
--- Indexes for table `survey_responses`
+-- Indeks untuk tabel `survey_responses`
 --
 ALTER TABLE `survey_responses`
   ADD PRIMARY KEY (`id`),
@@ -3488,14 +3595,14 @@ ALTER TABLE `survey_responses`
   ADD KEY `survey_responses_survey_invitation_id_foreign` (`survey_invitation_id`);
 
 --
--- Indexes for table `travel_cost_components`
+-- Indeks untuk tabel `travel_cost_components`
 --
 ALTER TABLE `travel_cost_components`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `travel_cost_components_code_unique` (`code`);
 
 --
--- Indexes for table `travel_cost_standards`
+-- Indeks untuk tabel `travel_cost_standards`
 --
 ALTER TABLE `travel_cost_standards`
   ADD PRIMARY KEY (`id`),
@@ -3505,7 +3612,7 @@ ALTER TABLE `travel_cost_standards`
   ADD KEY `travel_cost_standards_travel_cost_component_id_foreign` (`travel_cost_component_id`);
 
 --
--- Indexes for table `travel_expenses`
+-- Indeks untuk tabel `travel_expenses`
 --
 ALTER TABLE `travel_expenses`
   ADD PRIMARY KEY (`id`),
@@ -3514,738 +3621,738 @@ ALTER TABLE `travel_expenses`
   ADD KEY `travel_expenses_travel_cost_component_id_foreign` (`travel_cost_component_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `assets`
+-- AUTO_INCREMENT untuk tabel `assets`
 --
 ALTER TABLE `assets`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_audits`
+-- AUTO_INCREMENT untuk tabel `asset_audits`
 --
 ALTER TABLE `asset_audits`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_audit_details`
+-- AUTO_INCREMENT untuk tabel `asset_audit_details`
 --
 ALTER TABLE `asset_audit_details`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_grants`
+-- AUTO_INCREMENT untuk tabel `asset_grants`
 --
 ALTER TABLE `asset_grants`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_insurances`
+-- AUTO_INCREMENT untuk tabel `asset_insurances`
 --
 ALTER TABLE `asset_insurances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_insurance_claims`
+-- AUTO_INCREMENT untuk tabel `asset_insurance_claims`
 --
 ALTER TABLE `asset_insurance_claims`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_trackings`
+-- AUTO_INCREMENT untuk tabel `asset_trackings`
 --
 ALTER TABLE `asset_trackings`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asset_tracking_logs`
+-- AUTO_INCREMENT untuk tabel `asset_tracking_logs`
 --
 ALTER TABLE `asset_tracking_logs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `assignments`
+-- AUTO_INCREMENT untuk tabel `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `assignment_progress`
+-- AUTO_INCREMENT untuk tabel `assignment_progress`
 --
 ALTER TABLE `assignment_progress`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `attendances`
+-- AUTO_INCREMENT untuk tabel `attendances`
 --
 ALTER TABLE `attendances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `buildings`
+-- AUTO_INCREMENT untuk tabel `buildings`
 --
 ALTER TABLE `buildings`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committees`
+-- AUTO_INCREMENT untuk tabel `committees`
 --
 ALTER TABLE `committees`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_budgets`
+-- AUTO_INCREMENT untuk tabel `committee_budgets`
 --
 ALTER TABLE `committee_budgets`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_budget_items`
+-- AUTO_INCREMENT untuk tabel `committee_budget_items`
 --
 ALTER TABLE `committee_budget_items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_expenses`
+-- AUTO_INCREMENT untuk tabel `committee_expenses`
 --
 ALTER TABLE `committee_expenses`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_external_members`
+-- AUTO_INCREMENT untuk tabel `committee_external_members`
 --
 ALTER TABLE `committee_external_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_members`
+-- AUTO_INCREMENT untuk tabel `committee_members`
 --
 ALTER TABLE `committee_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_tasks`
+-- AUTO_INCREMENT untuk tabel `committee_tasks`
 --
 ALTER TABLE `committee_tasks`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `committee_task_progress`
+-- AUTO_INCREMENT untuk tabel `committee_task_progress`
 --
 ALTER TABLE `committee_task_progress`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `community_services`
+-- AUTO_INCREMENT untuk tabel `community_services`
 --
 ALTER TABLE `community_services`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `community_service_members`
+-- AUTO_INCREMENT untuk tabel `community_service_members`
 --
 ALTER TABLE `community_service_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `conference_proceedings`
+-- AUTO_INCREMENT untuk tabel `conference_proceedings`
 --
 ALTER TABLE `conference_proceedings`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `education_histories`
+-- AUTO_INCREMENT untuk tabel `education_histories`
 --
 ALTER TABLE `education_histories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `employees`
+-- AUTO_INCREMENT untuk tabel `employees`
 --
 ALTER TABLE `employees`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `employee_grades`
+-- AUTO_INCREMENT untuk tabel `employee_grades`
 --
 ALTER TABLE `employee_grades`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `employment_statuses`
+-- AUTO_INCREMENT untuk tabel `employment_statuses`
 --
 ALTER TABLE `employment_statuses`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `equipments`
+-- AUTO_INCREMENT untuk tabel `equipments`
 --
 ALTER TABLE `equipments`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `equipment_loans`
+-- AUTO_INCREMENT untuk tabel `equipment_loans`
 --
 ALTER TABLE `equipment_loans`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `equipment_maintenance_requests`
+-- AUTO_INCREMENT untuk tabel `equipment_maintenance_requests`
 --
 ALTER TABLE `equipment_maintenance_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `equipment_procurements`
+-- AUTO_INCREMENT untuk tabel `equipment_procurements`
 --
 ALTER TABLE `equipment_procurements`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `equipment_proc_items`
+-- AUTO_INCREMENT untuk tabel `equipment_proc_items`
 --
 ALTER TABLE `equipment_proc_items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `equipment_requests`
+-- AUTO_INCREMENT untuk tabel `equipment_requests`
 --
 ALTER TABLE `equipment_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `events`
+-- AUTO_INCREMENT untuk tabel `events`
 --
 ALTER TABLE `events`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event_attendances`
+-- AUTO_INCREMENT untuk tabel `event_attendances`
 --
 ALTER TABLE `event_attendances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event_committee_members`
+-- AUTO_INCREMENT untuk tabel `event_committee_members`
 --
 ALTER TABLE `event_committee_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event_documents`
+-- AUTO_INCREMENT untuk tabel `event_documents`
 --
 ALTER TABLE `event_documents`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event_registrations`
+-- AUTO_INCREMENT untuk tabel `event_registrations`
 --
 ALTER TABLE `event_registrations`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event_reminders`
+-- AUTO_INCREMENT untuk tabel `event_reminders`
 --
 ALTER TABLE `event_reminders`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `functional_positions`
+-- AUTO_INCREMENT untuk tabel `functional_positions`
 --
 ALTER TABLE `functional_positions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `holidays`
+-- AUTO_INCREMENT untuk tabel `holidays`
 --
 ALTER TABLE `holidays`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `implementation_arrangements`
+-- AUTO_INCREMENT untuk tabel `implementation_arrangements`
 --
 ALTER TABLE `implementation_arrangements`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventories`
+-- AUTO_INCREMENT untuk tabel `inventories`
 --
 ALTER TABLE `inventories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_procurements`
+-- AUTO_INCREMENT untuk tabel `inventory_procurements`
 --
 ALTER TABLE `inventory_procurements`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_procurement_items`
+-- AUTO_INCREMENT untuk tabel `inventory_procurement_items`
 --
 ALTER TABLE `inventory_procurement_items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_purchases`
+-- AUTO_INCREMENT untuk tabel `inventory_purchases`
 --
 ALTER TABLE `inventory_purchases`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_purchase_items`
+-- AUTO_INCREMENT untuk tabel `inventory_purchase_items`
 --
 ALTER TABLE `inventory_purchase_items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_requests`
+-- AUTO_INCREMENT untuk tabel `inventory_requests`
 --
 ALTER TABLE `inventory_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_request_approvals`
+-- AUTO_INCREMENT untuk tabel `inventory_request_approvals`
 --
 ALTER TABLE `inventory_request_approvals`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_request_details`
+-- AUTO_INCREMENT untuk tabel `inventory_request_details`
 --
 ALTER TABLE `inventory_request_details`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventory_transactions`
+-- AUTO_INCREMENT untuk tabel `inventory_transactions`
 --
 ALTER TABLE `inventory_transactions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `items`
+-- AUTO_INCREMENT untuk tabel `items`
 --
 ALTER TABLE `items`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jobs`
+-- AUTO_INCREMENT untuk tabel `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `job_responsibilities`
+-- AUTO_INCREMENT untuk tabel `job_responsibilities`
 --
 ALTER TABLE `job_responsibilities`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `journal_publications`
+-- AUTO_INCREMENT untuk tabel `journal_publications`
 --
 ALTER TABLE `journal_publications`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `leave_approvals`
+-- AUTO_INCREMENT untuk tabel `leave_approvals`
 --
 ALTER TABLE `leave_approvals`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `leave_balances`
+-- AUTO_INCREMENT untuk tabel `leave_balances`
 --
 ALTER TABLE `leave_balances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `leave_requests`
+-- AUTO_INCREMENT untuk tabel `leave_requests`
 --
 ALTER TABLE `leave_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `leave_types`
+-- AUTO_INCREMENT untuk tabel `leave_types`
 --
 ALTER TABLE `leave_types`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `lecturers`
+-- AUTO_INCREMENT untuk tabel `lecturers`
 --
 ALTER TABLE `lecturers`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `lecturer_functional_positions`
+-- AUTO_INCREMENT untuk tabel `lecturer_functional_positions`
 --
 ALTER TABLE `lecturer_functional_positions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meetings`
+-- AUTO_INCREMENT untuk tabel `meetings`
 --
 ALTER TABLE `meetings`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meeting_consumption_requests`
+-- AUTO_INCREMENT untuk tabel `meeting_consumption_requests`
 --
 ALTER TABLE `meeting_consumption_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meeting_documents`
+-- AUTO_INCREMENT untuk tabel `meeting_documents`
 --
 ALTER TABLE `meeting_documents`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meeting_external_participants`
+-- AUTO_INCREMENT untuk tabel `meeting_external_participants`
 --
 ALTER TABLE `meeting_external_participants`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meeting_minutes`
+-- AUTO_INCREMENT untuk tabel `meeting_minutes`
 --
 ALTER TABLE `meeting_minutes`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `meeting_participants`
+-- AUTO_INCREMENT untuk tabel `meeting_participants`
 --
 ALTER TABLE `meeting_participants`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nomenclatures`
+-- AUTO_INCREMENT untuk tabel `nomenclatures`
 --
 ALTER TABLE `nomenclatures`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nomenclature_classifications`
+-- AUTO_INCREMENT untuk tabel `nomenclature_classifications`
 --
 ALTER TABLE `nomenclature_classifications`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `official_travel`
+-- AUTO_INCREMENT untuk tabel `official_travel`
 --
 ALTER TABLE `official_travel`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `official_travel_approvals`
+-- AUTO_INCREMENT untuk tabel `official_travel_approvals`
 --
 ALTER TABLE `official_travel_approvals`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `official_travel_documents`
+-- AUTO_INCREMENT untuk tabel `official_travel_documents`
 --
 ALTER TABLE `official_travel_documents`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `official_travel_itineraries`
+-- AUTO_INCREMENT untuk tabel `official_travel_itineraries`
 --
 ALTER TABLE `official_travel_itineraries`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `official_travel_members`
+-- AUTO_INCREMENT untuk tabel `official_travel_members`
 --
 ALTER TABLE `official_travel_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `organization_units`
+-- AUTO_INCREMENT untuk tabel `organization_units`
 --
 ALTER TABLE `organization_units`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `overtime_approval_logs`
+-- AUTO_INCREMENT untuk tabel `overtime_approval_logs`
 --
 ALTER TABLE `overtime_approval_logs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `overtime_requests`
+-- AUTO_INCREMENT untuk tabel `overtime_requests`
 --
 ALTER TABLE `overtime_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `overtime_request_members`
+-- AUTO_INCREMENT untuk tabel `overtime_request_members`
 --
 ALTER TABLE `overtime_request_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partners`
+-- AUTO_INCREMENT untuk tabel `partners`
 --
 ALTER TABLE `partners`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partnerships`
+-- AUTO_INCREMENT untuk tabel `partnerships`
 --
 ALTER TABLE `partnerships`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partnership_documents`
+-- AUTO_INCREMENT untuk tabel `partnership_documents`
 --
 ALTER TABLE `partnership_documents`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partnership_implementations`
+-- AUTO_INCREMENT untuk tabel `partnership_implementations`
 --
 ALTER TABLE `partnership_implementations`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partner_contacts`
+-- AUTO_INCREMENT untuk tabel `partner_contacts`
 --
 ALTER TABLE `partner_contacts`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partner_follow_ups`
+-- AUTO_INCREMENT untuk tabel `partner_follow_ups`
 --
 ALTER TABLE `partner_follow_ups`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partner_potentials`
+-- AUTO_INCREMENT untuk tabel `partner_potentials`
 --
 ALTER TABLE `partner_potentials`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partner_potential_fields`
+-- AUTO_INCREMENT untuk tabel `partner_potential_fields`
 --
 ALTER TABLE `partner_potential_fields`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT untuk tabel `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `publications`
+-- AUTO_INCREMENT untuk tabel `publications`
 --
 ALTER TABLE `publications`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `publication_authors`
+-- AUTO_INCREMENT untuk tabel `publication_authors`
 --
 ALTER TABLE `publication_authors`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `research`
+-- AUTO_INCREMENT untuk tabel `research`
 --
 ALTER TABLE `research`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `research_members`
+-- AUTO_INCREMENT untuk tabel `research_members`
 --
 ALTER TABLE `research_members`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `rooms`
+-- AUTO_INCREMENT untuk tabel `rooms`
 --
 ALTER TABLE `rooms`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `room_loans`
+-- AUTO_INCREMENT untuk tabel `room_loans`
 --
 ALTER TABLE `room_loans`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `room_maintenance_requests`
+-- AUTO_INCREMENT untuk tabel `room_maintenance_requests`
 --
 ALTER TABLE `room_maintenance_requests`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `staff`
+-- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `staff_nomenclature_histories`
+-- AUTO_INCREMENT untuk tabel `staff_nomenclature_histories`
 --
 ALTER TABLE `staff_nomenclature_histories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `structural_positions`
+-- AUTO_INCREMENT untuk tabel `structural_positions`
 --
 ALTER TABLE `structural_positions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `structural_position_histories`
+-- AUTO_INCREMENT untuk tabel `structural_position_histories`
 --
 ALTER TABLE `structural_position_histories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `surveys`
+-- AUTO_INCREMENT untuk tabel `surveys`
 --
 ALTER TABLE `surveys`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_answers`
+-- AUTO_INCREMENT untuk tabel `survey_answers`
 --
 ALTER TABLE `survey_answers`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_answer_options`
+-- AUTO_INCREMENT untuk tabel `survey_answer_options`
 --
 ALTER TABLE `survey_answer_options`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_invitations`
+-- AUTO_INCREMENT untuk tabel `survey_invitations`
 --
 ALTER TABLE `survey_invitations`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_questions`
+-- AUTO_INCREMENT untuk tabel `survey_questions`
 --
 ALTER TABLE `survey_questions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_question_assignments`
+-- AUTO_INCREMENT untuk tabel `survey_question_assignments`
 --
 ALTER TABLE `survey_question_assignments`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_question_options`
+-- AUTO_INCREMENT untuk tabel `survey_question_options`
 --
 ALTER TABLE `survey_question_options`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `survey_responses`
+-- AUTO_INCREMENT untuk tabel `survey_responses`
 --
 ALTER TABLE `survey_responses`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `travel_cost_components`
+-- AUTO_INCREMENT untuk tabel `travel_cost_components`
 --
 ALTER TABLE `travel_cost_components`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `travel_cost_standards`
+-- AUTO_INCREMENT untuk tabel `travel_cost_standards`
 --
 ALTER TABLE `travel_cost_standards`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `travel_expenses`
+-- AUTO_INCREMENT untuk tabel `travel_expenses`
 --
 ALTER TABLE `travel_expenses`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `assets`
+-- Ketidakleluasaan untuk tabel `assets`
 --
 ALTER TABLE `assets`
   ADD CONSTRAINT `assets_asset_grant_id_foreign` FOREIGN KEY (`asset_grant_id`) REFERENCES `asset_grants` (`id`);
 
 --
--- Constraints for table `asset_audits`
+-- Ketidakleluasaan untuk tabel `asset_audits`
 --
 ALTER TABLE `asset_audits`
   ADD CONSTRAINT `asset_audits_conducted_by_foreign` FOREIGN KEY (`conducted_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `asset_audit_details`
+-- Ketidakleluasaan untuk tabel `asset_audit_details`
 --
 ALTER TABLE `asset_audit_details`
   ADD CONSTRAINT `asset_audit_details_asset_audit_id_foreign` FOREIGN KEY (`asset_audit_id`) REFERENCES `asset_audits` (`id`),
   ADD CONSTRAINT `asset_audit_details_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`);
 
 --
--- Constraints for table `asset_insurances`
+-- Ketidakleluasaan untuk tabel `asset_insurances`
 --
 ALTER TABLE `asset_insurances`
   ADD CONSTRAINT `asset_insurances_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`);
 
 --
--- Constraints for table `asset_insurance_claims`
+-- Ketidakleluasaan untuk tabel `asset_insurance_claims`
 --
 ALTER TABLE `asset_insurance_claims`
   ADD CONSTRAINT `asset_insurance_claims_asset_insurance_id_foreign` FOREIGN KEY (`asset_insurance_id`) REFERENCES `asset_insurances` (`id`);
 
 --
--- Constraints for table `asset_trackings`
+-- Ketidakleluasaan untuk tabel `asset_trackings`
 --
 ALTER TABLE `asset_trackings`
   ADD CONSTRAINT `asset_trackings_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`);
 
 --
--- Constraints for table `asset_tracking_logs`
+-- Ketidakleluasaan untuk tabel `asset_tracking_logs`
 --
 ALTER TABLE `asset_tracking_logs`
   ADD CONSTRAINT `asset_tracking_logs_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`),
   ADD CONSTRAINT `asset_tracking_logs_moved_by_foreign` FOREIGN KEY (`moved_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `assignments`
+-- Ketidakleluasaan untuk tabel `assignments`
 --
 ALTER TABLE `assignments`
   ADD CONSTRAINT `assignments_assigned_by_foreign` FOREIGN KEY (`assigned_by`) REFERENCES `employees` (`id`),
@@ -4253,103 +4360,103 @@ ALTER TABLE `assignments`
   ADD CONSTRAINT `assignments_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `assignments` (`id`);
 
 --
--- Constraints for table `assignment_progress`
+-- Ketidakleluasaan untuk tabel `assignment_progress`
 --
 ALTER TABLE `assignment_progress`
   ADD CONSTRAINT `assignment_progress_assignment_id_foreign` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`id`),
   ADD CONSTRAINT `assignment_progress_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `attendances`
+-- Ketidakleluasaan untuk tabel `attendances`
 --
 ALTER TABLE `attendances`
   ADD CONSTRAINT `attendances_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `committees`
+-- Ketidakleluasaan untuk tabel `committees`
 --
 ALTER TABLE `committees`
   ADD CONSTRAINT `committees_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `committee_budgets`
+-- Ketidakleluasaan untuk tabel `committee_budgets`
 --
 ALTER TABLE `committee_budgets`
   ADD CONSTRAINT `committee_budgets_committee_id_foreign` FOREIGN KEY (`committee_id`) REFERENCES `committees` (`id`);
 
 --
--- Constraints for table `committee_budget_items`
+-- Ketidakleluasaan untuk tabel `committee_budget_items`
 --
 ALTER TABLE `committee_budget_items`
   ADD CONSTRAINT `committee_budget_items_committee_budget_id_foreign` FOREIGN KEY (`committee_budget_id`) REFERENCES `committee_budgets` (`id`);
 
 --
--- Constraints for table `committee_expenses`
+-- Ketidakleluasaan untuk tabel `committee_expenses`
 --
 ALTER TABLE `committee_expenses`
   ADD CONSTRAINT `committee_expenses_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `committee_expenses_committee_budget_item_id_foreign` FOREIGN KEY (`committee_budget_item_id`) REFERENCES `committee_budget_items` (`id`);
 
 --
--- Constraints for table `committee_external_members`
+-- Ketidakleluasaan untuk tabel `committee_external_members`
 --
 ALTER TABLE `committee_external_members`
   ADD CONSTRAINT `committee_external_members_committee_id_foreign` FOREIGN KEY (`committee_id`) REFERENCES `committees` (`id`);
 
 --
--- Constraints for table `committee_members`
+-- Ketidakleluasaan untuk tabel `committee_members`
 --
 ALTER TABLE `committee_members`
   ADD CONSTRAINT `committee_members_committee_id_foreign` FOREIGN KEY (`committee_id`) REFERENCES `committees` (`id`),
   ADD CONSTRAINT `committee_members_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `committee_tasks`
+-- Ketidakleluasaan untuk tabel `committee_tasks`
 --
 ALTER TABLE `committee_tasks`
   ADD CONSTRAINT `committee_tasks_assigned_to_foreign` FOREIGN KEY (`assigned_to`) REFERENCES `committee_members` (`id`),
   ADD CONSTRAINT `committee_tasks_committee_id_foreign` FOREIGN KEY (`committee_id`) REFERENCES `committees` (`id`);
 
 --
--- Constraints for table `committee_task_progress`
+-- Ketidakleluasaan untuk tabel `committee_task_progress`
 --
 ALTER TABLE `committee_task_progress`
   ADD CONSTRAINT `committee_task_progress_committee_task_id_foreign` FOREIGN KEY (`committee_task_id`) REFERENCES `committee_tasks` (`id`);
 
 --
--- Constraints for table `community_service_members`
+-- Ketidakleluasaan untuk tabel `community_service_members`
 --
 ALTER TABLE `community_service_members`
   ADD CONSTRAINT `community_service_members_community_service_id_foreign` FOREIGN KEY (`community_service_id`) REFERENCES `community_services` (`id`),
   ADD CONSTRAINT `community_service_members_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturers` (`id`);
 
 --
--- Constraints for table `conference_proceedings`
+-- Ketidakleluasaan untuk tabel `conference_proceedings`
 --
 ALTER TABLE `conference_proceedings`
   ADD CONSTRAINT `conference_proceedings_publication_id_foreign` FOREIGN KEY (`publication_id`) REFERENCES `publications` (`id`);
 
 --
--- Constraints for table `documents`
+-- Ketidakleluasaan untuk tabel `documents`
 --
 ALTER TABLE `documents`
   ADD CONSTRAINT `fk_documents_document_types1` FOREIGN KEY (`document_type_id`) REFERENCES `document_types` (`id`),
   ADD CONSTRAINT `fk_documents_users1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `document_revisions`
+-- Ketidakleluasaan untuk tabel `document_revisions`
 --
 ALTER TABLE `document_revisions`
   ADD CONSTRAINT `fk_document_revisions_documents1` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`);
 
 --
--- Constraints for table `education_histories`
+-- Ketidakleluasaan untuk tabel `education_histories`
 --
 ALTER TABLE `education_histories`
   ADD CONSTRAINT `education_histories_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `employees`
+-- Ketidakleluasaan untuk tabel `employees`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employees_employment_status_id_foreign` FOREIGN KEY (`employment_status_id`) REFERENCES `employment_statuses` (`id`),
@@ -4357,13 +4464,13 @@ ALTER TABLE `employees`
   ADD CONSTRAINT `employees_user_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `equipments`
+-- Ketidakleluasaan untuk tabel `equipments`
 --
 ALTER TABLE `equipments`
   ADD CONSTRAINT `asset_equipment_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`);
 
 --
--- Constraints for table `equipment_loans`
+-- Ketidakleluasaan untuk tabel `equipment_loans`
 --
 ALTER TABLE `equipment_loans`
   ADD CONSTRAINT `asset_loans_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
@@ -4371,14 +4478,14 @@ ALTER TABLE `equipment_loans`
   ADD CONSTRAINT `asset_loans_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `equipment_maintenance_requests`
+-- Ketidakleluasaan untuk tabel `equipment_maintenance_requests`
 --
 ALTER TABLE `equipment_maintenance_requests`
   ADD CONSTRAINT `asset_maintenance_requests_asset_equipment_foreign` FOREIGN KEY (`equipment_id`) REFERENCES `equipments` (`id`),
   ADD CONSTRAINT `asset_maintenance_requests_reported_by_foreign` FOREIGN KEY (`reported_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `equipment_maintenance_request_log`
+-- Ketidakleluasaan untuk tabel `equipment_maintenance_request_log`
 --
 ALTER TABLE `equipment_maintenance_request_log`
   ADD CONSTRAINT `fk_equipment_maintenance_request_log_employees1` FOREIGN KEY (`logged_by`) REFERENCES `employees` (`id`),
@@ -4386,53 +4493,53 @@ ALTER TABLE `equipment_maintenance_request_log`
   ADD CONSTRAINT `fk_equipment_maintenance_request_log_equipment_maintenance_re1` FOREIGN KEY (`equipment_maintenance_request_id`) REFERENCES `equipment_maintenance_requests` (`id`);
 
 --
--- Constraints for table `equipment_procurements`
+-- Ketidakleluasaan untuk tabel `equipment_procurements`
 --
 ALTER TABLE `equipment_procurements`
   ADD CONSTRAINT `asset_equipment_procurements_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `equipment_proc_items`
+-- Ketidakleluasaan untuk tabel `equipment_proc_items`
 --
 ALTER TABLE `equipment_proc_items`
   ADD CONSTRAINT `asset_equipment_proc_items_asset_equipment_proc_id_foreign` FOREIGN KEY (`equipment_proc_id`) REFERENCES `equipment_procurements` (`id`);
 
 --
--- Constraints for table `equipment_requests`
+-- Ketidakleluasaan untuk tabel `equipment_requests`
 --
 ALTER TABLE `equipment_requests`
   ADD CONSTRAINT `asset_equipment_requests_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `asset_equipment_requests_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `events`
+-- Ketidakleluasaan untuk tabel `events`
 --
 ALTER TABLE `events`
   ADD CONSTRAINT `events_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `event_attendances`
+-- Ketidakleluasaan untuk tabel `event_attendances`
 --
 ALTER TABLE `event_attendances`
   ADD CONSTRAINT `event_attendances_checked_by_foreign` FOREIGN KEY (`checked_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `event_attendances_event_registration_id_foreign` FOREIGN KEY (`event_registration_id`) REFERENCES `event_registrations` (`id`);
 
 --
--- Constraints for table `event_committee_members`
+-- Ketidakleluasaan untuk tabel `event_committee_members`
 --
 ALTER TABLE `event_committee_members`
   ADD CONSTRAINT `event_committee_members_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `event_committee_members_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`);
 
 --
--- Constraints for table `event_documents`
+-- Ketidakleluasaan untuk tabel `event_documents`
 --
 ALTER TABLE `event_documents`
   ADD CONSTRAINT `event_documents_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   ADD CONSTRAINT `event_documents_uploaded_by_foreign` FOREIGN KEY (`uploaded_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `event_registrations`
+-- Ketidakleluasaan untuk tabel `event_registrations`
 --
 ALTER TABLE `event_registrations`
   ADD CONSTRAINT `event_registrations_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
@@ -4440,106 +4547,106 @@ ALTER TABLE `event_registrations`
   ADD CONSTRAINT `event_registrations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `event_reminders`
+-- Ketidakleluasaan untuk tabel `event_reminders`
 --
 ALTER TABLE `event_reminders`
   ADD CONSTRAINT `event_reminders_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   ADD CONSTRAINT `event_reminders_sent_by_foreign` FOREIGN KEY (`sent_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `implementation_arrangements`
+-- Ketidakleluasaan untuk tabel `implementation_arrangements`
 --
 ALTER TABLE `implementation_arrangements`
   ADD CONSTRAINT `implementation_arrangements_partnership_id_foreign` FOREIGN KEY (`partnership_id`) REFERENCES `partnerships` (`id`),
   ADD CONSTRAINT `implementation_arrangements_partnership_impl_id_foreign` FOREIGN KEY (`partnership_impl_id`) REFERENCES `partnership_implementations` (`id`);
 
 --
--- Constraints for table `inventories`
+-- Ketidakleluasaan untuk tabel `inventories`
 --
 ALTER TABLE `inventories`
   ADD CONSTRAINT `inventories_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 --
--- Constraints for table `inventory_procurements`
+-- Ketidakleluasaan untuk tabel `inventory_procurements`
 --
 ALTER TABLE `inventory_procurements`
   ADD CONSTRAINT `inventory_procurements_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `inventory_procurement_items`
+-- Ketidakleluasaan untuk tabel `inventory_procurement_items`
 --
 ALTER TABLE `inventory_procurement_items`
   ADD CONSTRAINT `inventory_procurement_items_inventory_procurement_id_foreign` FOREIGN KEY (`inventory_procurement_id`) REFERENCES `inventory_procurements` (`id`),
   ADD CONSTRAINT `inventory_procurement_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 --
--- Constraints for table `inventory_purchases`
+-- Ketidakleluasaan untuk tabel `inventory_purchases`
 --
 ALTER TABLE `inventory_purchases`
   ADD CONSTRAINT `inventory_purchases_inventory_procurement_id_foreign` FOREIGN KEY (`inventory_procurement_id`) REFERENCES `inventory_procurements` (`id`);
 
 --
--- Constraints for table `inventory_purchase_items`
+-- Ketidakleluasaan untuk tabel `inventory_purchase_items`
 --
 ALTER TABLE `inventory_purchase_items`
   ADD CONSTRAINT `inventory_purchase_items_inventory_purchase_id_foreign` FOREIGN KEY (`inventory_purchase_id`) REFERENCES `inventory_purchases` (`id`),
   ADD CONSTRAINT `inventory_purchase_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 --
--- Constraints for table `inventory_requests`
+-- Ketidakleluasaan untuk tabel `inventory_requests`
 --
 ALTER TABLE `inventory_requests`
   ADD CONSTRAINT `inventory_requests_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `inventory_requests_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `inventory_request_approvals`
+-- Ketidakleluasaan untuk tabel `inventory_request_approvals`
 --
 ALTER TABLE `inventory_request_approvals`
   ADD CONSTRAINT `inventory_request_approvals_approver_id_foreign` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `inventory_request_approvals_inventory_request_id_foreign` FOREIGN KEY (`inventory_request_id`) REFERENCES `inventory_requests` (`id`);
 
 --
--- Constraints for table `inventory_request_details`
+-- Ketidakleluasaan untuk tabel `inventory_request_details`
 --
 ALTER TABLE `inventory_request_details`
   ADD CONSTRAINT `inventory_request_details_inventory_request_id_foreign` FOREIGN KEY (`inventory_request_id`) REFERENCES `inventory_requests` (`id`),
   ADD CONSTRAINT `inventory_request_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 --
--- Constraints for table `inventory_transactions`
+-- Ketidakleluasaan untuk tabel `inventory_transactions`
 --
 ALTER TABLE `inventory_transactions`
   ADD CONSTRAINT `inventory_transactions_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 --
--- Constraints for table `job_responsibilities`
+-- Ketidakleluasaan untuk tabel `job_responsibilities`
 --
 ALTER TABLE `job_responsibilities`
   ADD CONSTRAINT `job_responsibilities_structural_position_id_foreign` FOREIGN KEY (`structural_position_id`) REFERENCES `structural_positions` (`id`);
 
 --
--- Constraints for table `journal_publications`
+-- Ketidakleluasaan untuk tabel `journal_publications`
 --
 ALTER TABLE `journal_publications`
   ADD CONSTRAINT `journal_publications_publication_id_foreign` FOREIGN KEY (`publication_id`) REFERENCES `publications` (`id`);
 
 --
--- Constraints for table `leave_approvals`
+-- Ketidakleluasaan untuk tabel `leave_approvals`
 --
 ALTER TABLE `leave_approvals`
   ADD CONSTRAINT `leave_approvals_approver_id_foreign` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `leave_approvals_leave_request_id_foreign` FOREIGN KEY (`leave_request_id`) REFERENCES `leave_requests` (`id`);
 
 --
--- Constraints for table `leave_balances`
+-- Ketidakleluasaan untuk tabel `leave_balances`
 --
 ALTER TABLE `leave_balances`
   ADD CONSTRAINT `leave_balances_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `leave_balances_leave_type_id_foreign` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`);
 
 --
--- Constraints for table `leave_requests`
+-- Ketidakleluasaan untuk tabel `leave_requests`
 --
 ALTER TABLE `leave_requests`
   ADD CONSTRAINT `leave_requests_approver_id_foreign` FOREIGN KEY (`approver_id`) REFERENCES `employees` (`id`),
@@ -4547,20 +4654,20 @@ ALTER TABLE `leave_requests`
   ADD CONSTRAINT `leave_requests_leave_type_id_foreign` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`);
 
 --
--- Constraints for table `lecturers`
+-- Ketidakleluasaan untuk tabel `lecturers`
 --
 ALTER TABLE `lecturers`
   ADD CONSTRAINT `lecturers_employee_id_foreign` FOREIGN KEY (`id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `lecturer_functional_positions`
+-- Ketidakleluasaan untuk tabel `lecturer_functional_positions`
 --
 ALTER TABLE `lecturer_functional_positions`
   ADD CONSTRAINT `lecturer_functional_positions_functional_position_id_foreign` FOREIGN KEY (`functional_position_id`) REFERENCES `functional_positions` (`id`),
   ADD CONSTRAINT `lecturer_functional_positions_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturers` (`id`);
 
 --
--- Constraints for table `meetings`
+-- Ketidakleluasaan untuk tabel `meetings`
 --
 ALTER TABLE `meetings`
   ADD CONSTRAINT `meetings_asset_room_id_foreign` FOREIGN KEY (`asset_room_id`) REFERENCES `rooms` (`id`),
@@ -4569,59 +4676,59 @@ ALTER TABLE `meetings`
   ADD CONSTRAINT `meetings_organizer_id_foreign` FOREIGN KEY (`organizer_id`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `meeting_consumption_requests`
+-- Ketidakleluasaan untuk tabel `meeting_consumption_requests`
 --
 ALTER TABLE `meeting_consumption_requests`
   ADD CONSTRAINT `meeting_consumption_requests_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `meeting_consumption_requests_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`);
 
 --
--- Constraints for table `meeting_documents`
+-- Ketidakleluasaan untuk tabel `meeting_documents`
 --
 ALTER TABLE `meeting_documents`
   ADD CONSTRAINT `meeting_documents_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
   ADD CONSTRAINT `meeting_documents_uploaded_by_foreign` FOREIGN KEY (`uploaded_by`) REFERENCES `employees` (`id`);
 
 --
--- Constraints for table `meeting_external_participants`
+-- Ketidakleluasaan untuk tabel `meeting_external_participants`
 --
 ALTER TABLE `meeting_external_participants`
   ADD CONSTRAINT `meeting_external_participants_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`);
 
 --
--- Constraints for table `meeting_minutes`
+-- Ketidakleluasaan untuk tabel `meeting_minutes`
 --
 ALTER TABLE `meeting_minutes`
   ADD CONSTRAINT `meeting_minutes_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `meeting_minutes_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`);
 
 --
--- Constraints for table `meeting_participants`
+-- Ketidakleluasaan untuk tabel `meeting_participants`
 --
 ALTER TABLE `meeting_participants`
   ADD CONSTRAINT `meeting_participants_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `meeting_participants_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`);
 
 --
--- Constraints for table `model_has_permissions`
+-- Ketidakleluasaan untuk tabel `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `model_has_roles`
+-- Ketidakleluasaan untuk tabel `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `nomenclature_classifications`
+-- Ketidakleluasaan untuk tabel `nomenclature_classifications`
 --
 ALTER TABLE `nomenclature_classifications`
   ADD CONSTRAINT `nomenclature_classifications_nomenclature_id_foreign` FOREIGN KEY (`nomenclature_id`) REFERENCES `nomenclatures` (`id`);
 
 --
--- Constraints for table `official_travel`
+-- Ketidakleluasaan untuk tabel `official_travel`
 --
 ALTER TABLE `official_travel`
   ADD CONSTRAINT `official_travel_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `employees` (`id`),

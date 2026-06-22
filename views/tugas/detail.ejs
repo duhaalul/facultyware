@@ -10,7 +10,6 @@
     <% if (user.role === 'pimpinan') { %>
       <a href="/tugas/<%= tugas.id %>/edit" class="btn btn-outline">Edit</a>
       <% if (tugas.status === 'in_progress') { %>
-      <button class="btn btn-orange" onclick="bukaRevisi()">Kirim Revisi</button>
       <form action="/tugas/<%= tugas.id %>/selesai" method="POST">
         <button type="submit" class="btn btn-success">Tandai Selesai</button>
       </form>
@@ -103,33 +102,5 @@
 <div style="margin-top:8px">
   <a href="<%= user.role==='pimpinan' ? '/tugas' : '/tugas/pegawai' %>" class="btn btn-outline">Kembali</a>
 </div>
-
-<div class="modal-overlay" id="modalRevisi">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Kirim Catatan Revisi</h3>
-      <button class="modal-close" onclick="tutupRevisi()">x</button>
-    </div>
-    <form action="/tugas/<%= tugas.id %>/revisi" method="POST">
-      <input type="hidden" name="progress_id" value="0"/>
-      <div class="form-group">
-        <label class="form-label">Catatan <span class="req">*</span></label>
-        <textarea name="catatan" class="form-textarea" required placeholder="Tuliskan catatan revisi..."></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-orange">Kirim</button>
-        <button type="button" class="btn btn-outline" onclick="tutupRevisi()">Batal</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script>
-function bukaRevisi() { document.getElementById('modalRevisi').classList.add('open'); }
-function tutupRevisi() { document.getElementById('modalRevisi').classList.remove('open'); }
-document.getElementById('modalRevisi').addEventListener('click', function(e) {
-  if (e.target === this) tutupRevisi();
-});
-</script>
 
 <%- include('../partials/footer') %>

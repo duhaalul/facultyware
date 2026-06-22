@@ -28,6 +28,7 @@
           <th>Prioritas</th>
           <th>Tenggat</th>
           <th>Status</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -46,11 +47,19 @@
               <%= t.status==='completed'?'Selesai':t.status==='in_progress'?'Berjalan':'Assigned' %>
             </span>
           </td>
+          <td onclick="event.stopPropagation()">
+            <div class="btn-group">
+              <a href="/tugas/<%= t.id %>/edit" class="btn btn-outline btn-xs">Edit</a>
+              <form action="/tugas/<%= t.id %>/delete" method="POST" onsubmit="return confirm('Hapus penugasan ini?')">
+                <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
+              </form>
+            </div>
+          </td>
         </tr>
         <% }) %>
         <% if (tugas.length === 0) { %>
         <tr>
-          <td colspan="5">
+          <td colspan="6">
             <div class="empty-state"><p>Belum ada penugasan. <a href="/tugas/create">Tambah sekarang</a></p></div>
           </td>
         </tr>
