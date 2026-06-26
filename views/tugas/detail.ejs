@@ -10,7 +10,6 @@
     <% if (user.role === 'pimpinan') { %>
       <a href="/tugas/<%= tugas.id %>/edit" class="btn btn-outline">Edit</a>
       <% if (tugas.status === 'in_progress') { %>
-      <button class="btn btn-orange" onclick="bukaRevisi()">Kirim Revisi</button>
       <form action="/tugas/<%= tugas.id %>/selesai" method="POST">
         <button type="submit" class="btn btn-success">Tandai Selesai</button>
       </form>
@@ -18,6 +17,13 @@
     <% } else { %>
       <% if (tugas.status !== 'completed') { %>
       <a href="/tugas/<%= tugas.id %>/submit" class="btn btn-primary">Kumpulkan Tugas</a>
+      <% } %>
+      <% if (tugas.status === 'in_progress' || tugas.status === 'completed') { %>
+      <a href="/tugas/<%= tugas.id %>/bukti" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--success);border:1px solid var(--success);text-decoration:none;transition:background 0.12s;"
+         onmouseover="this.style.background='var(--success-light)'" onmouseout="this.style.background='transparent'">
+        ↓ Unduh Bukti Pengumpulan
+      </a>
       <% } %>
     <% } %>
   </div>
@@ -103,33 +109,5 @@
 <div style="margin-top:8px">
   <a href="<%= user.role==='pimpinan' ? '/tugas' : '/tugas/pegawai' %>" class="btn btn-outline">Kembali</a>
 </div>
-
-<div class="modal-overlay" id="modalRevisi">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Kirim Catatan Revisi</h3>
-      <button class="modal-close" onclick="tutupRevisi()">x</button>
-    </div>
-    <form action="/tugas/<%= tugas.id %>/revisi" method="POST">
-      <input type="hidden" name="progress_id" value="0"/>
-      <div class="form-group">
-        <label class="form-label">Catatan <span class="req">*</span></label>
-        <textarea name="catatan" class="form-textarea" required placeholder="Tuliskan catatan revisi..."></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-orange">Kirim</button>
-        <button type="button" class="btn btn-outline" onclick="tutupRevisi()">Batal</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script>
-function bukaRevisi() { document.getElementById('modalRevisi').classList.add('open'); }
-function tutupRevisi() { document.getElementById('modalRevisi').classList.remove('open'); }
-document.getElementById('modalRevisi').addEventListener('click', function(e) {
-  if (e.target === this) tutupRevisi();
-});
-</script>
 
 <%- include('../partials/footer') %>
