@@ -16,15 +16,13 @@
       <% } %>
     <% } else { %>
       <% if (tugas.status !== 'completed') { %>
-      <a href="/tugas/<%= tugas.id %>/submit" class="btn btn-primary">Kumpulkan Tugas</a>
+        <a href="/tugas/<%= tugas.id %>/submit" class="btn btn-primary">Kumpulkan Tugas</a>
       <% } %>
-      <% if (tugas.status === 'in_progress' || tugas.status === 'completed') { %>
       <a href="/tugas/<%= tugas.id %>/bukti" target="_blank"
          style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--success);border:1px solid var(--success);text-decoration:none;transition:background 0.12s;"
          onmouseover="this.style.background='var(--success-light)'" onmouseout="this.style.background='transparent'">
         ↓ Unduh Bukti Pengumpulan
       </a>
-      <% } %>
     <% } %>
   </div>
 </div>
