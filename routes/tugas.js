@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Pimpinan
 router.get('/', isAuthenticated, isPimpinan, tc.index);
 router.get('/create', isAuthenticated, isPimpinan, tc.createForm);
 router.post('/create', isAuthenticated, isPimpinan, tc.store);
@@ -23,7 +22,6 @@ router.get('/:id/detail', isAuthenticated, tc.detail);
 router.post('/:id/revisi', isAuthenticated, isPimpinan, tc.revisi);
 router.post('/:id/selesai', isAuthenticated, isPimpinan, tc.selesai);
 
-// Pegawai
 router.get('/pegawai', isAuthenticated, isPegawai, tc.pegawaiIndex);
 router.get('/:id/submit', isAuthenticated, isPegawai, tc.submitForm);
 router.post('/:id/submit', isAuthenticated, isPegawai, upload.single('attachment'), tc.submitStore);
