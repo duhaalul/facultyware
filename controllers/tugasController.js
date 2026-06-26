@@ -17,24 +17,24 @@ const index = async (req, res, next) => {
       `SELECT a.*, 
         e1.name AS assigned_by_name, 
         e2.name AS assigned_to_name
-        FROM assignments a
-        LEFT JOIN employees e1 ON a.assigned_by = e1.id
-        LEFT JOIN employees e2 ON a.assigned_to = e2.id
-        WHERE a.title LIKE ? OR e2.name LIKE ?
-        ORDER BY a.created_at DESC
-        LIMIT ? OFFSET ?`,
+       FROM assignments a
+       LEFT JOIN employees e1 ON a.assigned_by = e1.id
+       LEFT JOIN employees e2 ON a.assigned_to = e2.id
+       WHERE a.title LIKE ? OR e2.name LIKE ?
+       ORDER BY a.created_at DESC
+       LIMIT ? OFFSET ?`,
       [searchParam, searchParam, limit, offset]
     );
     const [[{ total }]] = await db.query(
       `SELECT COUNT(*) as total FROM assignments a
-        LEFT JOIN employees e2 ON a.assigned_to = e2.id
-        WHERE a.title LIKE ? OR e2.name LIKE ?`,
+       LEFT JOIN employees e2 ON a.assigned_to = e2.id
+       WHERE a.title LIKE ? OR e2.name LIKE ?`,
       [searchParam, searchParam]
     );
 
     const [employees] = await db.query(
       `SELECT e.id, e.name FROM employees e
-        JOIN users u ON u.id = e.id WHERE e.status = 'active'`
+       JOIN users u ON u.id = e.id WHERE e.status = 'active'`
     );
 
     res.render('tugas/index', {
@@ -82,7 +82,7 @@ const store = async (req, res, next) => {
   try {
     await db.query(
       `INSERT INTO assignments (title, description, assigned_by, assigned_to, start_date, due_date, status, priority, assigned_by_id, assigned_to_id, parent_id_id, created_at, updated_at)
-          VALUES (?, ?, ?, ?, ?, ?, 'assigned', ?, ?, ?, 0, NOW(), NOW())`,
+       VALUES (?, ?, ?, ?, ?, ?, 'assigned', ?, ?, ?, 0, NOW(), NOW())`,
       [title, description || null, req.session.userId, assigned_to, start_date || null, due_date || null, priority, req.session.userId, assigned_to]
     );
     req.session.flashSuccess = 'Penugasan berhasil ditambahkan.';
@@ -142,17 +142,17 @@ const detail = async (req, res, next) => {
   try {
     const [[tugas]] = await db.query(
       `SELECT a.*, e1.name AS assigned_by_name, e2.name AS assigned_to_name
-        FROM assignments a
-        LEFT JOIN employees e1 ON a.assigned_by = e1.id
-        LEFT JOIN employees e2 ON a.assigned_to = e2.id
-        WHERE a.id = ?`, [req.params.id]
+       FROM assignments a
+       LEFT JOIN employees e1 ON a.assigned_by = e1.id
+       LEFT JOIN employees e2 ON a.assigned_to = e2.id
+       WHERE a.id = ?`, [req.params.id]
     );
     if (!tugas) return res.redirect('/tugas');
     const [progress] = await db.query(
       `SELECT ap.*, e.name AS created_by_name
-        FROM assignment_progress ap
-        LEFT JOIN employees e ON ap.created_by = e.id
-        WHERE ap.assignment_id = ? ORDER BY ap.progress_date DESC`,
+       FROM assignment_progress ap
+       LEFT JOIN employees e ON ap.created_by = e.id
+       WHERE ap.assignment_id = ? ORDER BY ap.progress_date DESC`,
       [req.params.id]
     );
     res.render('tugas/detail', {
@@ -185,11 +185,11 @@ const exportExcel = async (req, res, next) => {
     const [rows] = await db.query(
       `SELECT a.title, a.description, a.status, a.priority, a.start_date, a.due_date,
               e1.name AS assigned_by_name, e2.name AS assigned_to_name, a.created_at
-        FROM assignments a
-        LEFT JOIN employees e1 ON a.assigned_by = e1.id
-        LEFT JOIN employees e2 ON a.assigned_to = e2.id
-        WHERE a.status != 'cancelled'
-        ORDER BY a.created_at DESC`
+       FROM assignments a
+       LEFT JOIN employees e1 ON a.assigned_by = e1.id
+       LEFT JOIN employees e2 ON a.assigned_to = e2.id
+       WHERE a.status != 'cancelled'
+       ORDER BY a.created_at DESC`
     );
 
     const workbook = new ExcelJS.Workbook();
@@ -249,14 +249,15 @@ const pegawaiIndex = async (req, res, next) => {
 
     const [rows] = await db.query(
       `SELECT a.*, e.name AS assigned_by_name
-        FROM assignments a
-        LEFT JOIN employees e ON a.assigned_by = e.id
-        WHERE a.assigned_to = ? AND a.title LIKE ?${whereExtra}
-        ORDER BY a.created_at DESC LIMIT ? OFFSET ?`,
+       FROM assignments a
+       LEFT JOIN employees e ON a.assigned_by = e.id
+       WHERE a.assigned_to = ? AND a.title LIKE ?${whereExtra}
+       ORDER BY a.created_at DESC LIMIT ? OFFSET ?`,
       [...params, limit, offset]
     );
     const [[{ total }]] = await db.query(
-      `SELECT COUNT(*) as total FROM assignments a   WHERE a.assigned_to = ? AND a.title LIKE ?${whereExtra}`,
+      `SELECT COUNT(*) as total FROM assignments a
+       WHERE a.assigned_to = ? AND a.title LIKE ?${whereExtra}`,
       params
     );
 
@@ -311,7 +312,8 @@ const submitStore = async (req, res, next) => {
       );
     } else {
       await db.query(
-        `INSERT INTO assignment_progress (assignment_id, description, progress_date, status, attachment, created_by, employee_id, created_at, updated_at) VALUES (?, ?, NOW(), 'in_progress', ?, ?, ?, NOW(), NOW())`,
+        `INSERT INTO assignment_progress (assignment_id, description, progress_date, status, attachment, created_by, employee_id, created_at, updated_at)
+         VALUES (?, ?, NOW(), 'in_progress', ?, ?, ?, NOW(), NOW())`,
         [req.params.id, description + (link ? '\nLink: ' + link : ''), attachment, req.session.userId, req.session.userId]
       );
     }
@@ -345,10 +347,10 @@ const downloadBukti = async (req, res, next) => {
       `SELECT a.*,
               e1.name AS assigned_by_name, e1.email AS assigned_by_email,
               e2.name AS assigned_to_name, e2.email AS assigned_to_email
-        FROM assignments a
-        LEFT JOIN employees e1 ON a.assigned_by = e1.id
-        LEFT JOIN employees e2 ON a.assigned_to = e2.id
-        WHERE a.id = ? AND a.assigned_to = ?`,
+       FROM assignments a
+       LEFT JOIN employees e1 ON a.assigned_by = e1.id
+       LEFT JOIN employees e2 ON a.assigned_to = e2.id
+       WHERE a.id = ? AND a.assigned_to = ?`,
       [req.params.id, req.session.userId]
     );
     if (!tugas) return res.redirect('/tugas/pegawai');
@@ -356,10 +358,10 @@ const downloadBukti = async (req, res, next) => {
     // Ambil data kiriman (progress)
     const [[progress]] = await db.query(
       `SELECT ap.*, e.name AS submitted_by_name
-        FROM assignment_progress ap
-        LEFT JOIN employees e ON ap.created_by = e.id
-        WHERE ap.assignment_id = ?
-        ORDER BY ap.updated_at DESC`,
+       FROM assignment_progress ap
+       LEFT JOIN employees e ON ap.created_by = e.id
+       WHERE ap.assignment_id = ?
+       ORDER BY ap.updated_at DESC`,
       [req.params.id]
     );
     if (!progress) {
@@ -380,12 +382,12 @@ const downloadBukti = async (req, res, next) => {
     doc.rect(50, 40, doc.page.width - 100, 80).fillColor('#0f172a').fill();
 
     doc.fillColor('#3b82f6')
-        .fontSize(9).font('Helvetica-Bold')
-        .text('SISTEM KINERJA PEGAWAI', 70, 55, { characterSpacing: 1.5 });
+       .fontSize(9).font('Helvetica-Bold')
+       .text('SISTEM KINERJA PEGAWAI', 70, 55, { characterSpacing: 1.5 });
 
     doc.fillColor('#ffffff')
-        .fontSize(20).font('Helvetica-Bold')
-        .text('TANDA TERIMA PENYERAHAN TUGAS', 70, 70);
+       .fontSize(20).font('Helvetica-Bold')
+       .text('TANDA TERIMA PENYERAHAN TUGAS', 70, 70);
 
     // ── Nomor & Tanggal cetak ─────────────────────────────────────
     const now = new Date();
@@ -396,26 +398,29 @@ const downloadBukti = async (req, res, next) => {
     const nomorBukti = `SKP-${String(req.params.id).padStart(4, '0')}-${now.getFullYear()}`;
 
     doc.fillColor('#6b7280').fontSize(9).font('Helvetica')
-        .text(`No. Dokumen : ${nomorBukti}`, 50, 138)
-        .text(`Dicetak pada : ${tglCetak}`, 50, 151);
+       .text(`No. Dokumen : ${nomorBukti}`, 50, 138)
+       .text(`Dicetak pada : ${tglCetak}`, 50, 151);
 
     // ── Garis pembatas ────────────────────────────────────────────
-    doc.moveTo(50, 170).lineTo(doc.page.width - 50, 170)     .strokeColor('#e8eaed').lineWidth(1).stroke();
+    doc.moveTo(50, 170).lineTo(doc.page.width - 50, 170)
+       .strokeColor('#e8eaed').lineWidth(1).stroke();
 
     // ── Helper: section title ─────────────────────────────────────
     let y = 185;
     const sectionTitle = (label) => {
       doc.rect(50, y, doc.page.width - 100, 22).fillColor('#f1f5f9').fill();
-      doc.fillColor('#0f172a').fontSize(9).font('Helvetica-Bold')   .text(label.toUpperCase(), 58, y + 6, { characterSpacing: 0.8 });
+      doc.fillColor('#0f172a').fontSize(9).font('Helvetica-Bold')
+         .text(label.toUpperCase(), 58, y + 6, { characterSpacing: 0.8 });
       y += 30;
     };
 
     // ── Helper: row data ──────────────────────────────────────────
     const row = (label, value, highlight = false) => {
       doc.fillColor('#9ca3af').fontSize(9).font('Helvetica')
-      .text(label, 58, y, { width: 160 });
+         .text(label, 58, y, { width: 160 });
       doc.fillColor(highlight ? '#16a34a' : '#111827')
-      .fontSize(9).font(highlight ? 'Helvetica-Bold' : 'Helvetica') .text(value || '—', 220, y, { width: doc.page.width - 270 });
+         .fontSize(9).font(highlight ? 'Helvetica-Bold' : 'Helvetica')
+         .text(value || '—', 220, y, { width: doc.page.width - 270 });
       y += 18;
     };
 
