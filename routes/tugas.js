@@ -27,5 +27,6 @@ router.post('/:id/selesai', isAuthenticated, isPimpinan, tc.selesai);
 router.get('/pegawai', isAuthenticated, isPegawai, tc.pegawaiIndex);
 router.get('/:id/submit', isAuthenticated, isPegawai, tc.submitForm);
 router.post('/:id/submit', isAuthenticated, isPegawai, upload.single('attachment'), tc.submitStore);
+router.get('/:id/bukti', isAuthenticated, isPegawai, tc.downloadBukti);
 
 module.exports = router;
