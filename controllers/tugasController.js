@@ -2,9 +2,6 @@ const db = require('../lib/db');
 const ExcelJS = require('exceljs');
 const PDFDocument = require('pdfkit');
 
-// ===================== PIMPINAN =====================
-
-// GET /tugas - list semua penugasan (pimpinan)
 const index = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -49,7 +46,6 @@ const index = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/create
 const createForm = async (req, res, next) => {
   try {
     const [employees] = await db.query(
@@ -90,7 +86,6 @@ const store = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/:id/edit
 const editForm = async (req, res, next) => {
   try {
     const [[tugas]] = await db.query('SELECT * FROM assignments WHERE id = ?', [req.params.id]);
@@ -103,7 +98,6 @@ const editForm = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /tugas/:id/edit
 const update = async (req, res, next) => {
   const { title, description, assigned_to, start_date, due_date, priority, status } = req.body;
   const errors = [];
@@ -127,7 +121,6 @@ const update = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /tugas/:id/delete
 const destroy = async (req, res, next) => {
   try {
     await db.query('DELETE FROM assignment_progress WHERE assignment_id = ?', [req.params.id]);
@@ -137,7 +130,6 @@ const destroy = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/:id/detail
 const detail = async (req, res, next) => {
   try {
     const [[tugas]] = await db.query(
@@ -162,7 +154,6 @@ const detail = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /tugas/:id/revisi - pimpinan revisi kiriman pegawai
 const revisi = async (req, res, next) => {
   const { progress_id, catatan } = req.body;
   try {
@@ -179,7 +170,6 @@ const revisi = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/export/excel
 const exportExcel = async (req, res, next) => {
   try {
     const [rows] = await db.query(
@@ -232,9 +222,6 @@ const exportExcel = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// ===================== PEGAWAI =====================
-
-// GET /tugas/pegawai - list tugas untuk pegawai yg login
 const pegawaiIndex = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -273,7 +260,6 @@ const pegawaiIndex = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/:id/submit - form kumpul tugas
 const submitForm = async (req, res, next) => {
   try {
     const [[tugas]] = await db.query('SELECT * FROM assignments WHERE id = ? AND assigned_to = ?', [req.params.id, req.session.userId]);
@@ -287,7 +273,6 @@ const submitForm = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /tugas/:id/submit
 const submitStore = async (req, res, next) => {
   const { description, link } = req.body;
   const errors = [];
@@ -323,7 +308,6 @@ const submitStore = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// POST /tugas/:id/selesai - pimpinan validasi jadi selesai
 const selesai = async (req, res, next) => {
   try {
     await db.query(
@@ -339,10 +323,10 @@ const selesai = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-// GET /tugas/:id/bukti — download tanda terima penyerahan tugas (PDF)
+
 const downloadBukti = async (req, res, next) => {
   try {
-    // Ambil data tugas + pastikan pegawai yang login adalah pemilik tugas
+  
     const [[tugas]] = await db.query(
       `SELECT a.*,
               e1.name AS assigned_by_name, e1.email AS assigned_by_email,
@@ -355,7 +339,7 @@ const downloadBukti = async (req, res, next) => {
     );
     if (!tugas) return res.redirect('/tugas/pegawai');
 
-    // Ambil data kiriman (progress)
+   
     const [[progress]] = await db.query(
       `SELECT ap.*, e.name AS submitted_by_name
        FROM assignment_progress ap
@@ -369,7 +353,7 @@ const downloadBukti = async (req, res, next) => {
       return res.redirect('/tugas/pegawai');
     }
 
-    // Buat PDF
+    
     const doc = new PDFDocument({ margin: 50, size: 'A4' });
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader(
@@ -378,7 +362,7 @@ const downloadBukti = async (req, res, next) => {
     );
     doc.pipe(res);
 
-    // ── Header strip ──────────────────────────────────────────────
+    
     doc.rect(50, 40, doc.page.width - 100, 80).fillColor('#0f172a').fill();
 
     doc.fillColor('#3b82f6')
@@ -389,7 +373,7 @@ const downloadBukti = async (req, res, next) => {
        .fontSize(20).font('Helvetica-Bold')
        .text('TANDA TERIMA PENYERAHAN TUGAS', 70, 70);
 
-    // ── Nomor & Tanggal cetak ─────────────────────────────────────
+   
     const now = new Date();
     const tglCetak = now.toLocaleDateString('id-ID', {
       day: '2-digit', month: 'long', year: 'numeric',
@@ -401,11 +385,11 @@ const downloadBukti = async (req, res, next) => {
        .text(`No. Dokumen : ${nomorBukti}`, 50, 138)
        .text(`Dicetak pada : ${tglCetak}`, 50, 151);
 
-    // ── Garis pembatas ────────────────────────────────────────────
+    
     doc.moveTo(50, 170).lineTo(doc.page.width - 50, 170)
        .strokeColor('#e8eaed').lineWidth(1).stroke();
 
-    // ── Helper: section title ─────────────────────────────────────
+   
     let y = 185;
     const sectionTitle = (label) => {
       doc.rect(50, y, doc.page.width - 100, 22).fillColor('#f1f5f9').fill();
@@ -414,7 +398,7 @@ const downloadBukti = async (req, res, next) => {
       y += 30;
     };
 
-    // ── Helper: row data ──────────────────────────────────────────
+   
     const row = (label, value, highlight = false) => {
       doc.fillColor('#9ca3af').fontSize(9).font('Helvetica')
          .text(label, 58, y, { width: 160 });
@@ -424,7 +408,7 @@ const downloadBukti = async (req, res, next) => {
       y += 18;
     };
 
-    // ── SECTION 1: Detail Penugasan ───────────────────────────────
+
     sectionTitle('Detail Penugasan');
 
     row('Judul Tugas', tugas.title);
@@ -458,14 +442,14 @@ const downloadBukti = async (req, res, next) => {
 
     y += 8;
 
-    // ── SECTION 2: Informasi Pegawai ──────────────────────────────
+
     sectionTitle('Informasi Pegawai');
     row('Nama Pegawai', tugas.assigned_to_name);
     row('Email', tugas.assigned_to_email);
     row('Ditugaskan Oleh', tugas.assigned_by_name);
     y += 8;
 
-    // ── SECTION 3: Rincian Kiriman ────────────────────────────────
+   
     sectionTitle('Rincian Kiriman');
 
     const tglKirim = new Date(progress.updated_at).toLocaleDateString('id-ID', {
@@ -474,12 +458,12 @@ const downloadBukti = async (req, res, next) => {
     });
     row('Tanggal Dikumpulkan', tglKirim);
 
-    // Deskripsi hasil kerja — bisa panjang, wrap manual
+
     doc.fillColor('#9ca3af').fontSize(9).font('Helvetica')
        .text('Deskripsi Hasil Kerja', 58, y, { width: 160 });
 
     const deskripsiKiriman = (progress.description || '—')
-      .replace(/\n\[Revisi:.*?\]/g, '') // hilangkan catatan revisi internal
+      .replace(/\n\[Revisi:.*?\]/g, '') 
       .trim();
 
     doc.fillColor('#111827').fontSize(9).font('Helvetica')
@@ -497,19 +481,18 @@ const downloadBukti = async (req, res, next) => {
     row('Status Kiriman', progressStatus, progress.status === 'completed');
     y += 8;
 
-    // ── Garis ─────────────────────────────────────────────────────
+   
     doc.moveTo(50, y).lineTo(doc.page.width - 50, y)
        .strokeColor('#e8eaed').lineWidth(1).stroke();
     y += 20;
 
-    // ── Kolom tanda tangan ────────────────────────────────────────
     const colW = (doc.page.width - 100) / 2;
 
     doc.fillColor('#111827').fontSize(9).font('Helvetica')
        .text('Pegawai Penyerah', 50, y, { width: colW, align: 'center' })
        .text('Pimpinan / Penerima', 50 + colW, y, { width: colW, align: 'center' });
 
-    y += 55; // ruang tanda tangan
+    y += 55; /
 
     doc.moveTo(80, y).lineTo(80 + colW - 60, y).strokeColor('#9ca3af').lineWidth(0.8).stroke();
     doc.moveTo(80 + colW, y).lineTo(80 + colW * 2 - 60, y).strokeColor('#9ca3af').lineWidth(0.8).stroke();
@@ -520,7 +503,6 @@ const downloadBukti = async (req, res, next) => {
     doc.fillColor('#374151').fontSize(9).font('Helvetica-Bold')
        .text(tugas.assigned_by_name || '—', 50 + colW, y, { width: colW, align: 'center' });
 
-    // ── Footer ────────────────────────────────────────────────────
     doc.fillColor('#d1d5db').fontSize(8).font('Helvetica')
        .text(
          `Dokumen ini dicetak secara otomatis oleh Sistem Kinerja Pegawai · ${nomorBukti}`,
